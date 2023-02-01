@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name" translatable="false">WhaleUtils</string>
+
+    <string name="device_info_title">Device</string>
+    <string name="system_info_title">System</string>
+
+    <string name="device_info_category_display">Display</string>
+    <string name="system_info_category_processor">Processor</string>
+    <string name="system_info_category_graphics">Graphics</string>
+
+    <string name="system_info_gpu_error_message">%1$s has not yet been set, the data is failed to be loaded.</string>
+
+</resources>

@@ -1,0 +1,29 @@
+<resources>
+
+    <string name="device_info_model">模型</string>
+    <string name="device_info_manufacturer">製造商</string>
+    <string name="device_info_baseband_version">基頻版本</string>
+    <string name="device_info_ril_version">RIL 版本</string>
+    <string name="device_info_build_number">編譯版本號</string>
+    <string name="device_info_build_fingerprint">建立指紋</string>
+    <string name="device_info_bootloader">引導程序</string>
+    <string name="device_info_java_vm">Java 虛擬機</string>
+    <string name="device_info_os_version">Android 版本</string>
+    <string name="device_info_sdk_version">SDK 版本</string>
+
+    <string name="system_info_cpu_arch">CPU 架構·</string>
+    <string name="system_info_board">板塊</string>
+    <string name="system_info_chipset">芯片組</string>
+    <string name="system_info_core_amount">核心</string>
+    <string name="system_info_clock_speed">時鐘頻率</string>
+    <string name="system_info_instruction_sets">指令集</string>
+    <string name="system_info_cpu_features">CPU 特徵</string>
+    <string name="system_info_cpu_governor">CPU 總督</string>
+    <string name="system_info_cpu_bits">CPU 位數</string>
+    <string name="system_info_kernel_version">內核版本</string>
+    <string name="system_info_kernal_arch">內核體系結構</string>
+    <string name="system_info_renderer">渲染器</string>
+    <string name="system_info_vendor">供應商</string>
+    <string name="system_info_opengl_version">OpenGL 版本</string>
+
+</resources>

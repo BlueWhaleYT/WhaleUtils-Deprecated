@@ -1,0 +1,29 @@
+<resources>
+
+    <string name="device_info_model">Model</string>
+    <string name="device_info_manufacturer">Manufacturer</string>
+    <string name="device_info_baseband_version">Baseband Version</string>
+    <string name="device_info_ril_version">RIL Version</string>
+    <string name="device_info_build_number">Build Number</string>
+    <string name="device_info_build_fingerprint">Build Fingerprint</string>
+    <string name="device_info_bootloader">Bootloader</string>
+    <string name="device_info_java_vm">Java VM</string>
+    <string name="device_info_os_version">OS Version</string>
+    <string name="device_info_sdk_version">SDK</string>
+
+    <string name="system_info_cpu_arch">CPU Architecture</string>
+    <string name="system_info_board">Board</string>
+    <string name="system_info_chipset">Chipset</string>
+    <string name="system_info_core_amount">Cores</string>
+    <string name="system_info_clock_speed">Clock Speed</string>
+    <string name="system_info_instruction_sets">Instruction Sets</string>
+    <string name="system_info_cpu_features">CPU Features</string>
+    <string name="system_info_cpu_governor">CPU Governor</string>
+    <string name="system_info_cpu_bits">CPU Bits</string>
+    <string name="system_info_kernel_version">Kernel Version</string>
+    <string name="system_info_kernal_arch">Kernel Architecture</string>
+    <string name="system_info_renderer">Renderer</string>
+    <string name="system_info_vendor">Vendor</string>
+    <string name="system_info_opengl_version">OpenGL Version</string>
+
+</resources>

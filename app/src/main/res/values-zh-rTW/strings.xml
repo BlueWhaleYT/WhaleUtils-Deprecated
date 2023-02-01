@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="device_info_title">設備資訊</string>
+    <string name="system_info_title">系統資訊</string>
+
+    <string name="device_info_category_display">顯示</string>
+    <string name="system_info_category_processor">處理器</string>
+    <string name="system_info_category_graphics">繪圖</string>
+
+    <string name="system_info_gpu_error_message">%1$s 的配置尚未完成，無法顯示相關資料。</string>
+
+</resources>

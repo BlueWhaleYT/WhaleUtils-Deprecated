@@ -1,7 +1,7 @@
 
 # WhaleUtils
 
-WhaleUtils provide a bundle of useful utility codes.
+WhaleUtils provides a bundle of useful utility codes.
 
 ## Get Started
 

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menu_permission"
+        android:title="Grant Permissions">
+
+        <menu>
+
+            <item
+                android:id="@+id/menu_all_file_access"
+                android:title="All files access" />
+
+        </menu>
+
+    </item>
+
+    <item
+        android:id="@+id/menu_info"
+        android:title="Info">
+
+        <menu>
+
+            <item
+                android:id="@+id/menu_device_info"
+                android:title="@string/device_info_title" />
+
+            <item
+                android:id="@+id/menu_system_info"
+                android:title="@string/system_info_title" />
+
+        </menu>
+
+    </item>
+
+    <item
+        android:id="@+id/menu_delete_root_dir"
+        android:title="Delete External Root Directory" />
+
+    <item
+        android:id="@+id/menu_debug"
+        android:title="Debug"
+        android:icon="@drawable/ic_baseline_bug_report_24"
+        app:showAsAction="always"/>
+
+</menu>

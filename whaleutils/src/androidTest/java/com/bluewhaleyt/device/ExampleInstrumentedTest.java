@@ -1,4 +1,4 @@
-package com.bluewhaleyt.deviceutil;
+package com.bluewhaleyt.device;
 
 import android.content.Context;
 

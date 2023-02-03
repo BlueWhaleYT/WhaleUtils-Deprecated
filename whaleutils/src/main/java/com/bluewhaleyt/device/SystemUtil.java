@@ -1,10 +1,6 @@
-package com.bluewhaleyt.deviceutil;
+package com.bluewhaleyt.device;
 
 import android.os.Build;
-import android.text.TextUtils;
-
-import com.bluewhaleyt.WhaleUtilsApplication;
-import com.bluewhaleyt.whaleutils.R;
 
 import java.io.BufferedReader;
 import java.io.File;

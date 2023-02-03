@@ -1,4 +1,4 @@
-package com.bluewhaleyt.networkutil;
+package com.bluewhaleyt.network;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

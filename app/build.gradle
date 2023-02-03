@@ -40,6 +40,8 @@ dependencies {
     implementation 'com.github.BlueWhaleYT:CrashDebugger:1.0.0.1'
     implementation project(path: ':whaleutils')
 
+    implementation 'org.eclipse.jgit:org.eclipse.jgit:5.13.1.202206130422-r'
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'

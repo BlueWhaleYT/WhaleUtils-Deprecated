@@ -4,32 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="20dp">
+    android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btnDeviceInfo"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/device_info_title"/>
+        app:tabMode="scrollable"/>
 
-    <Button
-        android:id="@+id/btnSystemInfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/system_info_title"
-        style="@style/Widget.Material3.Button.OutlinedButton"/>
-
-    <LinearLayout
+    <com.bluewhaleyt.whaleutils.components.NoSwipeViewPager
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="made by BlueWhaleYT"
-        android:gravity="center"/>
+        android:layout_weight="1"
+        android:padding="20dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
     <android.opengl.GLSurfaceView
         android:id="@+id/gl_surface_view"

@@ -1,14 +1,10 @@
-package com.bluewhaleyt.deviceutil;
+package com.bluewhaleyt.device;
 
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.os.StatFs;
-
-import com.bluewhaleyt.unitutil.UnitUtil;
-
-import java.io.File;
 
 
 public class MemoryUtil {

@@ -1,25 +1,34 @@
 package com.bluewhaleyt.whaleutils;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.View;
 
-import com.bluewhaleyt.commonutil.CommonUtil;
+import com.bluewhaleyt.common.CommonUtil;
+import com.bluewhaleyt.common.PermissionUtil;
 import com.bluewhaleyt.crashdebugger.CrashDebugger;
-import com.bluewhaleyt.deviceutil.DeviceUtil;
-import com.bluewhaleyt.deviceutil.GPUInfoUtil;
-import com.bluewhaleyt.deviceutil.SystemUtil;
-import com.bluewhaleyt.networkutil.NetworkUtil;
+import com.bluewhaleyt.device.DeviceUtil;
+import com.bluewhaleyt.device.GPUInfoUtil;
+import com.bluewhaleyt.device.SystemUtil;
+import com.bluewhaleyt.filemanagement.FileUtil;
+import com.bluewhaleyt.network.NetworkUtil;
+import com.bluewhaleyt.whaleutils.adapters.ViewPagerAdapter;
 import com.bluewhaleyt.whaleutils.databinding.ActivityMainBinding;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
+    private ViewPagerAdapter viewPagerAdapter;
 
     private StringBuilder text = new StringBuilder();
     private String lnBreak = "\n";
@@ -33,7 +42,37 @@ public class MainActivity extends AppCompatActivity {
         init();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.menu_device_info:
+                showDeviceInfoDialog();
+                break;
+            case R.id.menu_system_info:
+                showSystemInfoDialog();
+                break;
+            case R.id.menu_delete_root_dir:
+                showDeleteRootDirDialog();
+                break;
+            case R.id.menu_all_file_access:
+                requestAllFileAccess();
+                break;
+            case R.id.menu_debug:
+                startActivity(new Intent(this, UtilsCodeActivity.class));
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private void init() {
+
+        getSupportActionBar().setSubtitle("made by BlueWhaleYT");
 
         checkInternetConnection();
 
@@ -41,9 +80,15 @@ public class MainActivity extends AppCompatActivity {
         CommonUtil.setNavigationBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);
 
         GPUInfoUtil.set(binding.glSurfaceView);
-        binding.btnDeviceInfo.setOnClickListener(v -> showDeviceInfo());
-        binding.btnSystemInfo.setOnClickListener(v -> showSystemInfo());
 
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        binding.viewPager.setAdapter(viewPagerAdapter);
+        binding.tabLayout.setupWithViewPager(binding.viewPager);
+
+    }
+
+    private void requestAllFileAccess() {
+        PermissionUtil.requestAllFileAccess(this);
     }
 
     private void checkInternetConnection() {
@@ -56,7 +101,17 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void showDeviceInfo() {
+    private void showDeleteRootDirDialog() {
+        var path = FileUtil.getExternalStoragePath() + App.ROOT_DIR;
+        new MaterialAlertDialogBuilder(this)
+                .setTitle("Delete external root directory")
+                .setMessage("Are you sure you want to delete " + path + " directory? This action can't be restored.")
+                .setPositiveButton(android.R.string.ok, (d, i) -> FileUtil.deleteFile(path))
+                .setNegativeButton(android.R.string.cancel, null)
+                .create().show();
+    }
+
+    private void showDeviceInfoDialog() {
         text.setLength(0);
         text.append(App.getRes().getString(R.string.device_info_category_display) + lnBreak);
         text.append(App.getRes().getString(R.string.device_info_model) + ": " + DeviceUtil.getModel() + " (" + DeviceUtil.getModelProduct() + ")" + lnBreak);
@@ -77,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void showSystemInfo() {
+    private void showSystemInfoDialog() {
         text.setLength(0);
         try {
             text.append(App.getRes().getString(R.string.system_info_category_processor) + lnBreak);

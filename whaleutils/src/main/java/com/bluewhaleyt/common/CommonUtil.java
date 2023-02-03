@@ -1,6 +1,5 @@
-package com.bluewhaleyt.commonutil;
+package com.bluewhaleyt.common;
 
-import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
@@ -8,7 +7,6 @@ import android.os.Build;
 import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewbinding.ViewBinding;
 
 import com.google.android.material.color.DynamicColors;
 import com.google.android.material.elevation.SurfaceColors;
@@ -31,20 +29,20 @@ public class CommonUtil {
         }, time);
     }
 
-    public static void repeatDoing(int time, Callable<?> callable) {
+    public static void repeatDoing(Callable<?> callable) {
         Handler handler = new Handler();
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
                 try {
                     callable.call();
-                    handler.postDelayed(this, time);
+                    handler.postDelayed(this, 1L);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         };
-        handler.postDelayed(runnable, time);
+        handler.post(runnable);
     }
 
     public static boolean isInDarkMode(Context context) {

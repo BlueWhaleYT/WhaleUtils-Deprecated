@@ -1,4 +1,4 @@
-package com.bluewhaleyt.unitutil;
+package com.bluewhaleyt.unit;
 
 public class UnitUtil {
 

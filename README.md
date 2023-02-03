@@ -49,3 +49,7 @@ dependencies {
     implementation 'com.github.BlueWhaleYT:WhaleUtils:$version'
 }
 ```
+
+## Usage
+
+See the <a href="https://github.com/BlueWhaleYT/WhaleUtils/tree/master/app" target="_blank">demo app</a> for examples.

@@ -4,13 +4,21 @@
 
     <item
         android:id="@+id/menu_permission"
-        android:title="Grant Permissions">
+        android:title="@string/permission_grant_title">
 
         <menu>
 
             <item
                 android:id="@+id/menu_all_file_access"
-                android:title="All files access" />
+                android:title="@string/permission_grant_access_all_files" />
+
+            <item
+                android:id="@+id/menu_access_android_data"
+                android:title="@string/permission_grant_access_android_data" />
+
+            <item
+                android:id="@+id/menu_access_android_obb"
+                android:title="@string/permission_grant_access_android_obb" />
 
         </menu>
 
@@ -30,6 +38,10 @@
                 android:id="@+id/menu_system_info"
                 android:title="@string/system_info_title" />
 
+            <item
+                android:id="@+id/menu_palette_info"
+                android:title="@string/palette_info_title" />
+
         </menu>
 
     </item>
@@ -37,6 +49,10 @@
     <item
         android:id="@+id/menu_delete_root_dir"
         android:title="Delete External Root Directory" />
+
+    <item
+        android:id="@+id/menu_clear_app_data_cache"
+        android:title="Clear app data cache" />
 
     <item
         android:id="@+id/menu_debug"

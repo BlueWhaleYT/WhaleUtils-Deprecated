@@ -1,8 +1,10 @@
 package com.bluewhaleyt.common;
 
 import android.annotation.SuppressLint;
+import android.app.Application;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.os.Build;
 
 import com.bluewhaleyt.whaleutils.R;
 import com.google.android.material.color.DynamicColors;
@@ -105,7 +107,7 @@ public class DynamicColorsUtil {
 
     public int getColorSecondaryContainer() { return secondaryContainer; }
 
-    public int getColorOnSecondContainer() { return onSecondaryContainer; }
+    public int getColorOnSecondaryContainer() { return onSecondaryContainer; }
 
     public int getColorTertiary() { return tertiary; }
 
@@ -138,5 +140,14 @@ public class DynamicColorsUtil {
     public int getColorOutline() { return outline; }
 
     public int getColorOutlineVariant() { return outlineVariant; }
+
+    public static boolean isDynamicColorAvailable() {
+        return Build.VERSION.SDK_INT > Build.VERSION_CODES.S && DynamicColors.isDynamicColorAvailable();
+    }
+
+    public static void setDynamicColorsIfAvailable(Application application) {
+        if (isDynamicColorAvailable())
+            DynamicColors.applyToActivitiesIfAvailable(application);
+    }
 
 }

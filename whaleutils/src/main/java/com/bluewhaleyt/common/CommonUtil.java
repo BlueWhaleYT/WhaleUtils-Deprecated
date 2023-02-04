@@ -73,9 +73,4 @@ public class CommonUtil {
         }
     }
 
-    public static void setDynamicColorsIfAvailable(Application application) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S && DynamicColors.isDynamicColorAvailable())
-            DynamicColors.applyToActivitiesIfAvailable(application);
-    }
-
 }

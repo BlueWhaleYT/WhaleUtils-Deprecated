@@ -1,13 +1,21 @@
 <resources>
     <string name="app_name" translatable="false">WhaleUtils</string>
 
+    <string name="permission_grant_title">Grant permissions</string>
+    <string name="permission_grant_access_all_files">Access all files</string>
+    <string name="permission_grant_access_android_data">Access Android/data</string>
+    <string name="permission_grant_access_android_obb">Access Android/obb</string>
+
     <string name="device_info_title">Device</string>
     <string name="system_info_title">System</string>
+    <string name="palette_info_title">Palette</string>
 
     <string name="device_info_category_display">Display</string>
     <string name="system_info_category_processor">Processor</string>
     <string name="system_info_category_graphics">Graphics</string>
 
     <string name="system_info_gpu_error_message">%1$s has not yet been set, the data is failed to be loaded.</string>
+
+    <string name="palette_info_message">The palette color is detected from the wallpaper of your device.</string>
 
 </resources>

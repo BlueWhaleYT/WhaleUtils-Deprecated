@@ -46,6 +46,14 @@ public class GitUtil {
         git = new Git(localRepo);
     }
 
+    public String getLocalPath() {
+        return localPath;
+    }
+
+    public String getRemotePath() {
+        return remotePath;
+    }
+
     public void cloneRepo() {
         try {
             Git.cloneRepository()

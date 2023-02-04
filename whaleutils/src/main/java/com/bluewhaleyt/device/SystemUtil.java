@@ -1,5 +1,8 @@
 package com.bluewhaleyt.device;
 
+import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.Context;
 import android.os.Build;
 
 import java.io.BufferedReader;
@@ -92,6 +95,14 @@ public class SystemUtil {
 
     public static String getOpenGLVersion() {
         return GPUInfoUtil.glVersion;
+    }
+
+    public static void clearApplicationDataCache(Activity activity) throws IOException {
+        if (Build.VERSION_CODES.KITKAT <= Build.VERSION.SDK_INT) {
+            ((ActivityManager)activity.getSystemService(Context.ACTIVITY_SERVICE)).clearApplicationUserData();
+        } else {
+            Runtime.getRuntime().exec("pm clear " + activity.getApplicationContext().getPackageName());
+        }
     }
 
     private static double getCoreFrequency(double currentFreq) {

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.Resources;
 
 import com.bluewhaleyt.common.CommonUtil;
+import com.bluewhaleyt.common.DynamicColorsUtil;
 
 public class App extends Application {
 
@@ -16,7 +17,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         context = getApplicationContext();
-        CommonUtil.setDynamicColorsIfAvailable(this);
+        DynamicColorsUtil.setDynamicColorsIfAvailable(this);
     }
 
     public static Context getContext() {

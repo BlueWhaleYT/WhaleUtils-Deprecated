@@ -147,13 +147,11 @@ public class GitFragment extends Fragment {
             isCloning = true;
             git = new GitUtil(localPath, remotePath);
 
-            Button btn = dialog.getButton(DialogInterface.BUTTON_NEGATIVE);
-            btn.setText(android.R.string.cancel);
-            btn.setOnClickListener(v -> {
-                if (isCloning) thread.interrupt();
-            });
-
-            git.cloneRepo();
+//            btn.setOnClickListener(v -> {
+//                if (isCloning) thread.interrupt();
+//            });
+//
+//            git.cloneRepo();
 
             dialog.dismiss();
 

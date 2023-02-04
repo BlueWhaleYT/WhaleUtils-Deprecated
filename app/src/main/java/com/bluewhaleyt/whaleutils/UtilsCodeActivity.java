@@ -35,8 +35,6 @@ public class UtilsCodeActivity extends AppCompatActivity {
         binding = ActivityUtilsCodeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        DynamicColorsUtil dynamicColors = new DynamicColorsUtil(this);
-
         try {
             init();
         } catch (Exception e) {

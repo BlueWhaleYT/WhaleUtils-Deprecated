@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="permission_grant_title">開啟權限</string>
+    <string name="permission_grant_access_all_files">存取所有檔案</string>
+    <string name="permission_grant_access_android_data">存取 Android/data</string>
+    <string name="permission_grant_access_android_obb">存取 Android/obb</string>
+
     <string name="device_info_title">設備資訊</string>
     <string name="system_info_title">系統資訊</string>
+    <string name="palette_info_title">調色板</string>
 
     <string name="device_info_category_display">顯示</string>
     <string name="system_info_category_processor">處理器</string>
     <string name="system_info_category_graphics">繪圖</string>
 
     <string name="system_info_gpu_error_message">%1$s 的配置尚未完成，無法顯示相關資料。</string>
+
+    <string name="palette_info_message">調色板的動態顏色組合是取至目前設備所應用的壁紙。</string>
 
 </resources>

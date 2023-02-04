@@ -80,6 +80,16 @@ public class ClassExtractUtil {
         return list;
     }
 
+    public ArrayList<String> getConstructors() throws ClassNotFoundException {
+        extract(CONSTRUCTOR);
+        return list;
+    }
+
+    public ArrayList<String> getDeclaredConstructors() throws ClassNotFoundException {
+        extract(CONSTRUCTOR_DECLARED);
+        return list;
+    }
+
     public ArrayList<String> getFields() throws ClassNotFoundException {
         extract(FIELD);
         return list;

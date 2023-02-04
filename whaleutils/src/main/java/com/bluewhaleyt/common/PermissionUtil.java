@@ -29,11 +29,11 @@ public class PermissionUtil {
     }
 
     public static boolean isAlreadyGrantedAndroidDataAccess(Context context) {
-        return isAlreadyGrantedAndroidInternalAccess(context, "data");
+        return isAlreadyGrantedAndroidInternalAccess(context, dataDir);
     }
 
     public static boolean isAlreadyGrantedAndroidObbAccess(Context context) {
-        return isAlreadyGrantedAndroidInternalAccess(context, "obb");
+        return isAlreadyGrantedAndroidInternalAccess(context, obbDir);
     }
 
     public static void requestAllFileAccess(Activity activity) {
@@ -55,14 +55,12 @@ public class PermissionUtil {
     }
 
     public static void requestAndroidDataAccess(Activity activity) {
-        var dir = "data";
-        Uri uri = Uri.parse(getDocumentPath() + dir);
+        Uri uri = Uri.parse(getDocumentPath() + dataDir);
         request(activity, uri);
     }
 
     public static void requestAndroidObbAccess(Activity activity) {
-        var dir = "obb";
-        Uri uri = Uri.parse(getDocumentPath() + dir);
+        Uri uri = Uri.parse(getDocumentPath() + obbDir);
         request(activity, uri);
     }
 

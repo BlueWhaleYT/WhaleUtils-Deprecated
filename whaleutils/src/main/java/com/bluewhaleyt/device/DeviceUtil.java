@@ -13,6 +13,11 @@ public class DeviceUtil {
 
     /* ==== [DEVICE] ==== */
 
+    public static boolean isARTInUse() {
+        var version = System.getProperty("java.vm.version");
+        return version != null && version.startsWith("2");
+    }
+
     public static String getModel() {
         return Build.MODEL;
     }
@@ -45,8 +50,13 @@ public class DeviceUtil {
         return Build.BOOTLOADER;
     }
 
+//    public static String getJavaVMName() {
+//        return System.getProperty("java.vm.name");
+//    }
+
     public static String getJavaVMName() {
-        return System.getProperty("java.vm.name");
+        if (isARTInUse()) return "ART";
+        else return "Dalvik";
     }
 
     public static String getJavaVMVersion() {
@@ -59,6 +69,10 @@ public class DeviceUtil {
 
     public static int getSDKVersion() {
         return Build.VERSION.SDK_INT;
+    }
+
+    public static String getSDKVersionCode(int sdkVersion) {
+        return VersionCodeRecognizer.getVersionCode(sdkVersion);
     }
 
     /* ==== [DISPLAY] ==== */

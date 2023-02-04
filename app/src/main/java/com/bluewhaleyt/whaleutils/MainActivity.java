@@ -176,7 +176,7 @@ public class MainActivity extends AppCompatActivity {
         text.append(App.getRes().getString(R.string.device_info_build_fingerprint) + ": " + DeviceUtil.getBuildFingerprint() + lnBreak);
         text.append(App.getRes().getString(R.string.device_info_bootloader) + ": " + DeviceUtil.getBootLoader() + lnBreak);
         text.append(App.getRes().getString(R.string.device_info_java_vm) + ": " + DeviceUtil.getJavaVMName() + " " + DeviceUtil.getJavaVMVersion() + lnBreak);
-        text.append(App.getRes().getString(R.string.device_info_os_version) + ": " + DeviceUtil.getOSVersion() + lnBreak);
+        text.append(App.getRes().getString(R.string.device_info_os_version) + ": " + DeviceUtil.getOSVersion() + " (" + DeviceUtil.getSDKVersionCode(DeviceUtil.getSDKVersion()) + ")" + lnBreak);
         text.append(App.getRes().getString(R.string.device_info_sdk_version) + ": " + DeviceUtil.getSDKVersion());
 
         new MaterialAlertDialogBuilder(this)

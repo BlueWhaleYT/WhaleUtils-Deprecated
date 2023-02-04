@@ -3,6 +3,8 @@ package com.bluewhaleyt.device;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
+import android.content.pm.ConfigurationInfo;
+import android.opengl.GLSurfaceView;
 import android.os.Build;
 
 import java.io.BufferedReader;
@@ -12,6 +14,9 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import javax.microedition.khronos.opengles.GL10;
+import javax.microedition.khronos.opengles.GL11;
 
 public class SystemUtil {
 
@@ -85,16 +90,24 @@ public class SystemUtil {
         return System.getProperty("os.arch");
     }
 
-    public static String getRenderer() {
+    public static String getOpenGLRenderer() {
         return GPUInfoUtil.glRenderer;
     }
 
-    public static String getVendor() {
+    public static String getOpenGLVendor() {
         return GPUInfoUtil.glVendor;
     }
 
     public static String getOpenGLVersion() {
         return GPUInfoUtil.glVersion;
+    }
+
+    public static String getOpenGLSimpleVersion() {
+        return getOpenGLVersion().substring(0, getOpenGLVersion().lastIndexOf(" "));
+    }
+
+    public static String getOpenGLExtensions() {
+        return GPUInfoUtil.glExtensions;
     }
 
     public static void clearApplicationDataCache(Activity activity) throws IOException {

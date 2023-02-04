@@ -33,7 +33,7 @@ public class GPUInfoUtil implements GLSurfaceView.Renderer {
     }
 
     public static void set(GLSurfaceView glSurfaceView) {
-        glSurfaceView.setEGLContextClientVersion(1);
+        glSurfaceView.setEGLContextClientVersion(2);
         glSurfaceView.setEGLConfigChooser(8, 8, 8, 8, 0, 0);
         glSurfaceView.setRenderer(new GPUInfoUtil());
     }

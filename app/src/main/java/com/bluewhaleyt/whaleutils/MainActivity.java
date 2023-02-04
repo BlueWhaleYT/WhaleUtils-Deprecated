@@ -169,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
     private void showDeviceInfoDialog() {
         text.setLength(0);
         text.append(App.getRes().getString(R.string.device_info_category_display) + lnBreak);
-        text.append(App.getRes().getString(R.string.device_info_model) + ": " + DeviceUtil.getModel() + " (" + DeviceUtil.getModelProduct() + ")" + lnBreak);
+        text.append(App.getRes().getString(R.string.device_info_model) + ": " + DeviceUtil.getModel() + " (" + DeviceUtil.getProduct() + ")" + lnBreak);
         text.append(App.getRes().getString(R.string.device_info_manufacturer) + ": " + DeviceUtil.getManufacturer() + lnBreak);
         text.append(App.getRes().getString(R.string.device_info_baseband_version) + ":" + DeviceUtil.getBasebandVersion() + lnBreak);
         text.append(App.getRes().getString(R.string.device_info_build_number) + ": " + DeviceUtil.getBuildNumber() + lnBreak);
@@ -265,11 +265,11 @@ public class MainActivity extends AppCompatActivity {
     private String getGPUField(int field) {
         switch (field) {
             case 0:
-                return TextUtils.isEmpty(SystemUtil.getRenderer()) ? getGPUError() : SystemUtil.getRenderer();
+                return TextUtils.isEmpty(SystemUtil.getOpenGLRenderer()) ? getGPUError() : SystemUtil.getOpenGLRenderer();
             case 1:
-                return TextUtils.isEmpty(SystemUtil.getVendor()) ? getGPUError() : SystemUtil.getVendor();
+                return TextUtils.isEmpty(SystemUtil.getOpenGLVendor()) ? getGPUError() : SystemUtil.getOpenGLVendor();
             case 2:
-                return TextUtils.isEmpty(SystemUtil.getOpenGLVersion()) ? getGPUError() : SystemUtil.getOpenGLVersion();
+                return TextUtils.isEmpty(SystemUtil.getOpenGLSimpleVersion()) ? getGPUError() : SystemUtil.getOpenGLSimpleVersion();
         }
         return null;
     }

@@ -22,7 +22,7 @@ public class DeviceUtil {
         return Build.MODEL;
     }
 
-    public static String getModelProduct() {
+    public static String getProduct() {
         return Build.PRODUCT;
     }
 

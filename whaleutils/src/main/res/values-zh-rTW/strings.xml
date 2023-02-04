@@ -11,7 +11,7 @@
     <string name="device_info_os_version">Android 版本</string>
     <string name="device_info_sdk_version">SDK 版本</string>
 
-    <string name="system_info_cpu_arch">CPU 架構·</string>
+    <string name="system_info_cpu_arch">CPU 架構</string>
     <string name="system_info_board">板塊</string>
     <string name="system_info_chipset">芯片組</string>
     <string name="system_info_core_amount">核心</string>

@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.bluewhaleyt.common.CommonUtil;
 import com.bluewhaleyt.common.DynamicColorsUtil;
 import com.bluewhaleyt.common.PermissionUtil;
+import com.bluewhaleyt.component.dialog.DialogUtil;
 import com.bluewhaleyt.component.snackbar.SnackbarUtil;
 import com.bluewhaleyt.crashdebugger.CrashDebugger;
 import com.bluewhaleyt.device.DeviceUtil;
@@ -72,11 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 showDeleteRootDirDialog();
                 break;
             case R.id.menu_clear_app_data_cache:
-                try {
-                    SystemUtil.clearApplicationDataCache(this);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                showClearAppDataCacheDialog();
                 break;
             case R.id.menu_all_file_access:
                 requestAllFileAccess();
@@ -147,23 +144,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void checkInternetConnection() {
+        DialogUtil dialog = new DialogUtil(this, "No Internet", "Please connect to the Internet for better experiences.");
+        dialog.setNegativeButton(android.R.string.cancel, null);
+        dialog.create();
+
         if (!NetworkUtil.isNetworkAvailable(this)) {
-            new MaterialAlertDialogBuilder(this)
-                    .setTitle("No Internet")
-                    .setMessage("Please connect to the Internet for better experiences.")
-                    .setNegativeButton(android.R.string.cancel, null)
-                    .create().show();
+            dialog.show();
         }
     }
 
     private void showDeleteRootDirDialog() {
         var path = FileUtil.getExternalStoragePath() + App.ROOT_DIR;
-        new MaterialAlertDialogBuilder(this)
-                .setTitle("Delete external root directory")
-                .setMessage("Are you sure you want to delete " + path + " directory? This action can't be restored.")
-                .setPositiveButton(android.R.string.ok, (d, i) -> FileUtil.deleteFile(path))
-                .setNegativeButton(android.R.string.cancel, null)
-                .create().show();
+
+        DialogUtil dialog = new DialogUtil(this, "Delete external root directory", "Are you sure you want to delete " + path + " directory? This action can't be restored.");
+        dialog.setPositiveButton(android.R.string.ok, (d, i) -> FileUtil.deleteFile(path));
+        dialog.setNegativeButton(android.R.string.cancel, null);
+        dialog.build();
+    }
+
+    private void showClearAppDataCacheDialog() {
+        var path = FileUtil.getExternalStoragePath() + App.ROOT_DIR;
+
+        DialogUtil dialog = new DialogUtil(this, "Clear app data and cache", "Are you sure you want to clear the app data and cache? This action can't be restored.");
+        dialog.setPositiveButton(android.R.string.ok, (d, i) -> {
+            try {
+                SystemUtil.clearApplicationDataCache(this);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        dialog.setNegativeButton(android.R.string.cancel, null);
+        dialog.build();
     }
 
     private void showDeviceInfoDialog() {
@@ -179,11 +190,9 @@ public class MainActivity extends AppCompatActivity {
         text.append(App.getRes().getString(R.string.device_info_os_version) + ": " + DeviceUtil.getOSVersion() + " (" + DeviceUtil.getSDKVersionCode(DeviceUtil.getSDKVersion()) + ")" + lnBreak);
         text.append(App.getRes().getString(R.string.device_info_sdk_version) + ": " + DeviceUtil.getSDKVersion());
 
-        new MaterialAlertDialogBuilder(this)
-                .setTitle(App.getRes().getString(R.string.device_info_title))
-                .setMessage(text)
-                .setNegativeButton(android.R.string.cancel, null)
-                .create().show();
+        DialogUtil dialog = new DialogUtil(this, App.getRes().getString(R.string.device_info_title), text.toString());
+        dialog.setNegativeButton(android.R.string.cancel, null);
+        dialog.build();
 
     }
 
@@ -211,11 +220,9 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-        new MaterialAlertDialogBuilder(this)
-                .setTitle(App.getRes().getString(R.string.system_info_title))
-                .setMessage(text)
-                .setNegativeButton(android.R.string.cancel, null)
-                .create().show();
+        DialogUtil dialog = new DialogUtil(this, App.getRes().getString(R.string.system_info_title), text.toString());
+        dialog.setNegativeButton(android.R.string.cancel, null);
+        dialog.build();
 
     }
 

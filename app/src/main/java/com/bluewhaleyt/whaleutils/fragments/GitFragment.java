@@ -25,6 +25,7 @@ import androidx.fragment.app.Fragment;
 
 import com.bluewhaleyt.common.CommonUtil;
 import com.bluewhaleyt.common.DynamicColorsUtil;
+import com.bluewhaleyt.component.dialog.DialogUtil;
 import com.bluewhaleyt.component.snackbar.SnackbarUtil;
 import com.bluewhaleyt.filemanagement.FileUtil;
 import com.bluewhaleyt.git.GitUtil;
@@ -151,7 +152,7 @@ public class GitFragment extends Fragment {
 //                if (isCloning) thread.interrupt();
 //            });
 //
-//            git.cloneRepo();
+            git.cloneRepo();
 
             dialog.dismiss();
 

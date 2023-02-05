@@ -127,17 +127,17 @@ public class MainActivity extends AppCompatActivity {
     private void requestAccessAndroidInternalDir(String dir) {
         switch (dir) {
             case "data":
-                if (!PermissionUtil.isAlreadyGrantedAndroidDataAccess(this)) {
-                    PermissionUtil.requestAndroidDataAccess(this);
-                } else {
+                if (PermissionUtil.isAlreadyGrantedAndroidDataAccess(this)) {
                     SnackbarUtil.makeSnackbar(this, "Already granted");
+                } else {
+                    PermissionUtil.requestAndroidDataAccess(this);
                 }
                 break;
             case "obb":
-                if (!PermissionUtil.isAlreadyGrantedAndroidObbAccess(this)) {
-                    PermissionUtil.requestAndroidObbAccess(this);
-                } else {
+                if (PermissionUtil.isAlreadyGrantedAndroidObbAccess(this)) {
                     SnackbarUtil.makeSnackbar(this, "Already granted");
+                } else {
+                    PermissionUtil.requestAndroidObbAccess(this);
                 }
                 break;
         }
@@ -163,8 +163,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showClearAppDataCacheDialog() {
-        var path = FileUtil.getExternalStoragePath() + App.ROOT_DIR;
-
         DialogUtil dialog = new DialogUtil(this, "Clear app data and cache", "Are you sure you want to clear the app data and cache? This action can't be restored.");
         dialog.setPositiveButton(android.R.string.ok, (d, i) -> {
             try {
@@ -267,6 +265,7 @@ public class MainActivity extends AppCompatActivity {
         dialog.setContentView(bindingPalette.getRoot());
         dialog.create();
         dialog.show();
+
     }
 
     private String getGPUField(int field) {

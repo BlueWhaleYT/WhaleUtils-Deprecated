@@ -9,26 +9,19 @@ public class SystemResourceUtil {
 
     private static ClassExtractUtil classExtract;
 
-    private static boolean listWithChild = true;
-
     public static ArrayList<String> getAvailableResources(Context context) throws ClassNotFoundException {
         classExtract = new ClassExtractUtil(context.getPackageName() + ".R");
         classExtract.getClasses();
         return classExtract.getList();
     }
 
-    public static ArrayList<String> getIdResources(Context context) throws ClassNotFoundException {
-        extract(context, "id");
+    public static ArrayList<String> getAnimResources(Context context) throws ClassNotFoundException {
+        extract(context, "anim");
         return classExtract.getList();
     }
 
-    public static ArrayList<String> getStringResources(Context context) throws ClassNotFoundException {
-        extract(context, "string");
-        return classExtract.getList();
-    }
-
-    public static ArrayList<String> getColorResources(Context context) throws ClassNotFoundException {
-        extract(context, "color");
+    public static ArrayList<String> getAnimatorResources(Context context) throws ClassNotFoundException {
+        extract(context, "animator");
         return classExtract.getList();
     }
 
@@ -37,18 +30,18 @@ public class SystemResourceUtil {
         return classExtract.getList();
     }
 
-    public static ArrayList<String> getLayoutResources(Context context) throws ClassNotFoundException {
-        extract(context, "layout");
+    public static ArrayList<String> getAttrResources(Context context) throws ClassNotFoundException {
+        extract(context, "attr");
         return classExtract.getList();
     }
 
-    public static ArrayList<String> getDrawableResources(Context context) throws ClassNotFoundException {
-        extract(context, "drawable");
+    public static ArrayList<String> getBoolResources(Context context) throws ClassNotFoundException {
+        extract(context, "bool");
         return classExtract.getList();
     }
 
-    public static ArrayList<String> getMipmapResources(Context context) throws ClassNotFoundException {
-        extract(context, "mipmap");
+    public static ArrayList<String> getColorResources(Context context) throws ClassNotFoundException {
+        extract(context, "color");
         return classExtract.getList();
     }
 
@@ -57,18 +50,63 @@ public class SystemResourceUtil {
         return classExtract.getList();
     }
 
-    public static ArrayList<String> getStyleResources(Context context) throws ClassNotFoundException {
-        extract(context, "style");
+    public static ArrayList<String> getDrawableResources(Context context) throws ClassNotFoundException {
+        extract(context, "drawable");
         return classExtract.getList();
     }
 
-    public static ArrayList<String> getXmlResources(Context context) throws ClassNotFoundException {
-        extract(context, "xml");
+    public static ArrayList<String> getIdResources(Context context) throws ClassNotFoundException {
+        extract(context, "id");
+        return classExtract.getList();
+    }
+
+    public static ArrayList<String> getIntegerResources(Context context) throws ClassNotFoundException {
+        extract(context, "integer");
+        return classExtract.getList();
+    }
+
+    public static ArrayList<String> getInterpolatorResources(Context context) throws ClassNotFoundException {
+        extract(context, "interpolator");
+        return classExtract.getList();
+    }
+
+    public static ArrayList<String> getLayoutResources(Context context) throws ClassNotFoundException {
+        extract(context, "layout");
         return classExtract.getList();
     }
 
     public static ArrayList<String> getMenuResources(Context context) throws ClassNotFoundException {
         extract(context, "menu");
+        return classExtract.getList();
+    }
+
+    public static ArrayList<String> getMipmapResources(Context context) throws ClassNotFoundException {
+        extract(context, "mipmap");
+        return classExtract.getList();
+    }
+
+    public static ArrayList<String> getPluralsResources(Context context) throws ClassNotFoundException {
+        extract(context, "plurals");
+        return classExtract.getList();
+    }
+
+    public static ArrayList<String> getStringResources(Context context) throws ClassNotFoundException {
+        extract(context, "string");
+        return classExtract.getList();
+    }
+
+    public static ArrayList<String> getStyleResources(Context context) throws ClassNotFoundException {
+        extract(context, "style");
+        return classExtract.getList();
+    }
+
+    public static ArrayList<String> getStyleableResources(Context context) throws ClassNotFoundException {
+        extract(context, "styleable");
+        return classExtract.getList();
+    }
+
+    public static ArrayList<String> getXmlResources(Context context) throws ClassNotFoundException {
+        extract(context, "xml");
         return classExtract.getList();
     }
 

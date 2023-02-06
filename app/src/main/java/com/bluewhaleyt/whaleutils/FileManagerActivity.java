@@ -2,6 +2,7 @@ package com.bluewhaleyt.whaleutils;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -15,6 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bluewhaleyt.common.CommonUtil;
@@ -28,6 +31,7 @@ import com.bluewhaleyt.filemanagement.FileUtil;
 import com.bluewhaleyt.whaleutils.adapters.FileListAdapter;
 import com.bluewhaleyt.whaleutils.databinding.ActivityFileManagerBinding;
 import com.bluewhaleyt.whaleutils.databinding.DialogLayoutNewFileBinding;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -37,6 +41,11 @@ import java.util.HashMap;
 public class FileManagerActivity extends AppCompatActivity {
 
     private ActivityFileManagerBinding binding;
+
+    private AlertDialog dialog;
+    private View view;
+    private TextView tvLoadingText;
+    private ProgressBar pbLoading;
 
     private ArrayList<HashMap<String, Object>> fileListMap = new ArrayList<>();
     public static ArrayList<String> fileList = new ArrayList<>();
@@ -84,7 +93,7 @@ public class FileManagerActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("File Manager");
 
         if (PermissionUtil.isAlreadyGrantedExternalStorageAccess()) {
-            file = FileUtil.getExternalStoragePath() + "/WhaleUtils";
+            file = FileUtil.getExternalStoragePath();
             getSupportActionBar().setSubtitle(file);
 
             setupFileList();
@@ -99,15 +108,24 @@ public class FileManagerActivity extends AppCompatActivity {
     }
 
     private void updateFileList() {
-        ((BaseAdapter) binding.lvFileList.getAdapter()).notifyDataSetChanged();
-        setupFileList();
+        view = getLayoutInflater().inflate(R.layout.dialog_layout_loading, null);
+        dialog = new MaterialAlertDialogBuilder(this).create();
+        dialog.setView(view);
+        dialog.show();
+        CommonUtil.waitForTimeThenDo(1, () -> {
+            ((BaseAdapter) binding.lvFileList.getAdapter()).notifyDataSetChanged();
+            setupFileList();
+            dialog.dismiss();
+            return null;
+        });
     }
 
     private void setupFileList() {
+
         fileListMap.clear();
         int n = 0;
 
-        FileUtil.listOnlyFilesSubDirFiles(file, fileList);
+        FileUtil.listNonHiddenDirectories(file, fileList);
         Collections.sort(fileList, new FileComparator());
 
         for (int i = 0; i < fileList.size(); i++) {
@@ -119,6 +137,7 @@ public class FileManagerActivity extends AppCompatActivity {
 
         binding.lvFileList.setAdapter(fileListAdapter);
         ((BaseAdapter) binding.lvFileList.getAdapter()).notifyDataSetChanged();
+
     }
 
     private void setupFileListItemClick() {
@@ -131,6 +150,10 @@ public class FileManagerActivity extends AppCompatActivity {
                     setNoFiles(true);
                 }
                 updateFileBreadcrumb(getSupportActionBar(), file);
+            } else {
+                DialogUtil dialog = new DialogUtil(this, file, FileUtil.readFile(file));
+                dialog.build();
+                file = FileUtil.getParentDirectoryOfPath(file);
             }
         });
     }

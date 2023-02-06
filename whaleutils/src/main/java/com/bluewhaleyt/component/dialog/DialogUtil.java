@@ -12,6 +12,10 @@ public class DialogUtil {
 
     private MaterialAlertDialogBuilder dialog;
 
+    public DialogUtil(Context context) {
+        dialog = getDialog(context);
+    }
+
     public DialogUtil(Context context, String title) {
         dialog = getDialog(context);
         setTitle(title);

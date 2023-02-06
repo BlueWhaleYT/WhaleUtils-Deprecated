@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.bluewhaleyt.common.CommonUtil;
 import com.bluewhaleyt.common.DynamicColorsUtil;
+import com.bluewhaleyt.common.IntentUtil;
 import com.bluewhaleyt.common.PermissionUtil;
 import com.bluewhaleyt.component.dialog.DialogUtil;
 import com.bluewhaleyt.component.snackbar.SnackbarUtil;

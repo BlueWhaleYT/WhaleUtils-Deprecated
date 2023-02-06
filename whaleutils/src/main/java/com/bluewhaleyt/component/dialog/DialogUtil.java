@@ -2,6 +2,7 @@ package com.bluewhaleyt.component.dialog;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.view.View;
 
 import androidx.appcompat.app.AlertDialog;
 
@@ -10,6 +11,11 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 public class DialogUtil {
 
     private MaterialAlertDialogBuilder dialog;
+
+    public DialogUtil(Context context, String title) {
+        dialog = getDialog(context);
+        setTitle(title);
+    }
 
     public DialogUtil(Context context, String title, String message) {
         dialog = getDialog(context);
@@ -27,6 +33,11 @@ public class DialogUtil {
 
     public void setCancelable(boolean canCancel) {
         dialog.setCancelable(canCancel);
+    }
+
+    public void setCancelable(boolean canCancel, boolean canCancelOutside) {
+        setCancelable(canCancel);
+        setCancelableTouchOutside(canCancelOutside);
     }
 
     public void setCancelableTouchOutside(boolean canCancel) {
@@ -55,6 +66,14 @@ public class DialogUtil {
 
     public void setNeutralButton(int textId, DialogInterface.OnClickListener clickListener) {
         dialog.setNeutralButton(textId, clickListener);
+    }
+
+    public void setView(int v) {
+        dialog.setView(v);
+    }
+
+    public void setView(View v) {
+        dialog.setView(v);
     }
 
     public void build() {

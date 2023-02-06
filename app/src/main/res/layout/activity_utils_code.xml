@@ -23,8 +23,8 @@
             android:padding="20dp"/>
     </com.google.android.material.textfield.TextInputLayout>
 
-    <ListView
-        android:id="@+id/lv"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvList"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

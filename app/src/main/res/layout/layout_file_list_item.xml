@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/ivFileIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_folder_24"
+        android:layout_marginEnd="20dp"
+        app:tint="?colorPrimary" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvFileName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="file name"
+            android:layout_marginBottom="5dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvFileLastModifiedTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="file last modified time"
+                android:layout_marginEnd="20dp"/>
+
+            <TextView
+                android:id="@+id/tvFileSize"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="file size"
+                android:textColor="?colorPrimary"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

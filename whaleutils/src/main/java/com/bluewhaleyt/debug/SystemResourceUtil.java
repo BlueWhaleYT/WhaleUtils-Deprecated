@@ -9,6 +9,10 @@ public class SystemResourceUtil {
 
     private static ClassExtractUtil classExtract;
 
+    public static int getParsedXMLResource(Context context, String indentifierName, String defType) throws ClassNotFoundException {
+        return context.getResources().getIdentifier(indentifierName, defType, classExtract.getPackageName());
+    }
+
     public static ArrayList<String> getAvailableResources(Context context) throws ClassNotFoundException {
         classExtract = new ClassExtractUtil(context.getPackageName() + ".R");
         classExtract.getClasses();
@@ -52,6 +56,11 @@ public class SystemResourceUtil {
 
     public static ArrayList<String> getDrawableResources(Context context) throws ClassNotFoundException {
         extract(context, "drawable");
+        return classExtract.getList();
+    }
+
+    public static ArrayList<String> getFontResources(Context context) throws ClassNotFoundException {
+        extract(context, "font");
         return classExtract.getList();
     }
 

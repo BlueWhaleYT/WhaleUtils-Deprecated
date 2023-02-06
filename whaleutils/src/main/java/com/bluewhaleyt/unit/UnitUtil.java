@@ -6,7 +6,7 @@ public class UnitUtil {
         return String.format(java.util.Locale.US, "%.2f", d);
     }
 
-    public static String bytesToHuman(long size) {
+    public static String bytesToHuman(double size) {
         long Kb = 1024;
         long Mb = Kb * 1024;
         long Gb = Mb * 1024;
@@ -15,11 +15,11 @@ public class UnitUtil {
         long Eb = Pb * 1024;
 
         if (size < Kb) return floatForm(size) + " B";
-        if (size >= Kb && size < Mb) return floatForm((double) size / Kb) + " KB";
-        if (size >= Mb && size < Gb) return floatForm((double) size / Mb) + " MB";
-        if (size >= Gb && size < Tb) return floatForm((double) size / Gb) + " GB";
-        if (size >= Tb && size < Pb) return floatForm((double) size / Tb) + " TB";
-        if (size >= Pb && size < Eb) return floatForm((double) size / Pb) + " Pb";
+        if (size >= Kb && size < Mb) return floatForm(size / Kb) + " KB";
+        if (size >= Mb && size < Gb) return floatForm(size / Mb) + " MB";
+        if (size >= Gb && size < Tb) return floatForm(size / Gb) + " GB";
+        if (size >= Tb && size < Pb) return floatForm(size / Tb) + " TB";
+        if (size >= Pb && size < Eb) return floatForm(size / Pb) + " Pb";
         if (size >= Eb) return floatForm((double) size / Eb) + " Eb";
 
         return "0";

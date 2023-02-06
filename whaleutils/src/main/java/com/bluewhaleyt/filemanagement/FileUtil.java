@@ -229,6 +229,17 @@ public class FileUtil {
         listDir(path, list, fileFilter);
     }
 
+    public static void listOnlyFilesSubDirFiles(String path, List list) {
+        fileFilter = pathname -> {
+            if (pathname.isDirectory()) {
+                return false;
+            } else {
+                return true;
+            }
+        };
+        listDir(path, list, fileFilter);
+    }
+
     private static void listDir(String path, List list, FileFilter fileFilter) {
         File dir = new File(path);
         if (!dir.exists() || dir.isFile()) return;

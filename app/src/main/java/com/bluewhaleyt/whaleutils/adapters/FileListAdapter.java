@@ -84,6 +84,8 @@ public class FileListAdapter extends BaseAdapter {
                 )
         );
 
+        binding.tvFilePath.setText(path);
+
         return view;
 
     }

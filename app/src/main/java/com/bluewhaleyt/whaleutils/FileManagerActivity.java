@@ -84,7 +84,7 @@ public class FileManagerActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("File Manager");
 
         if (PermissionUtil.isAlreadyGrantedExternalStorageAccess()) {
-            file = FileUtil.getExternalStoragePath();
+            file = FileUtil.getExternalStoragePath() + "/ABC";
             getSupportActionBar().setSubtitle(file);
 
             setupFileList();
@@ -107,7 +107,7 @@ public class FileManagerActivity extends AppCompatActivity {
         fileListMap.clear();
         int n = 0;
 
-        FileUtil.listNonHiddenDirectories(file, fileList);
+        FileUtil.listOnlyFilesSubDirFiles(file, fileList);
         Collections.sort(fileList, new FileComparator());
 
         for (int i = 0; i < fileList.size(); i++) {

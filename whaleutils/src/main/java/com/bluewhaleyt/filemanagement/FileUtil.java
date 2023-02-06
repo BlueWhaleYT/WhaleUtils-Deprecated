@@ -230,14 +230,9 @@ public class FileUtil {
     }
 
     public static void listOnlyFilesSubDirFiles(String path, List list) {
-        fileFilter = pathname -> {
-            if (pathname.isDirectory()) {
-                return false;
-            } else {
-                return true;
-            }
-        };
-        listDir(path, list, fileFilter);
+//        fileFilter = File::isFile;
+//        listDir(path, list, fileFilter);
+        listDirAllFiles(path, list);
     }
 
     private static void listDir(String path, List list, FileFilter fileFilter) {
@@ -252,6 +247,17 @@ public class FileUtil {
 
         for (File file : listFiles) {
             list.add(file.getAbsolutePath());
+        }
+    }
+
+    private static void listDirAllFiles(String path, List list) {
+        File file = new File(path);
+        File[] fs = file.listFiles();
+        for (File f : fs) {
+            if (f.isDirectory())
+                listDirAllFiles(f.getPath(), list);
+            if (f.isFile())
+                list.add(f.getAbsolutePath());
         }
     }
 

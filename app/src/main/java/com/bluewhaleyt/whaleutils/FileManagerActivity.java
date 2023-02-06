@@ -84,7 +84,7 @@ public class FileManagerActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("File Manager");
 
         if (PermissionUtil.isAlreadyGrantedExternalStorageAccess()) {
-            file = FileUtil.getExternalStoragePath() + "/ABC";
+            file = FileUtil.getExternalStoragePath() + "/WhaleUtils";
             getSupportActionBar().setSubtitle(file);
 
             setupFileList();

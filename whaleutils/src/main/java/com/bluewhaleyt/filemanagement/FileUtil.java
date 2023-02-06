@@ -24,6 +24,7 @@ import java.util.concurrent.Callable;
 
 public class FileUtil {
 
+    private static File[] listFiles;
     private static FileFilter fileFilter;
 
     public static boolean isFileExist(String path) {
@@ -236,29 +237,31 @@ public class FileUtil {
     }
 
     private static void listDir(String path, List list, FileFilter fileFilter) {
-        File dir = new File(path);
-        if (!dir.exists() || dir.isFile()) return;
-
-        File[] listFiles = dir.listFiles(fileFilter);
-        if (listFiles == null || listFiles.length <= 0) return;
-
-        if (list == null) return;
-        list.clear();
-
+        list(path, list, fileFilter);
         for (File file : listFiles) {
             list.add(file.getAbsolutePath());
         }
     }
 
     private static void listDirAllFiles(String path, List list) {
-        File file = new File(path);
-        File[] fs = file.listFiles();
-        for (File f : fs) {
-            if (f.isDirectory())
-                listDirAllFiles(f.getPath(), list);
-            if (f.isFile())
-                list.add(f.getAbsolutePath());
+        list(path, list, null);
+        for (File file : listFiles) {
+            if (file.isDirectory())
+                listDirAllFiles(file.getPath(), list);
+            if (file.isFile())
+                list.add(file.getAbsolutePath());
         }
+    }
+
+    private static void list(String path, List list, FileFilter fileFilter) {
+        File dir = new File(path);
+        if (!dir.exists() || dir.isFile()) return;
+
+        listFiles = dir.listFiles(fileFilter);
+        if (listFiles == null || listFiles.length <= 0) return;
+
+        if (list == null) return;
+        list.clear();
     }
 
 }

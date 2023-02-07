@@ -30,7 +30,9 @@ import com.bluewhaleyt.filemanagement.FileComparator;
 import com.bluewhaleyt.filemanagement.FileUtil;
 import com.bluewhaleyt.whaleutils.adapters.FileListAdapter;
 import com.bluewhaleyt.whaleutils.databinding.ActivityFileManagerBinding;
+import com.bluewhaleyt.whaleutils.databinding.DialogLayoutCodeEditorBinding;
 import com.bluewhaleyt.whaleutils.databinding.DialogLayoutNewFileBinding;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.io.File;
@@ -151,9 +153,7 @@ public class FileManagerActivity extends AppCompatActivity {
                 }
                 updateFileBreadcrumb(getSupportActionBar(), file);
             } else {
-                DialogUtil dialog = new DialogUtil(this, file, FileUtil.readFile(file));
-                dialog.build();
-                file = FileUtil.getParentDirectoryOfPath(file);
+                openFile();
             }
         });
     }
@@ -192,6 +192,25 @@ public class FileManagerActivity extends AppCompatActivity {
         }
         updateFileList();
         setNoFiles(false);
+    }
+
+    private void openFile() {
+        DialogLayoutCodeEditorBinding binding;
+        binding = DialogLayoutCodeEditorBinding.inflate(getLayoutInflater());
+//        BottomSheetDialog dialog = new BottomSheetDialog(this);
+//        dialog.setContentView(binding.getRoot());
+//        dialog.create();
+//        dialog.show();
+
+        DialogUtil dialog = new DialogUtil(this);
+        dialog.setView(binding.getRoot());
+        dialog.build();
+
+        binding.tvFilePath.setText(file);
+        binding.tvFileName.setText(FileUtil.getFileNameOfPath(file));
+        binding.editor.setText(FileUtil.readFile(file));
+
+        file = FileUtil.getParentDirectoryOfPath(file);
     }
 
     private void setNoFiles(boolean isNoFiles) {

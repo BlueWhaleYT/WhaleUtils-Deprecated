@@ -40,7 +40,13 @@ dependencies {
     implementation 'com.github.BlueWhaleYT:CrashDebugger:1.0.0.1'
     implementation project(path: ':whaleutils')
 
+    // JGit
     implementation 'org.eclipse.jgit:org.eclipse.jgit:5.13.1.202206130422-r'
+
+    // Sora Editor
+    implementation(platform("io.github.Rosemoe.sora-editor:bom:0.20.2"))
+    implementation("io.github.Rosemoe.sora-editor:editor")
+    implementation("io.github.Rosemoe.sora-editor:language-textmate")
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'

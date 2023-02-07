@@ -1,11 +1,17 @@
 package com.bluewhaleyt.whaleutils.adapters;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bluewhaleyt.common.DateTimeFormatUtil;
 import com.bluewhaleyt.common.DynamicColorsUtil;
@@ -20,7 +26,7 @@ import java.util.HashMap;
 
 public class FileListAdapter extends BaseAdapter {
 
-    private LayoutFileListItemBinding binding;
+    private ViewHolder viewHolder;
     private ArrayList<HashMap<String, Object>> data;
 
     public FileListAdapter(ArrayList<HashMap<String, Object>> arr) {
@@ -42,51 +48,82 @@ public class FileListAdapter extends BaseAdapter {
         return position;
     }
 
-    @SuppressLint("ViewHolder")
     @Override
-    public View getView(int position, View view, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
 
         Context context = parent.getContext();
-        DynamicColorsUtil dynamicColors = new DynamicColorsUtil(context);
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        binding = LayoutFileListItemBinding.inflate(inflater, parent, false);
 
-        view = binding.getRoot();
+        View view = convertView;
+
+        if (view == null) {
+            view = inflater.inflate(R.layout.layout_file_list_item, parent, false);
+            viewHolder = new ViewHolder();
+            findView(view, viewHolder);
+            view.setTag(viewHolder);
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
+        }
+        setValues(context, viewHolder, position);
+        return view;
+
+    }
+
+    private void findView(View view, ViewHolder viewHolder) {
+
+        viewHolder.tvFileName = view.findViewById(R.id.tvFileName);
+        viewHolder.tvFilePath = view.findViewById(R.id.tvFilePath);
+        viewHolder.tvFileSize = view.findViewById(R.id.tvFileSize);
+        viewHolder.tvFileLastModifiedTime = view.findViewById(R.id.tvFileLastModifiedTime);
+        viewHolder.ivFileIcon = view.findViewById(R.id.ivFileIcon);
+
+    }
+
+    private void setValues(Context context, ViewHolder viewHolder, int position) {
+
+        DynamicColorsUtil dynamicColors = new DynamicColorsUtil(context);
 
         var path = FileManagerActivity.path;
         path = FileManagerActivity.fileList.get(position);
 
-        binding.tvFileName.setText(FileUtil.getFileNameOfPath(path));
+        viewHolder.tvFileName.setText(FileUtil.getFileNameOfPath(path));
 
         if (FileUtil.isDirectory(path)) {
-            binding.ivFileIcon.setImageResource(R.drawable.ic_baseline_folder_24);
-            binding.ivFileIcon.setColorFilter(dynamicColors.getColorPrimary());
+            viewHolder.ivFileIcon.setImageResource(R.drawable.ic_baseline_folder_24);
+            viewHolder.ivFileIcon.setColorFilter(dynamicColors.getColorPrimary());
 
             if (FileUtil.isFileHidden(path)) {
-                binding.ivFileIcon.setColorFilter(dynamicColors.getColorError());
+                viewHolder.ivFileIcon.setColorFilter(dynamicColors.getColorError());
             }
 
-            binding.tvFileSize.setText(FileUtil.getFileAmountOfPath(path) + " Files");
+            viewHolder.tvFileSize.setText(FileUtil.getFileAmountOfPath(path) + " Files");
+
         } else {
-            binding.ivFileIcon.setImageResource(R.drawable.ic_baseline_insert_drive_file_24);
-            binding.ivFileIcon.setColorFilter(dynamicColors.getColorSecondary());
+            viewHolder.ivFileIcon.setImageResource(R.drawable.ic_baseline_insert_drive_file_24);
+            viewHolder.ivFileIcon.setColorFilter(dynamicColors.getColorSecondary());
 
             if (FileUtil.isFileHidden(path)) {
-                binding.ivFileIcon.setColorFilter(dynamicColors.getColorError());
+                viewHolder.ivFileIcon.setColorFilter(dynamicColors.getColorError());
             }
 
-            binding.tvFileSize.setText(UnitUtil.bytesToHuman(FileUtil.getFileSizeOfPath(path)) + "");
+            viewHolder.tvFileSize.setText(UnitUtil.bytesToHuman(FileUtil.getFileSizeOfPath(path)) + "");
+
         }
 
-        binding.tvFileLastModifiedTime.setText(
+        viewHolder.tvFileLastModifiedTime.setText(
                 FileUtil.getFileLastModifiedTimeFormatString(
-                        path, DateTimeFormatUtil.FORMAT_DATE_TIME
+                        path, DateTimeFormatUtil.FORMAT_DATE
                 )
         );
 
-        binding.tvFilePath.setText(path);
+        viewHolder.tvFilePath.setText(path);
 
-        return view;
+    }
+
+    static class ViewHolder {
+
+        private TextView tvFileName, tvFilePath, tvFileSize, tvFileLastModifiedTime;
+        private ImageView ivFileIcon;
 
     }
 

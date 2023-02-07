@@ -256,30 +256,30 @@ public class FileUtil {
         listDir(path, list, fileFilter);
     }
 
-    public static void listOnlyFilesSubDirFiles(String path, List list) {
+    public static void listOnlyFilesSubDirFiles(String path, List<String> list) {
 //        fileFilter = File::isFile;
 //        listDir(path, list, fileFilter);
         listDirAllFiles(path, list);
     }
 
-    private static void listDir(String path, List list, FileFilter fileFilter) {
+    private static void listDir(String path, List<String> list, FileFilter fileFilter) {
         list(path, list, fileFilter);
         for (File file : listFiles) {
             list.add(file.getAbsolutePath());
         }
     }
 
-    private static void listDirAllFiles(String path, List list) {
+    private static void listDirAllFiles(String path, List<String> list) {
         list(path, list, null);
         for (File file : listFiles) {
             if (file.isDirectory())
                 listDirAllFiles(file.getPath(), list);
             if (file.isFile())
-                list.add(file.getAbsolutePath());
+                list.add(file.getPath());
         }
     }
 
-    private static void list(String path, List list, FileFilter fileFilter) {
+    private static void list(String path, List<String> list, FileFilter fileFilter) {
         File dir = new File(path);
         if (!dir.exists() || dir.isFile()) return;
 

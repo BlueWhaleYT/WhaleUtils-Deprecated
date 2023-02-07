@@ -3,6 +3,7 @@ package com.bluewhaleyt.filemanagement;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
+import android.util.Log;
 
 import com.bluewhaleyt.common.SDKUtil;
 
@@ -18,12 +19,16 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.Callable;
 
 public class FileUtil {
+
+    private static final String TAG = FileUtil.class.getName();
 
     private static File[] listFiles;
     private static FileFilter fileFilter;
@@ -121,6 +126,14 @@ public class FileUtil {
 
     public static String getExternalStoragePath() {
         return Environment.getExternalStorageDirectory().getPath();
+    }
+
+    public static String getAndroidDataDirPath() {
+        return getExternalStoragePath() + "/Android/data";
+    }
+
+    public static String getAndroidObbDirPath() {
+        return getExternalStoragePath() + "/Android/obb";
     }
 
     public static FileTime getFileCreationTime(String path) throws IOException {
@@ -286,17 +299,21 @@ public class FileUtil {
         listDirAllFiles(path, list);
     }
 
+    public static void refreshList(List<String> list) {
+        list.clear();
+    }
+
     public static String getFullFileInfo(String path) throws IOException {
 
         var fileType = isDirectory(path) ? "directory" : "file";
 
         return
                 "File name: " + getFileNameOfPath(path) +
-                "\nFile path: " + path +
-                "\nFile type: " + fileType +
-                "\nFile permission: " + "read: " + isFileReadable(path) + " | write: " + isFileWritable(path) + " | execute: " + isFileExecutable(path) +
-                "\nCreation date: " + getFileCreationTime(path) +
-                "\nLast modified date: " + getFileLastModifiedTime(path);
+                        "\nFile path: " + path +
+                        "\nFile type: " + fileType +
+                        "\nFile permission: " + "read: " + isFileReadable(path) + " | write: " + isFileWritable(path) + " | execute: " + isFileExecutable(path) +
+                        "\nCreation date: " + getFileCreationTime(path) +
+                        "\nLast modified date: " + getFileLastModifiedTime(path);
     }
 
     private static void listDir(String path, List<String> list, FileFilter fileFilter) {
@@ -309,10 +326,13 @@ public class FileUtil {
     private static void listDirAllFiles(String path, List<String> list) {
         list(path, list, null);
         for (File file : listFiles) {
-            if (file.isDirectory())
+            if (file.isDirectory()) {
                 listDirAllFiles(file.getPath(), list);
-            if (file.isFile())
+                Log.e(TAG, "directory: " + file.getPath());
+            } else {
                 list.add(file.getPath());
+                Log.w(TAG, "file: " + file.getPath());
+            }
         }
     }
 
@@ -320,11 +340,16 @@ public class FileUtil {
         File dir = new File(path);
         if (!dir.exists() || dir.isFile()) return;
 
-        listFiles = dir.listFiles(fileFilter);
+        if (fileFilter != null) {
+            listFiles = dir.listFiles(fileFilter);
+        } else {
+            listFiles = dir.listFiles();
+        }
+
         if (listFiles == null || listFiles.length <= 0) return;
 
         if (list == null) return;
-        list.clear();
+
     }
 
 }

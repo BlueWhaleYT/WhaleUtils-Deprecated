@@ -21,5 +21,6 @@
     <string name="debug_resources">Resources</string>
     <string name="debug_resources_string">String</string>
     <string name="debug_resources_color">Color</string>
+    <string name="debug_resources_drawable">drawable</string>
 
 </resources>

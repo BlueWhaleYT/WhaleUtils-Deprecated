@@ -22,6 +22,10 @@
                 android:id="@+id/menu_color_res"
                 android:title="@string/debug_resources_color" />
 
+            <item
+                android:id="@+id/menu_drawable_res"
+                android:title="@string/debug_resources_drawable" />
+
         </menu>
 
     </item>

@@ -174,7 +174,12 @@ public class FileManagerActivity extends AppCompatActivity {
         fileListMap.clear();
         int n = 0;
 
-        FileUtil.listNonHiddenDirectories(file, fileList);
+        try {
+            FileUtil.refreshList(fileList);
+            FileUtil.listOnlyFilesSubDirFiles(file, fileList);
+        } catch (Exception e) {
+            SnackbarUtil.makeErrorSnackbar(this, e.getMessage());
+        }
         Collections.sort(fileList, new FileComparator());
 
         for (int i = 0; i < fileList.size(); i++) {

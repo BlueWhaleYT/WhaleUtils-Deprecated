@@ -117,7 +117,7 @@ public class FileListAdapter extends BaseAdapter {
                 )
         );
 
-//        viewHolder.tvFilePath.setText(path);
+        viewHolder.tvFilePath.setText(path);
 
     }
 

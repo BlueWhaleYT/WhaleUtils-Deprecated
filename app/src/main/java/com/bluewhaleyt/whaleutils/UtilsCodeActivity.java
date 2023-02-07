@@ -16,8 +16,10 @@ import com.bluewhaleyt.component.snackbar.SnackbarUtil;
 import com.bluewhaleyt.crashdebugger.CrashDebugger;
 import com.bluewhaleyt.debug.SystemResourceUtil;
 import com.bluewhaleyt.whaleutils.debug.adapters.ColorResListAdapter;
+import com.bluewhaleyt.whaleutils.debug.adapters.DrawableResListAdapter;
 import com.bluewhaleyt.whaleutils.debug.adapters.StringResListAdapter;
 import com.bluewhaleyt.whaleutils.debug.models.ColorResModel;
+import com.bluewhaleyt.whaleutils.debug.models.DrawableResModel;
 import com.bluewhaleyt.whaleutils.debug.models.StringResModel;
 import com.bluewhaleyt.whaleutils.databinding.ActivityUtilsCodeBinding;
 
@@ -38,6 +40,11 @@ public class UtilsCodeActivity extends AppCompatActivity {
     private List<ColorResModel> listColorRes = new ArrayList<>();
     private ColorResModel modelColorRes;
     private ColorResListAdapter adapterColorRes = new ColorResListAdapter((ArrayList<ColorResModel>) listColorRes);
+
+    private List<DrawableResModel> listDrawableRes = new ArrayList<>();
+    private DrawableResModel modelDrawableRes;
+    private DrawableResListAdapter adapterDrawableRes = new DrawableResListAdapter((ArrayList<DrawableResModel>) listDrawableRes);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +82,8 @@ public class UtilsCodeActivity extends AppCompatActivity {
             case R.id.menu_color_res:
                 showColorRes();
                 break;
+            case R.id.menu_drawable_res:
+                showDrawableRes();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -124,7 +133,7 @@ public class UtilsCodeActivity extends AppCompatActivity {
                 modelStringRes.setCount(i+1);
                 modelStringRes.setStringRes(x.get(i));
                 var temp = SystemResourceUtil.getParsedXMLResource(this, modelStringRes.getStringRes(), "string");
-                modelStringRes.setStringPreview(getString(Integer.parseInt(temp+"")));
+                modelStringRes.setStringPreview(getString(temp));
 
                 listStringRes.add(modelStringRes);
             }
@@ -143,9 +152,28 @@ public class UtilsCodeActivity extends AppCompatActivity {
                 modelColorRes.setCount(i+1);
                 modelColorRes.setColorRes(x.get(i));
                 var temp = SystemResourceUtil.getParsedXMLResource(this, modelColorRes.getColorRes(), "color");
-                modelColorRes.setColorHex(getString(Integer.parseInt(temp+"")));
+                modelColorRes.setColorHex(getString(temp));
 
                 listColorRes.add(modelColorRes);
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void showDrawableRes() {
+        clearAllLists();
+        binding.rvList.setAdapter(adapterDrawableRes);
+        try {
+            var x = SystemResourceUtil.getDrawableResources(this);
+            for (int i = 0; i < x.size(); i++) {
+                modelDrawableRes = new DrawableResModel();
+                modelDrawableRes.setCount(i+1);
+                modelDrawableRes.setDrawableRes(x.get(i));
+                var temp = SystemResourceUtil.getParsedXMLResource(this, modelDrawableRes.getDrawableRes(), "drawable");
+                modelDrawableRes.setDrawablePreview(temp);
+
+                listDrawableRes.add(modelDrawableRes);
             }
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
@@ -155,5 +183,6 @@ public class UtilsCodeActivity extends AppCompatActivity {
     private void clearAllLists() {
         listStringRes.clear();
         listColorRes.clear();
+        listDrawableRes.clear();
     }
 }

@@ -18,15 +18,15 @@ public class CommonUtil {
     public static final int SURFACE_FOLLOW_DEFAULT_TOOLBAR = 0;
     public static final int SURFACE_FOLLOW_WINDOW_BACKGROUND = 1;
 
-    public static void waitForTimeThenDo(int time, Callable<Void> callable) {
+    public static void waitForTimeThenDo(double time, Callable<Void> callable) {
         Handler handler = new Handler();
-        handler.postDelayed(() -> {
+        handler.postDelayed((Runnable) () -> {
             try {
                 callable.call();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }, time);
+        }, (long) time);
     }
 
     public static void repeatDoing(Callable<?> callable) {

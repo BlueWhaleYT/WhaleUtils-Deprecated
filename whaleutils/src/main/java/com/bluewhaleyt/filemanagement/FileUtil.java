@@ -58,6 +58,30 @@ public class FileUtil {
         return new File(path).isHidden();
     }
 
+    public static boolean isFileReadable(String path) {
+        return new File(path).canRead();
+    }
+
+    public static boolean isFileWritable(String path) {
+        return new File(path).canWrite();
+    }
+
+    public static boolean isFileExecutable(String path) {
+        return new File(path).canExecute();
+    }
+
+    public static void setFileReadable(String path) {
+        new File(path).setReadable(true);
+    }
+
+    public static void setFileWritable(String path) {
+        new File(path).setWritable(true);
+    }
+
+    public static void setFileExecutable(String path) {
+        new File(path).setExecutable(true);
+    }
+
     public static String getParentDirectoryOfPath(String path) {
         return path.substring(0, path.lastIndexOf("/"));
     }
@@ -260,6 +284,19 @@ public class FileUtil {
 //        fileFilter = File::isFile;
 //        listDir(path, list, fileFilter);
         listDirAllFiles(path, list);
+    }
+
+    public static String getFullFileInfo(String path) throws IOException {
+
+        var fileType = isDirectory(path) ? "directory" : "file";
+
+        return
+                "File name: " + getFileNameOfPath(path) +
+                "\nFile path: " + path +
+                "\nFile type: " + fileType +
+                "\nFile permission: " + "read: " + isFileReadable(path) + " | write: " + isFileWritable(path) + " | execute: " + isFileExecutable(path) +
+                "\nCreation date: " + getFileCreationTime(path) +
+                "\nLast modified date: " + getFileLastModifiedTime(path);
     }
 
     private static void listDir(String path, List<String> list, FileFilter fileFilter) {

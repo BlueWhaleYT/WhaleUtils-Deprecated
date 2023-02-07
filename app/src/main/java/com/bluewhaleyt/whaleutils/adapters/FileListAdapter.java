@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bluewhaleyt.common.CommonUtil;
 import com.bluewhaleyt.common.DateTimeFormatUtil;
 import com.bluewhaleyt.common.DynamicColorsUtil;
 import com.bluewhaleyt.filemanagement.FileUtil;
@@ -27,6 +28,8 @@ import java.util.HashMap;
 public class FileListAdapter extends BaseAdapter {
 
     private ViewHolder viewHolder;
+    private DynamicColorsUtil dynamicColors;
+
     private ArrayList<HashMap<String, Object>> data;
 
     public FileListAdapter(ArrayList<HashMap<String, Object>> arr) {
@@ -51,9 +54,7 @@ public class FileListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
-        Context context = parent.getContext();
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
+        LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = convertView;
 
         if (view == null) {
@@ -64,7 +65,7 @@ public class FileListAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
-        setValues(context, viewHolder, position);
+        setValues(view.getContext(), viewHolder, position);
         return view;
 
     }
@@ -81,7 +82,7 @@ public class FileListAdapter extends BaseAdapter {
 
     private void setValues(Context context, ViewHolder viewHolder, int position) {
 
-        DynamicColorsUtil dynamicColors = new DynamicColorsUtil(context);
+        dynamicColors = new DynamicColorsUtil(context);
 
         var path = FileManagerActivity.path;
         path = FileManagerActivity.fileList.get(position);
@@ -116,7 +117,7 @@ public class FileListAdapter extends BaseAdapter {
                 )
         );
 
-        viewHolder.tvFilePath.setText(path);
+//        viewHolder.tvFilePath.setText(path);
 
     }
 

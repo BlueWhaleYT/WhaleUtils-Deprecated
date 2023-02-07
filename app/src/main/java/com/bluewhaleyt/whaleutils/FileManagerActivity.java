@@ -9,8 +9,10 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,8 +79,50 @@ public class FileManagerActivity extends AppCompatActivity {
             case android.R.id.home:
                 finish();
                 break;
+            case R.id.menu_go_to_home:
+                file = FileUtil.getExternalStoragePath();
+                FileUtil.listNonHiddenDirectories(file, fileList);
+                updateFileList();
+                updateFileBreadcrumb(getSupportActionBar(), file);
+                break;
+            case R.id.menu_go_to_app_root_dir:
+                file = FileUtil.getExternalStoragePath() + "/WhaleUtils";
+                FileUtil.listNonHiddenDirectories(file, fileList);
+                updateFileList();
+                updateFileBreadcrumb(getSupportActionBar(), file);
+                break;
+
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        if (v == binding.lvFileList) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.file_manager_file_action, menu);
+        }
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch (item.getItemId()) {
+            case R.id.menu_file_info:
+                showFileInfoDialog(info);
+                break;
+            case R.id.menu_new_file:
+                break;
+            case R.id.menu_rename_file:
+                break;
+            case R.id.menu_delete_file:
+                deleteFile(info);
+                break;
+            case R.id.menu_compress_folder:
+                compressFolder(info);
+        }
+        return super.onContextItemSelected(item);
     }
 
     @Override
@@ -100,6 +144,7 @@ public class FileManagerActivity extends AppCompatActivity {
 
             setupFileList();
             setupFileListItemClick();
+            setupFileListItemLongClick();
             binding.fabMenu.setOnClickListener(v -> showNewFileDialog());
         }
 
@@ -114,8 +159,10 @@ public class FileManagerActivity extends AppCompatActivity {
         dialog = new MaterialAlertDialogBuilder(this).create();
         dialog.setView(view);
         dialog.show();
-        CommonUtil.waitForTimeThenDo(1, () -> {
+
+        CommonUtil.waitForTimeThenDo(0.1, () -> {
             ((BaseAdapter) binding.lvFileList.getAdapter()).notifyDataSetChanged();
+            fileListMap.clear();
             setupFileList();
             dialog.dismiss();
             return null;
@@ -158,6 +205,10 @@ public class FileManagerActivity extends AppCompatActivity {
         });
     }
 
+    private void setupFileListItemLongClick() {
+        registerForContextMenu(binding.lvFileList);
+    }
+
     private void backToParentDirectory() {
         if (file.equals(FileUtil.getExternalStoragePath())) {
             finish();
@@ -179,6 +230,16 @@ public class FileManagerActivity extends AppCompatActivity {
         dialog.setNegativeButton("Folder", (d, i) -> createNewFile(binding, false));
         dialog.setNeutralButton(android.R.string.cancel, null);
         dialog.setView(binding.getRoot());
+        dialog.build();
+    }
+
+    private void showFileInfoDialog(AdapterView.AdapterContextMenuInfo item) {
+        DialogUtil dialog = new DialogUtil(this, "File Info");
+        try {
+            dialog.setMessage(FileUtil.getFullFileInfo(getFileListItem(item.position)));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         dialog.build();
     }
 
@@ -213,14 +274,49 @@ public class FileManagerActivity extends AppCompatActivity {
         file = FileUtil.getParentDirectoryOfPath(file);
     }
 
+    private void renameFile(AdapterView.AdapterContextMenuInfo item) {
+
+    }
+
+    private void deleteFile(AdapterView.AdapterContextMenuInfo item) {
+        DialogUtil dialog = new DialogUtil(
+                this,
+                "Delete " + FileUtil.getFileNameOfPath(getFileListItem(item.position)),
+                "Are you sure you want to delete this file? This action can't be restored.");
+        dialog.setPositiveButton(android.R.string.ok, (d, i) -> {
+
+            FileUtil.deleteFile(getFileListItem(item.position));
+            if (fileListMap.size() > 1) {
+                updateFileList();
+                updateFileBreadcrumb(getSupportActionBar(), getFileListItem(item.position));
+                setNoFiles(false);
+            } else {
+                setNoFiles(true);
+            }
+
+        });
+        dialog.setNegativeButton(android.R.string.cancel, null);
+        dialog.build();
+    }
+
+    private void compressFolder(AdapterView.AdapterContextMenuInfo item) {
+
+
+
+    }
+
     private void setNoFiles(boolean isNoFiles) {
-        if (fileListMap.size() <= 0 && isNoFiles) {
+        if (isNoFiles) {
             binding.tvNoFiles.setVisibility(View.VISIBLE);
             binding.lvFileList.setVisibility(View.GONE);
         } else {
             binding.tvNoFiles.setVisibility(View.GONE);
             binding.lvFileList.setVisibility(View.VISIBLE);
         }
+    }
+
+    private String getFileListItem(int pos) {
+        return fileList.get(pos);
     }
 
 }

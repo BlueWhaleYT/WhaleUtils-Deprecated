@@ -2,6 +2,16 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <item
+        android:id="@+id/menu_go_to_home"
+        android:title="Home"
+        android:icon="@drawable/ic_baseline_home_24"
+        app:showAsAction="always"/>
 
+    <item
+        android:id="@+id/menu_go_to_app_root_dir"
+        android:title="App Root dir"
+        android:icon="@drawable/ic_baseline_output_24"
+        app:showAsAction="ifRoom"/>
 
 </menu>

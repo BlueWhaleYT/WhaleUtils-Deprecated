@@ -244,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
         initPaletteColorBlock(bindingPalette.cardView13, dynamicColors.getColorError());
         initPaletteColorBlock(bindingPalette.cardView14, dynamicColors.getColorOnError());
         initPaletteColorBlock(bindingPalette.cardView15, dynamicColors.getColorErrorContainer());
-        initPaletteColorBlock(bindingPalette.cardView16, dynamicColors.getColorOnErroryContainer());
+        initPaletteColorBlock(bindingPalette.cardView16, dynamicColors.getColorOnErrorContainer());
 
         initPaletteColorBlock(bindingPalette.cardView17, dynamicColors.getColorBackground());
         initPaletteColorBlock(bindingPalette.cardView18, dynamicColors.getColorOnBackground());

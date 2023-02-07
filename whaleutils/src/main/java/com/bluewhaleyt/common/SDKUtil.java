@@ -16,4 +16,9 @@ public class SDKUtil {
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.O;
     }
 
+    @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.S)
+    public static boolean isAtLeastSDK31() {
+        return Build.VERSION.SDK_INT >= Build.VERSION_CODES.S;
+    }
+
 }

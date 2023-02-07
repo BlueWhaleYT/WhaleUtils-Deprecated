@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:text="file path"
-            android:textColor="?colorPrimary"
+            android:textColor="?colorOutline"
             android:textSize="11sp"/>
 
         <LinearLayout

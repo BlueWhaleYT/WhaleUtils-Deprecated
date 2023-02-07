@@ -176,7 +176,8 @@ public class FileManagerActivity extends AppCompatActivity {
 
         try {
             FileUtil.refreshList(fileList);
-            FileUtil.listOnlyFilesSubDirFiles(file, fileList);
+//            FileUtil.listOnlyFilesSubDirFiles(file, fileList);
+            FileUtil.listNonHiddenDirectories(file, fileList);
         } catch (Exception e) {
             SnackbarUtil.makeErrorSnackbar(this, e.getMessage());
         }

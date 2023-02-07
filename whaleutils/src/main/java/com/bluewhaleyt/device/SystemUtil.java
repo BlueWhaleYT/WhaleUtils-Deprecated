@@ -103,7 +103,9 @@ public class SystemUtil {
     }
 
     public static String getOpenGLSimpleVersion() {
-        return getOpenGLVersion().substring(0, getOpenGLVersion().lastIndexOf(" "));
+        var str = getOpenGLVersion().substring(0, getOpenGLVersion().lastIndexOf("("));
+        str = getOpenGLVersion().substring(0, getOpenGLVersion().lastIndexOf(""));
+        return str;
     }
 
     public static String getOpenGLExtensions() {

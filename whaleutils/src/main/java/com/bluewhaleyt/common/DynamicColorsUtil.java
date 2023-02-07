@@ -5,6 +5,9 @@ import android.app.Application;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Build;
+import android.util.Log;
+
+import androidx.core.content.ContextCompat;
 
 import com.bluewhaleyt.whaleutils.R;
 import com.google.android.material.color.DynamicColors;
@@ -90,6 +93,70 @@ public class DynamicColorsUtil {
             outlineVariant = typedArray.getColor(23, 0);
 
             typedArray.recycle();
+        } else {
+            if (isDarkMode(context)) {
+
+                primary = ContextCompat.getColor(context, R.color.md_theme_dark_primary);
+                onPrimary = ContextCompat.getColor(context, R.color.md_theme_dark_onPrimary);
+                primaryContainer = ContextCompat.getColor(context, R.color.md_theme_dark_primaryContainer);
+                onPrimaryContainer = ContextCompat.getColor(context, R.color.md_theme_dark_onPrimaryContainer);
+
+                secondary = ContextCompat.getColor(context, R.color.md_theme_dark_secondary);
+                onSecondary = ContextCompat.getColor(context, R.color.md_theme_dark_onSecondary);
+                secondaryContainer = ContextCompat.getColor(context, R.color.md_theme_dark_secondaryContainer);
+                onSecondaryContainer = ContextCompat.getColor(context, R.color.md_theme_dark_onSecondaryContainer);
+
+                tertiary = ContextCompat.getColor(context, R.color.md_theme_dark_tertiary);
+                onTertiary = ContextCompat.getColor(context, R.color.md_theme_dark_onTertiary);
+                tertiaryContainer = ContextCompat.getColor(context, R.color.md_theme_dark_tertiaryContainer);
+                onTertiaryContainer = ContextCompat.getColor(context, R.color.md_theme_dark_onTertiaryContainer);
+
+                error = ContextCompat.getColor(context, R.color.md_theme_dark_error);
+                onError = ContextCompat.getColor(context, R.color.md_theme_dark_onError);
+                errorContainer = ContextCompat.getColor(context, R.color.md_theme_dark_errorContainer);
+                onErrorContainer = ContextCompat.getColor(context, R.color.md_theme_dark_onErrorContainer);
+
+                background = ContextCompat.getColor(context, R.color.md_theme_dark_background);
+                onBackground = ContextCompat.getColor(context, R.color.md_theme_dark_onBackground);
+                surface = ContextCompat.getColor(context, R.color.md_theme_dark_surface);
+                onSurface = ContextCompat.getColor(context, R.color.md_theme_dark_onSurface);
+                surfaceVariant = ContextCompat.getColor(context, R.color.md_theme_dark_surfaceVariant);
+                onSurfaceVariant = ContextCompat.getColor(context, R.color.md_theme_dark_onSurfaceVariant);
+                outline = ContextCompat.getColor(context, R.color.md_theme_dark_outline);
+                outlineVariant = ContextCompat.getColor(context, R.color.md_theme_dark_outlineVariant);
+
+            } else {
+
+                primary = ContextCompat.getColor(context, R.color.md_theme_light_primary);
+                onPrimary = ContextCompat.getColor(context, R.color.md_theme_light_onPrimary);
+                primaryContainer = ContextCompat.getColor(context, R.color.md_theme_light_primaryContainer);
+                onPrimaryContainer = ContextCompat.getColor(context, R.color.md_theme_light_onPrimaryContainer);
+
+                secondary = ContextCompat.getColor(context, R.color.md_theme_light_secondary);
+                onSecondary = ContextCompat.getColor(context, R.color.md_theme_light_onSecondary);
+                secondaryContainer = ContextCompat.getColor(context, R.color.md_theme_light_secondaryContainer);
+                onSecondaryContainer = ContextCompat.getColor(context, R.color.md_theme_light_onSecondaryContainer);
+
+                tertiary = ContextCompat.getColor(context, R.color.md_theme_light_tertiary);
+                onTertiary = ContextCompat.getColor(context, R.color.md_theme_light_onTertiary);
+                tertiaryContainer = ContextCompat.getColor(context, R.color.md_theme_light_tertiaryContainer);
+                onTertiaryContainer = ContextCompat.getColor(context, R.color.md_theme_light_onTertiaryContainer);
+
+                error = ContextCompat.getColor(context, R.color.md_theme_light_error);
+                onError = ContextCompat.getColor(context, R.color.md_theme_light_onError);
+                errorContainer = ContextCompat.getColor(context, R.color.md_theme_light_errorContainer);
+                onErrorContainer = ContextCompat.getColor(context, R.color.md_theme_light_onErrorContainer);
+
+                background = ContextCompat.getColor(context, R.color.md_theme_light_background);
+                onBackground = ContextCompat.getColor(context, R.color.md_theme_light_onBackground);
+                surface = ContextCompat.getColor(context, R.color.md_theme_light_surface);
+                onSurface = ContextCompat.getColor(context, R.color.md_theme_light_onSurface);
+                surfaceVariant = ContextCompat.getColor(context, R.color.md_theme_light_surfaceVariant);
+                onSurfaceVariant = ContextCompat.getColor(context, R.color.md_theme_light_onSurfaceVariant);
+                outline = ContextCompat.getColor(context, R.color.md_theme_light_outline);
+                outlineVariant = ContextCompat.getColor(context, R.color.md_theme_light_outlineVariant);
+
+            }
         }
     }
 
@@ -123,7 +190,7 @@ public class DynamicColorsUtil {
 
     public int getColorErrorContainer() { return errorContainer; }
 
-    public int getColorOnErroryContainer() { return onErrorContainer; }
+    public int getColorOnErrorContainer() { return onErrorContainer; }
 
     public int getColorBackground() { return background; }
 
@@ -141,8 +208,12 @@ public class DynamicColorsUtil {
 
     public int getColorOutlineVariant() { return outlineVariant; }
 
+    public static boolean isDarkMode(Context context) {
+        return CommonUtil.isInDarkMode(context);
+    }
+
     public static boolean isDynamicColorAvailable() {
-        return Build.VERSION.SDK_INT > Build.VERSION_CODES.S && DynamicColors.isDynamicColorAvailable();
+        return SDKUtil.isAtLeastSDK31() && DynamicColors.isDynamicColorAvailable();
     }
 
     public static void setDynamicColorsIfAvailable(Application application) {

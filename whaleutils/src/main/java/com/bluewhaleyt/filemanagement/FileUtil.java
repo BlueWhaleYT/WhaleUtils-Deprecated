@@ -324,7 +324,20 @@ public class FileUtil {
     }
 
     private static void listDirAllFiles(String path, List<String> list) {
-        list(path, list, null);
+//        list(path, list, null);
+        File dir = new File(path);
+        if (!dir.exists() || dir.isFile()) return;
+
+        if (fileFilter != null) {
+            listFiles = dir.listFiles(fileFilter);
+        } else {
+            listFiles = dir.listFiles();
+        }
+
+        if (listFiles == null || listFiles.length <= 0) return;
+
+        if (list == null) return;
+
         for (File file : listFiles) {
             if (file.isDirectory()) {
                 listDirAllFiles(file.getPath(), list);

@@ -11,7 +11,7 @@ public class App extends Application {
 
     private static Context context;
 
-    public static String ROOT_DIR = "/WhaleUtils/";
+    public static final String ROOT_DIR = "/WhaleUtils/";
 
     @Override
     public void onCreate() {

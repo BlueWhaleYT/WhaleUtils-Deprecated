@@ -16,6 +16,8 @@ import com.bluewhaleyt.filemanagement.FileUtil;
 import com.bluewhaleyt.whaleutils.databinding.ActivityEditorBinding;
 import com.bluewhaleyt.whaleutils.databinding.ActivityFileManagerBinding;
 
+import io.github.rosemoe.sora.widget.component.EditorAutoCompletion;
+
 public class EditorActivity extends AppCompatActivity {
 
     private ActivityEditorBinding binding;
@@ -72,21 +74,33 @@ public class EditorActivity extends AppCompatActivity {
         editor.setLineSpacing(2f, 1.5f);
 
         editor.setLineNumberMarginLeft(40);
-        editor.setDividerMargin(40);
+        editor.setDividerMargin(30);
+
+        editor.getComponent(EditorAutoCompletion.class).setEnabled(false);
 
     }
 
     private void setupSyntaxHighlight() {
 
-        String THEME_DIR = "textmate/themes/";
-        String LANGUAGE_DIR = "textmate/langauges/";
+        String themeDir = "textmate/themes/";
+        String languageDir = "textmate/languages/";
 
-        String[] themes = {"material_lighter", "material_palenight"};
+        String themeDark = "material_palenight.json";
+        String themeLight = "material_lighter.json";
+
+        String[] themes = {themeLight, themeDark};
 
         try {
+            SyntaxHighlightUtil syntaxHighlight = new SyntaxHighlightUtil();
+            syntaxHighlight.setLanguageBase("languages.json");
+            syntaxHighlight.setLanguageDirectory(languageDir);
+            syntaxHighlight.setThemeDirectory(themeDir);
+            syntaxHighlight.setThemes(themes);
 
-            SyntaxHighlightUtil.set(this, binding.editor, filePath);
+            var theme = CommonUtil.isInDarkMode(this) ? themeDark : themeLight;
+            syntaxHighlight.setTheme(theme);
 
+            syntaxHighlight.setup(this, binding.editor, filePath);
         } catch (Exception e) {
             SnackbarUtil.makeErrorSnackbar(this, e.getMessage(), e.toString());
         }

@@ -24,56 +24,72 @@ import io.github.rosemoe.sora.widget.schemes.EditorColorScheme;
 
 public class SyntaxHighlightUtil implements TextWatcher {
 
-    static String tmFileType = "";
-    static String tmFileRoot = "textmate/";
-    static String tmLanguageBase = "languages.json";
+    private String[] themeFiles;
+    private String lang, theme, themeDir, languageDir, languageBasePath;
 
-    static String filePath = "";
-    static String fileType = "";
-    static int fileIcon;
+    public SyntaxHighlightUtil() {
 
-    public static String lang = "";
-    static String nonJson = "";
-    static String plist = "";
+    }
 
-    static SharedPreferences sp;
+    public void setTheme(String theme) {
+        this.theme = theme;
+    }
 
-    public static void set(Context context, CodeEditor editor, String str) throws Exception {
+    public void setThemes(String[] themeFiles) {
+        this.themeFiles = themeFiles;
+    }
 
-        // check file type / extension
-        switch (FileUtil.getFileExtensionOfPath(str.toLowerCase())) {
+    public void setThemeDirectory(String themeDir) {
+        this.themeDir = themeDir;
+    }
 
-            // TEXT FILES
-            case "css": // CSS
+    public void setLanguageDirectory(String languageDir) {
+        this.languageDir = languageDir;
+    }
+
+    public void setLanguageBase(String path) {
+        this.languageBasePath = path;
+    }
+
+    public void setup(Context context, CodeEditor editor, String path) throws Exception {
+        setupHighlight(context, editor, path);
+    }
+
+    private void setupHighlight(Context context, CodeEditor editor, String path) throws Exception {
+
+        switch (FileUtil.getFileExtensionOfPath(path.toLowerCase())) {
+
+            case "css":
                 lang = "source.css";
                 break;
-            case "htm": // HTML
+            case "htm":
             case "html":
                 lang = "text.html.basic";
                 break;
-            case "kt": // Kotlin
+            case "kt":
                 break;
-            case "md": // Markdown
+            case "md":
                 lang = "text.html.markdown";
                 break;
-            case "java": // Java
+            case "java":
                 lang = "source.java";
                 break;
-            case "js": // JavaScript
+            case "js":
                 lang = "source.js";
                 break;
-            case "json": // JSON
+            case "json":
                 lang = "source.json";
                 break;
-            case "log": // Log
+            case "log":
                 lang = "text.log";
                 break;
-            case "php": // PHP
+            case "php":
                 lang = "source.php";
                 break;
-            case "xml": // XML
+            case "xml":
+                lang = "text.xml";
                 break;
-            case "txt": // TXT
+            case "txt":
             default:
                 lang = "";
         }
@@ -83,42 +99,33 @@ public class SyntaxHighlightUtil implements TextWatcher {
 
         ensureTextmateTheme(editor);
 
+        applyThemes();
         if (!lang.equals("")) {
             applyLanguages(editor);
         }
 
-//      refreshEditorInstantly(editor);
-
     }
 
-    private static void loadDefaultThemes(Context ctx) {
+    private void loadDefaultThemes(Context ctx) throws Exception {
 
-        try {
-            FileProviderRegistry.getInstance().addFileProvider(new AssetsFileResolver(ctx.getAssets()));
+        FileProviderRegistry.getInstance().addFileProvider(new AssetsFileResolver(ctx.getAssets()));
 
-            String[] themes = {"material_palenight.json"};
-            var themeRegistry = ThemeRegistry.getInstance();
+        var themeRegistry = ThemeRegistry.getInstance();
 
-            for (int j = 0; j < themes.length; ) {
-                String name = themes[j];
+        for (int i = 0; i < themeFiles.length; ) {
+            var path = themeDir + themeFiles[i];
+            themeRegistry.loadTheme(new ThemeModel(IThemeSource.fromInputStream(FileProviderRegistry.getInstance().tryGetInputStream(path), path, null), path));
+            i++;
 
-                var path = "textmate/themes/" + name;
-                themeRegistry.loadTheme(new ThemeModel(IThemeSource.fromInputStream(FileProviderRegistry.getInstance().tryGetInputStream(path), path, null), name));
-                j++;
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
     }
 
-    private static void loadDefaultLanguages() {
-        String path = "textmate/languages/languages.json";
-        GrammarRegistry.getInstance().loadGrammars(path);
+    private void loadDefaultLanguages() {
+        GrammarRegistry.getInstance().loadGrammars(languageDir + languageBasePath);
     }
 
-    private static void ensureTextmateTheme(CodeEditor editor) throws Exception {
+    private void ensureTextmateTheme(CodeEditor editor) throws Exception {
 
         var editorColorScheme = editor.getColorScheme();
         if (!(editorColorScheme instanceof TextMateColorScheme)) {
@@ -128,7 +135,11 @@ public class SyntaxHighlightUtil implements TextWatcher {
 
     }
 
-    private static void applyLanguages(CodeEditor editor) throws Exception {
+    private void applyThemes() {
+        ThemeRegistry.getInstance().setTheme(themeDir + theme);
+    }
+
+    private void applyLanguages(CodeEditor editor) throws Exception {
 
         ensureTextmateTheme(editor);
 

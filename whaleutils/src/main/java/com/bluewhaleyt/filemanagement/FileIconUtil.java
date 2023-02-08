@@ -46,7 +46,7 @@ public class FileIconUtil {
                 case "7z":
                 case "rar":
                 case "tar":
-                case "xz":
+                case "tar.xz":
                 case "zip":
                     fileIcon = R.drawable.ic_material_zip;
                     break;
@@ -78,6 +78,7 @@ public class FileIconUtil {
                     fileIcon = R.drawable.ic_material_css;
                     break;
                 case "gradle":
+                case "gradle.kts":
                     fileIcon = R.drawable.ic_material_gradle;
                     break;
                 case "htm":

@@ -16,6 +16,16 @@ public class IntentUtil {
         activity.startActivity(new Intent(activity, targetActivity));
     }
 
+    public static void intentPutString(Activity activity, Class<?> targetActivity, String dataName, String dataValue) {
+        intent = new Intent(activity, targetActivity);
+        intent.putExtra(dataName, dataValue);
+        activity.startActivity(intent);
+    }
+
+    public static String intentGetString(Activity activity, String dataName) {
+        return activity.getIntent().getExtras().getString(dataName);
+    }
+
     public static void intentApplicationInfoScreen(Activity activity) {
         intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
         Uri uri = Uri.fromParts("package", activity.getPackageName(), null);

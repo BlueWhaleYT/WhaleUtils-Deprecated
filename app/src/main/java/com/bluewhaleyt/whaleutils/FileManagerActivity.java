@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.bluewhaleyt.common.CommonUtil;
 import com.bluewhaleyt.common.DynamicColorsUtil;
+import com.bluewhaleyt.common.IntentUtil;
 import com.bluewhaleyt.common.PermissionUtil;
 import com.bluewhaleyt.component.dialog.DialogUtil;
 import com.bluewhaleyt.component.snackbar.SnackbarUtil;
@@ -269,20 +270,8 @@ public class FileManagerActivity extends AppCompatActivity {
     }
 
     private void openFile() {
-        DialogLayoutCodeEditorBinding binding;
-        binding = DialogLayoutCodeEditorBinding.inflate(getLayoutInflater());
-//        BottomSheetDialog dialog = new BottomSheetDialog(this);
-//        dialog.setContentView(binding.getRoot());
-//        dialog.create();
-//        dialog.show();
-
-        DialogUtil dialog = new DialogUtil(this);
-        dialog.setView(binding.getRoot());
-        dialog.build();
-
-        binding.tvFilePath.setText(file);
-        binding.tvFileName.setText(FileUtil.getFileNameOfPath(file));
-        binding.editor.setText(FileUtil.readFile(file));
+        var cls = EditorActivity.class;
+        IntentUtil.intentPutString(this, cls, "file_path", file);
 
         file = FileUtil.getParentDirectoryOfPath(file);
     }

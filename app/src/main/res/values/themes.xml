@@ -42,5 +42,6 @@
     <style name="Theme.AlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
         <item name="dialogCornerRadius">28dp</item>
         <item name="android:background">?colorSecondaryContainer</item>
+        <item name="android:windowElevation">@dimen/m3_sys_elevation_level0</item>
     </style>
 </resources>

@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
@@ -27,6 +28,7 @@ import com.bluewhaleyt.whaleutils.R;
 import com.bluewhaleyt.whaleutils.adapters.ViewPagerAdapter;
 import com.bluewhaleyt.whaleutils.databinding.ActivityMainBinding;
 import com.bluewhaleyt.whaleutils.databinding.DialogLayoutPaletteBinding;
+import com.bluewhaleyt.whaleutils.tools.PreferencesManager;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.card.MaterialCardView;
 
@@ -49,6 +51,7 @@ public class MainActivity extends WhaleUtilsActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         init();
+
     }
 
     @Override
@@ -230,45 +233,51 @@ public class MainActivity extends WhaleUtilsActivity {
 
     private void showPaletteInfoDialog() {
 
-        bindingPalette = DialogLayoutPaletteBinding.inflate(getLayoutInflater());
+        if (PreferencesManager.isAppDynamicColorEnable()) {
 
-        initPaletteColorBlock(bindingPalette.cardView1, dynamicColors.getColorPrimary());
-        initPaletteColorBlock(bindingPalette.cardView2, dynamicColors.getColorOnPrimary());
-        initPaletteColorBlock(bindingPalette.cardView3, dynamicColors.getColorPrimaryContainer());
-        initPaletteColorBlock(bindingPalette.cardView4, dynamicColors.getColorOnPrimaryContainer());
+            bindingPalette = DialogLayoutPaletteBinding.inflate(getLayoutInflater());
 
-        initPaletteColorBlock(bindingPalette.cardView5, dynamicColors.getColorSecondary());
-        initPaletteColorBlock(bindingPalette.cardView6, dynamicColors.getColorOnSecondary());
-        initPaletteColorBlock(bindingPalette.cardView7, dynamicColors.getColorSecondaryContainer());
-        initPaletteColorBlock(bindingPalette.cardView8, dynamicColors.getColorOnSecondaryContainer());
+            initPaletteColorBlock(bindingPalette.cardView1, dynamicColors.getColorPrimary());
+            initPaletteColorBlock(bindingPalette.cardView2, dynamicColors.getColorOnPrimary());
+            initPaletteColorBlock(bindingPalette.cardView3, dynamicColors.getColorPrimaryContainer());
+            initPaletteColorBlock(bindingPalette.cardView4, dynamicColors.getColorOnPrimaryContainer());
 
-        initPaletteColorBlock(bindingPalette.cardView9, dynamicColors.getColorTertiary());
-        initPaletteColorBlock(bindingPalette.cardView10, dynamicColors.getColorOnTertiary());
-        initPaletteColorBlock(bindingPalette.cardView11, dynamicColors.getColorTertiaryContainer());
-        initPaletteColorBlock(bindingPalette.cardView12, dynamicColors.getColorOnTertiaryContainer());
+            initPaletteColorBlock(bindingPalette.cardView5, dynamicColors.getColorSecondary());
+            initPaletteColorBlock(bindingPalette.cardView6, dynamicColors.getColorOnSecondary());
+            initPaletteColorBlock(bindingPalette.cardView7, dynamicColors.getColorSecondaryContainer());
+            initPaletteColorBlock(bindingPalette.cardView8, dynamicColors.getColorOnSecondaryContainer());
 
-        initPaletteColorBlock(bindingPalette.cardView13, dynamicColors.getColorError());
-        initPaletteColorBlock(bindingPalette.cardView14, dynamicColors.getColorOnError());
-        initPaletteColorBlock(bindingPalette.cardView15, dynamicColors.getColorErrorContainer());
-        initPaletteColorBlock(bindingPalette.cardView16, dynamicColors.getColorOnErrorContainer());
+            initPaletteColorBlock(bindingPalette.cardView9, dynamicColors.getColorTertiary());
+            initPaletteColorBlock(bindingPalette.cardView10, dynamicColors.getColorOnTertiary());
+            initPaletteColorBlock(bindingPalette.cardView11, dynamicColors.getColorTertiaryContainer());
+            initPaletteColorBlock(bindingPalette.cardView12, dynamicColors.getColorOnTertiaryContainer());
 
-        initPaletteColorBlock(bindingPalette.cardView17, dynamicColors.getColorBackground());
-        initPaletteColorBlock(bindingPalette.cardView18, dynamicColors.getColorOnBackground());
+            initPaletteColorBlock(bindingPalette.cardView13, dynamicColors.getColorError());
+            initPaletteColorBlock(bindingPalette.cardView14, dynamicColors.getColorOnError());
+            initPaletteColorBlock(bindingPalette.cardView15, dynamicColors.getColorErrorContainer());
+            initPaletteColorBlock(bindingPalette.cardView16, dynamicColors.getColorOnErrorContainer());
 
-        initPaletteColorBlock(bindingPalette.cardView19, dynamicColors.getColorSurface());
-        initPaletteColorBlock(bindingPalette.cardView20, dynamicColors.getColorOnSurface());
+            initPaletteColorBlock(bindingPalette.cardView17, dynamicColors.getColorBackground());
+            initPaletteColorBlock(bindingPalette.cardView18, dynamicColors.getColorOnBackground());
 
-        initPaletteColorBlock(bindingPalette.cardView21, dynamicColors.getColorSurfaceVariant());
-        initPaletteColorBlock(bindingPalette.cardView22, dynamicColors.getColorOnSurfaceVariant());
+            initPaletteColorBlock(bindingPalette.cardView19, dynamicColors.getColorSurface());
+            initPaletteColorBlock(bindingPalette.cardView20, dynamicColors.getColorOnSurface());
 
-        initPaletteColorBlock(bindingPalette.cardView23, dynamicColors.getColorOutline());
-        initPaletteColorBlock(bindingPalette.cardView24, dynamicColors.getColorOutlineVariant());
+            initPaletteColorBlock(bindingPalette.cardView21, dynamicColors.getColorSurfaceVariant());
+            initPaletteColorBlock(bindingPalette.cardView22, dynamicColors.getColorOnSurfaceVariant());
 
-        BottomSheetDialog dialog = new BottomSheetDialog(this);
-        dialog.setTitle(getString(R.string.palette_info_title));
-        dialog.setContentView(bindingPalette.getRoot());
-        dialog.create();
-        dialog.show();
+            initPaletteColorBlock(bindingPalette.cardView23, dynamicColors.getColorOutline());
+            initPaletteColorBlock(bindingPalette.cardView24, dynamicColors.getColorOutlineVariant());
+
+            BottomSheetDialog dialog = new BottomSheetDialog(this);
+            dialog.setTitle(getString(R.string.palette_info_title));
+            dialog.setContentView(bindingPalette.getRoot());
+            dialog.create();
+            dialog.show();
+
+        } else {
+            SnackbarUtil.makeSnackbar(this, "Dynamic color is disabled.");
+        }
 
     }
 

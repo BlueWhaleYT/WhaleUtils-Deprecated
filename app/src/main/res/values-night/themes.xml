@@ -3,9 +3,8 @@
     <style name="Theme.WhaleUtils" parent="Theme.Material3.DayNight">
         <item name="fontFamily">@font/ubuntu_regular</item>
         <item name="switchPreferenceCompatStyle">@style/Theme.SwitchPreference</item>
-        <item name="materialAlertDialogTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog</item>
-        <item name="alertDialogTheme">@style/ThemeOverlay.Material3.MaterialAlertDialog</item>
-        <item name="dialogCornerRadius">28dp</item>
+        <item name="materialAlertDialogTheme">@style/Theme.AlertDialog</item>
+        <item name="alertDialogTheme">@style/Theme.AlertDialog</item>
 
         <item name="colorPrimary">@color/md_theme_dark_primary</item>
         <item name="colorOnPrimary">@color/md_theme_dark_onPrimary</item>
@@ -38,4 +37,10 @@
     <style name="Theme.SwitchPreference" parent="Preference.SwitchPreference.Material">
         <item name="android:widgetLayout">@layout/layout_preference_material3_switch</item>
     </style>
+
+    <style name="Theme.AlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="dialogCornerRadius">28dp</item>
+        <item name="android:background">?colorOnSecondary</item>
+    </style>
+
 </resources>

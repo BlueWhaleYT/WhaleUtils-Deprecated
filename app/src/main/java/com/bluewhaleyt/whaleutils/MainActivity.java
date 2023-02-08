@@ -126,14 +126,14 @@ public class MainActivity extends AppCompatActivity {
         switch (dir) {
             case "data":
                 if (PermissionUtil.isAlreadyGrantedAndroidDataAccess(this)) {
-                    SnackbarUtil.makeSnackbar(this, "Already granted");
+                    SnackbarUtil.makeSnackbar(this, "Permission has already been granted.");
                 } else {
                     PermissionUtil.requestAndroidDataAccess(this);
                 }
                 break;
             case "obb":
                 if (PermissionUtil.isAlreadyGrantedAndroidObbAccess(this)) {
-                    SnackbarUtil.makeSnackbar(this, "Already granted");
+                    SnackbarUtil.makeSnackbar(this, "Permission has already been granted.");
                 } else {
                     PermissionUtil.requestAndroidObbAccess(this);
                 }

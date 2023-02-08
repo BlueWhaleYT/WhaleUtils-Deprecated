@@ -1,16 +1,11 @@
 package com.bluewhaleyt.filemanagement;
 
-import android.content.ContentResolver;
-import android.content.Context;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
-import android.webkit.MimeTypeMap;
 
 import com.bluewhaleyt.common.SDKUtil;
-
-import org.apache.commons.io.FilenameUtils;
 
 import java.io.File;
 import java.io.FileFilter;

@@ -12,6 +12,7 @@ import com.bluewhaleyt.common.CommonUtil;
 import com.bluewhaleyt.common.IntentUtil;
 import com.bluewhaleyt.component.snackbar.SnackbarUtil;
 import com.bluewhaleyt.crashdebugger.CrashDebugger;
+import com.bluewhaleyt.filemanagement.FileIconUtil;
 import com.bluewhaleyt.filemanagement.FileUtil;
 import com.bluewhaleyt.whaleutils.databinding.ActivityEditorBinding;
 import com.bluewhaleyt.whaleutils.databinding.ActivityFileManagerBinding;
@@ -52,13 +53,19 @@ public class EditorActivity extends AppCompatActivity {
         CommonUtil.setStatusBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_DEFAULT_TOOLBAR);
         CommonUtil.setNavigationBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);
 
-        getDataFromFile();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle(FileUtil.getFileNameOfPath(filePath));
-        getSupportActionBar().setSubtitle(filePath);
+        try {
+            getDataFromFile();
 
-        setupEditor();
-        setupSyntaxHighlight();
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayUseLogoEnabled(true);
+            getSupportActionBar().setTitle(FileUtil.getFileNameOfPath(filePath));
+            getSupportActionBar().setSubtitle(filePath);
+
+            setupEditor();
+            setupSyntaxHighlight();
+        } catch (Exception e) {
+            SnackbarUtil.makeErrorSnackbar(this, e.getMessage(), e.toString());
+        }
 
     }
 
@@ -85,7 +92,7 @@ public class EditorActivity extends AppCompatActivity {
         String themeDir = "textmate/themes/";
         String languageDir = "textmate/languages/";
 
-        String themeDark = "material_palenight.json";
+        String themeDark = "material_custom.json";
         String themeLight = "material_lighter.json";
 
         String[] themes = {themeLight, themeDark};

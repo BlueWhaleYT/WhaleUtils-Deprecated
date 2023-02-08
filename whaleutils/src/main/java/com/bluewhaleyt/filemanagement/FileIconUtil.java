@@ -21,12 +21,16 @@ public class FileIconUtil {
     }
 
     public void bindFileIcon(ImageView imageView) {
-        setFileIcon(imageView, fileIcon);
+        setFileIcon(imageView, getFileIcon());
     }
 
     public void bindFileIcon(ImageView imageView, int color) {
         bindFileIcon(imageView);
         imageView.setColorFilter(color);
+    }
+
+    public int getFileIcon() {
+        return fileIcon;
     }
 
     private void set(String path) {

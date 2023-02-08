@@ -24,6 +24,7 @@ import com.bluewhaleyt.whaleutils.R;
 import com.bluewhaleyt.whaleutils.databinding.LayoutFileListItemBinding;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
 public class FileListAdapter extends BaseAdapter {
@@ -103,7 +104,7 @@ public class FileListAdapter extends BaseAdapter {
 
         viewHolder.tvFileLastModifiedTime.setText(
                 FileUtil.getFileLastModifiedTimeFormatString(
-                        path, DateTimeFormatUtil.FORMAT_DATE
+                        path, DateTimeFormatUtil.FORMAT_DATE + " " + DateTimeFormatUtil.FORMAT_TIME_AM_PM
                 )
         );
 

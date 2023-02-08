@@ -10,16 +10,18 @@ import java.util.Locale;
 
 public class DateTimeFormatUtil {
 
+    public static final String DAY = "dd";
+    public static final String MONTH = "MM";
+    public static final String CYCLE = "E";
+    public static final String YEAR = "yyyy";
+
+    public static final String SECOND = "ss";
+    public static final String MINUTE = "mm";
+    public static final String HOUR = "HH";
+    public static final String AM_PM = "a";
+
     public static final String FORMAT_DATE =  "dd/MM/yyyy";
     public static final String FORMAT_TIME =  "HH:mm:ss";
-    public static final String FORMAT_DATE_TIME =  "dd/MM/yyyy HH:mm:ss";
-
-    public static String getDateStyle1(Date date) {
-        if (SDKUtil.isAtLeastSDK24()) {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy 年 MM 月 dd 日 E");
-            return dateFormat.format(date);
-        }
-        return null;
-    }
+    public static final String FORMAT_TIME_AM_PM =  "hh:mm a";
 
 }

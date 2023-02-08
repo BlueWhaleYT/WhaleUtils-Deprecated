@@ -71,6 +71,7 @@ public class EditorActivity extends AppCompatActivity {
 
     private void setupEditor() {
 
+        var margin = 30;
         var editor = binding.editor;
         var font = Typeface.createFromAsset(getAssets(), "fonts/JetBrainsMono-Medium.ttf");
 
@@ -80,8 +81,8 @@ public class EditorActivity extends AppCompatActivity {
         editor.setTypefaceLineNumber(font);
         editor.setLineSpacing(2f, 1.5f);
 
-        editor.setLineNumberMarginLeft(40);
-        editor.setDividerMargin(30);
+        editor.setLineNumberMarginLeft(margin);
+        editor.setDividerMargin(margin);
 
         editor.getComponent(EditorAutoCompletion.class).setEnabled(false);
 

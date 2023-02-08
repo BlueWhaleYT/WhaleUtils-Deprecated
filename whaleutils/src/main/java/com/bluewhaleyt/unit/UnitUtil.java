@@ -6,7 +6,7 @@ public class UnitUtil {
         return String.format(java.util.Locale.US, "%.2f", d);
     }
 
-    public static String bytesToHuman(double size) {
+    public static String byteHumanize(double size) {
         long Kb = 1024;
         long Mb = Kb * 1024;
         long Gb = Mb * 1024;

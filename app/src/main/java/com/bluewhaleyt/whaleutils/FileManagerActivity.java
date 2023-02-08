@@ -83,13 +83,13 @@ public class FileManagerActivity extends AppCompatActivity {
                 file = FileUtil.getExternalStoragePath();
                 FileUtil.listNonHiddenDirectories(file, fileList);
                 updateFileList();
-                updateFileBreadcrumb(getSupportActionBar(), file);
+                updateFileInfo(file);
                 break;
             case R.id.menu_go_to_app_root_dir:
                 file = FileUtil.getExternalStoragePath() + "/WhaleUtils";
                 FileUtil.listNonHiddenDirectories(file, fileList);
                 updateFileList();
-                updateFileBreadcrumb(getSupportActionBar(), file);
+                updateFileInfo(file);
                 break;
 
         }
@@ -140,7 +140,7 @@ public class FileManagerActivity extends AppCompatActivity {
 
         if (PermissionUtil.isAlreadyGrantedExternalStorageAccess()) {
             file = FileUtil.getExternalStoragePath();
-            getSupportActionBar().setSubtitle(file);
+            updateFileInfo(file);
 
             FileUtil.listNonHiddenDirectories(file, fileList);
             setupFileList();
@@ -151,8 +151,13 @@ public class FileManagerActivity extends AppCompatActivity {
 
     }
 
-    private void updateFileBreadcrumb(ActionBar actionBar, String str) {
-        actionBar.setSubtitle(str);
+    private void updateFileInfo(String path) {
+        binding.tvFilePath.setText(path);
+
+        getSupportActionBar().setSubtitle(
+                FileUtil.getOnlyDirectoryAmountOfPath(path) + " directories, " +
+                FileUtil.getOnlyFileAmountOfPath(path) + " files"
+        );
     }
 
     private void updateFileList() {
@@ -206,7 +211,7 @@ public class FileManagerActivity extends AppCompatActivity {
                     fileListMap.clear();
                     setNoFiles(true);
                 }
-                updateFileBreadcrumb(getSupportActionBar(), file);
+                updateFileInfo(file);
             } else {
                 openFile();
             }
@@ -225,7 +230,7 @@ public class FileManagerActivity extends AppCompatActivity {
             updateFileList();
         }
         setNoFiles(false);
-        updateFileBreadcrumb(getSupportActionBar(), file);
+        updateFileInfo(file);
     }
 
     private void showNewFileDialog() {
@@ -296,7 +301,7 @@ public class FileManagerActivity extends AppCompatActivity {
             FileUtil.deleteFile(getFileListItem(item.position));
             if (fileListMap.size() > 1) {
                 updateFileList();
-                updateFileBreadcrumb(getSupportActionBar(), getFileListItem(item.position));
+                updateFileInfo(getFileListItem(item.position));
                 setNoFiles(false);
             } else {
                 setNoFiles(true);

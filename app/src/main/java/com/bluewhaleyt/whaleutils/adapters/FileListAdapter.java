@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bluewhaleyt.common.CommonUtil;
 import com.bluewhaleyt.common.DateTimeFormatUtil;
 import com.bluewhaleyt.common.DynamicColorsUtil;
+import com.bluewhaleyt.filemanagement.FileIconUtil;
 import com.bluewhaleyt.filemanagement.FileUtil;
 import com.bluewhaleyt.unit.UnitUtil;
 import com.bluewhaleyt.whaleutils.FileManagerActivity;
@@ -29,6 +30,7 @@ public class FileListAdapter extends BaseAdapter {
 
     private ViewHolder viewHolder;
     private DynamicColorsUtil dynamicColors;
+    private FileIconUtil fileIconUtil;
 
     private ArrayList<HashMap<String, Object>> data;
 
@@ -90,21 +92,9 @@ public class FileListAdapter extends BaseAdapter {
         viewHolder.tvFileName.setText(FileUtil.getFileNameOfPath(path));
 
         if (FileUtil.isDirectory(path)) {
-            viewHolder.ivFileIcon.setImageResource(R.drawable.ic_baseline_folder_24);
-            viewHolder.ivFileIcon.setColorFilter(dynamicColors.getColorPrimary());
-
-            if (FileUtil.isFileHidden(path)) {
-                viewHolder.ivFileIcon.setColorFilter(dynamicColors.getColorError());
-            }
-
             viewHolder.tvFileSize.setText(FileUtil.getFileAmountOfPath(path) + " Files");
-
         } else {
-            viewHolder.ivFileIcon.setImageResource(R.drawable.ic_baseline_insert_drive_file_24);
-            viewHolder.ivFileIcon.setColorFilter(dynamicColors.getColorSecondary());
-
-            viewHolder.tvFileSize.setText(UnitUtil.bytesToHuman(FileUtil.getFileSizeOfPath(path)) + "");
-
+            viewHolder.tvFileSize.setText(UnitUtil.byteHumanize(FileUtil.getFileSizeOfPath(path)) + "");
         }
 
         viewHolder.tvFileLastModifiedTime.setText(
@@ -114,6 +104,8 @@ public class FileListAdapter extends BaseAdapter {
         );
 
         viewHolder.tvFilePath.setText(path);
+
+        fileIconUtil = new FileIconUtil(context, viewHolder.ivFileIcon, path);
 
     }
 

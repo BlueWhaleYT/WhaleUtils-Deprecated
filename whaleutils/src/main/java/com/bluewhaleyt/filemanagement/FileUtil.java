@@ -99,6 +99,10 @@ public class FileUtil {
         return Uri.parse(path).getLastPathSegment();
     }
 
+    public static String getFileExtensionOfPath(String path) {
+        return path.toLowerCase().substring(path.lastIndexOf(".") + 1);
+    }
+
     public static double getFileSizeOfPath(String path) {
         return new File(path).length();
     }
@@ -109,6 +113,46 @@ public class FileUtil {
             if (!isDirectoryEmpty(path)) {
                 dir = new File(path);
                 return dir.listFiles().length;
+            }
+        } catch (Exception e) {
+            // ignore
+        }
+        return 0;
+    }
+
+    public static int getOnlyFileAmountOfPath(String path) {
+        File dir;
+        fileFilter = pathname -> {
+            if (pathname.isFile()) {
+                return true;
+            } else {
+                return false;
+            }
+        };
+        try {
+            if (!isDirectoryEmpty(path)) {
+                dir = new File(path);
+                return dir.listFiles(fileFilter).length;
+            }
+        } catch (Exception e) {
+            // ignore
+        }
+        return 0;
+    }
+
+    public static int getOnlyDirectoryAmountOfPath(String path) {
+        File dir;
+        fileFilter = pathname -> {
+            if (pathname.isFile()) {
+                return false;
+            } else {
+                return true;
+            }
+        };
+        try {
+            if (!isDirectoryEmpty(path)) {
+                dir = new File(path);
+                return dir.listFiles(fileFilter).length;
             }
         } catch (Exception e) {
             // ignore

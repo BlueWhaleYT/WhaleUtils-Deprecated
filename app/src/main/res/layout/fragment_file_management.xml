@@ -5,9 +5,15 @@
     android:orientation="vertical">
 
     <Button
-        android:id="@+id/btn"
+        android:id="@+id/btn1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="open list of files "/>
+        android:text="list directories"/>
+
+    <Button
+        android:id="@+id/btn2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="list only files of directories and sub directories"/>
 
 </LinearLayout>

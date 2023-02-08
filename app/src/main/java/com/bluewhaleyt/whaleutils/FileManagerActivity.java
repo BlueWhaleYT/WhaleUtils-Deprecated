@@ -144,8 +144,7 @@ public class FileManagerActivity extends AppCompatActivity {
         if (PermissionUtil.isAlreadyGrantedExternalStorageAccess()) {
             file = FileUtil.getExternalStoragePath();
             updateFileInfo(file);
-
-            FileUtil.listNonHiddenDirectories(file, fileList);
+            setListMode();
             setupFileList();
             setupFileListItemClick();
             setupFileListItemLongClick();
@@ -185,7 +184,7 @@ public class FileManagerActivity extends AppCompatActivity {
 
         try {
             FileUtil.refreshList(fileList);
-            FileUtil.listDirectories(file, fileList);
+            setListMode();
 //            SnackbarUtil.makeSnackbar(this, fileList.size()+"");
         } catch (Exception e) {
             SnackbarUtil.makeErrorSnackbar(this, e.getMessage());
@@ -223,6 +222,19 @@ public class FileManagerActivity extends AppCompatActivity {
 
     private void setupFileListItemLongClick() {
         registerForContextMenu(binding.lvFileList);
+    }
+
+    private void setListMode() {
+        try {
+            String listMode = IntentUtil.intentGetString(this, "list_mode");
+            if (listMode.equals("list_dir")) {
+                FileUtil.listDirectories(file, fileList);
+            } else if (listMode.equals("list_only_file_dir_subdir")) {
+                FileUtil.listOnlyFilesSubDirFiles(file + "/WhaleUtils", fileList);
+            }
+        } catch (Exception e) {
+            SnackbarUtil.makeErrorSnackbar(this, e.getMessage(), e.toString());
+        }
     }
 
     private void backToParentDirectory() {

@@ -132,13 +132,7 @@ public class FileUtil {
 
     public static int getOnlyFileAmountOfPath(String path) {
         File dir;
-        fileFilter = pathname -> {
-            if (pathname.isFile()) {
-                return true;
-            } else {
-                return false;
-            }
-        };
+        fileFilter = File::isFile;
         try {
             if (!isDirectoryEmpty(path)) {
                 dir = new File(path);
@@ -152,13 +146,7 @@ public class FileUtil {
 
     public static int getOnlyDirectoryAmountOfPath(String path) {
         File dir;
-        fileFilter = pathname -> {
-            if (pathname.isFile()) {
-                return false;
-            } else {
-                return true;
-            }
-        };
+        fileFilter = pathname -> !pathname.isFile();
         try {
             if (!isDirectoryEmpty(path)) {
                 dir = new File(path);
@@ -383,11 +371,7 @@ public class FileUtil {
         File dir = new File(path);
         if (!dir.exists() || dir.isFile()) return;
 
-        if (fileFilter != null) {
-            listFiles = dir.listFiles(fileFilter);
-        } else {
-            listFiles = dir.listFiles();
-        }
+        listFiles = dir.listFiles();
 
         if (listFiles == null || listFiles.length <= 0) return;
 

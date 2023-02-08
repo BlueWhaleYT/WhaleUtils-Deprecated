@@ -9,7 +9,6 @@ import com.bluewhaleyt.whaleutils.R;
 
 public class FileIconUtil {
 
-    private ImageView imageView;
     private int fileIcon;
 
     public FileIconUtil(String path) {

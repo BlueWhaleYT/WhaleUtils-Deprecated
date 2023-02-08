@@ -38,7 +38,15 @@ public class FileManagementFragment extends Fragment {
 
     private void init(LayoutInflater inflater) {
 
-        binding.btn.setOnClickListener(v -> IntentUtil.intent(getActivity(), FileManagerActivity.class));
+        var listMode = "list_mode";
+
+        binding.btn1.setOnClickListener(
+                v -> IntentUtil.intentPutString(getActivity(), FileManagerActivity.class, listMode, "list_dir")
+        );
+
+        binding.btn2.setOnClickListener(
+                v -> IntentUtil.intentPutString(getActivity(), FileManagerActivity.class, listMode, "list_only_file_dir_subdir")
+        );
 
     }
 

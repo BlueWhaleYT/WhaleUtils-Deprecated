@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.bluewhaleyt.codeeditor.textmate.syntaxhighlight.SyntaxHighlightUtil;
@@ -35,10 +36,19 @@ public class EditorActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.editor_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 finish();
+                break;
+            case R.id.menu_save_file:
+                saveFile();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -111,6 +121,14 @@ public class EditorActivity extends AppCompatActivity {
             syntaxHighlight.setup(this, binding.editor, filePath);
         } catch (Exception e) {
             SnackbarUtil.makeErrorSnackbar(this, e.getMessage(), e.toString());
+        }
+
+    }
+
+    private void saveFile() {
+
+        if (FileUtil.isFileExist(filePath)) {
+            FileUtil.writeFile(filePath, binding.editor.getText().toString());
         }
 
     }

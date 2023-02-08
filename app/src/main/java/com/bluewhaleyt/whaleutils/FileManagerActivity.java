@@ -230,7 +230,7 @@ public class FileManagerActivity extends AppCompatActivity {
             if (listMode.equals("list_dir")) {
                 FileUtil.listDirectories(file, fileList);
             } else if (listMode.equals("list_only_file_dir_subdir")) {
-                FileUtil.listOnlyFilesSubDirFiles(file + "/WhaleUtils", fileList);
+                FileUtil.listOnlyFilesSubDirFiles(file, fileList);
             }
         } catch (Exception e) {
             SnackbarUtil.makeErrorSnackbar(this, e.getMessage(), e.toString());

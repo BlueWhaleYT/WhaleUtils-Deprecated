@@ -189,7 +189,8 @@ public class MainActivity extends WhaleUtilsActivity {
         text.append(getString(R.string.device_info_bootloader) + ": " + DeviceUtil.getBootLoader() + lnBreak);
         text.append(getString(R.string.device_info_java_vm) + ": " + DeviceUtil.getJavaVMName() + " " + DeviceUtil.getJavaVMVersion() + lnBreak);
         text.append(getString(R.string.device_info_os_version) + ": " + DeviceUtil.getOSVersion() + " (" + DeviceUtil.getSDKVersionCode(DeviceUtil.getSDKVersion()) + ")" + lnBreak);
-        text.append(getString(R.string.device_info_sdk_version) + ": " + DeviceUtil.getSDKVersion());
+        text.append(getString(R.string.device_info_sdk_version) + ": " + DeviceUtil.getSDKVersion() + "\n\n");
+        text.append("Dynamic color supported: " + DynamicColorsUtil.isDynamicColorAvailable());
 
         DialogUtil dialog = new DialogUtil(this, getString(R.string.device_info_title), text.toString());
         dialog.setNegativeButton(android.R.string.cancel, null);

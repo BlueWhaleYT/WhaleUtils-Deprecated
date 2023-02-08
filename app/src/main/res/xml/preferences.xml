@@ -12,13 +12,13 @@
             app:useSimpleSummaryProvider="true"
             app:key="app_theme"
             app:title="Theme"
-            app:icon="@drawable/ic_baseline_brightness_4_24" />
+            app:icon="@drawable/ic_outline_brightness_4_24" />
 
         <SwitchPreferenceCompat
-            app:title="Test setting"
-            app:summary="123"
-            app:key="settings"
-            app:icon="@drawable/ic_baseline_dark_mode_24"
+            app:title="Dynamic color"
+            app:summary="Android 12 or higher only"
+            app:key="app_dynamic_color_enable"
+            app:icon="@drawable/ic_outline_color_lens_24"
             android:defaultValue="false" />
 
     </PreferenceCategory>

@@ -103,6 +103,7 @@ public class FileUtil {
 
     public static String getFileExtensionOfPath(String path) {
         String ext = "";
+        path = getFileNameOfPath(path);
         if (path != null && !path.isEmpty()) {
             int dot = path.indexOf('.');
             if ((dot >= 0) && (dot < path.length() - 1)) {

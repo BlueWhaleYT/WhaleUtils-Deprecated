@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.ContextMenu;
@@ -39,6 +40,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -270,9 +272,12 @@ public class FileManagerActivity extends AppCompatActivity {
     }
 
     private void openFile() {
-        var cls = EditorActivity.class;
-        IntentUtil.intentPutString(this, cls, "file_path", file);
-
+        try {
+            var cls = EditorActivity.class;
+            IntentUtil.intentPutString(this, cls, "file_path", file);
+        } catch (Exception e) {
+            //
+        }
         file = FileUtil.getParentDirectoryOfPath(file);
     }
 

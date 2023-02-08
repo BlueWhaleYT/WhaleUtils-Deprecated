@@ -1,9 +1,12 @@
 package com.bluewhaleyt.filemanagement;
 
+import android.content.ContentResolver;
+import android.content.Context;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
 import android.util.Log;
+import android.webkit.MimeTypeMap;
 
 import com.bluewhaleyt.common.SDKUtil;
 
@@ -19,11 +22,8 @@ import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class FileUtil {
 
@@ -102,7 +102,14 @@ public class FileUtil {
     }
 
     public static String getFileExtensionOfPath(String path) {
-        return FilenameUtils.getExtension(path);
+        String ext = "";
+        if (path != null && !path.isEmpty()) {
+            int dot = path.indexOf('.');
+            if ((dot >= 0) && (dot < path.length() - 1)) {
+                ext = path.substring(dot + 1);
+            }
+        }
+        return ext;
     }
 
     public static double getFileSizeOfPath(String path) {

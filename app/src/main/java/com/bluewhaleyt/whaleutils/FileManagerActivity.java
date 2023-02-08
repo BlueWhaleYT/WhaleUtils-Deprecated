@@ -227,10 +227,16 @@ public class FileManagerActivity extends AppCompatActivity {
     private void setListMode() {
         try {
             String listMode = IntentUtil.intentGetString(this, "list_mode");
-            if (listMode.equals("list_dir")) {
-                FileUtil.listDirectories(file, fileList);
-            } else if (listMode.equals("list_only_file_dir_subdir")) {
-                FileUtil.listOnlyFilesSubDirFiles(file, fileList);
+            switch (listMode) {
+                case "list_dir":
+                    FileUtil.listDirectories(file, fileList);
+                    break;
+                case "list_non_hidden_dir":
+                    FileUtil.listNonHiddenDirectories(file, fileList);
+                    break;
+                case "list_only_file_dir_subdir":
+                    FileUtil.listOnlyFilesSubDirFiles(file, fileList);
+                    break;
             }
         } catch (Exception e) {
             SnackbarUtil.makeErrorSnackbar(this, e.getMessage(), e.toString());

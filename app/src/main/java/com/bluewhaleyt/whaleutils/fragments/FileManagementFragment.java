@@ -51,7 +51,8 @@ public class FileManagementFragment extends Fragment {
         dialog.setView(view);
 
         buttonClick(binding.btn1, "list_dir");
-        buttonClick(binding.btn2, "list_only_file_dir_subdir");
+        buttonClick(binding.btn2, "list_non_hidden_dir");
+        buttonClick(binding.btn3, "list_only_file_dir_subdir");
     }
 
     private void buttonClick(Button btn, String dataValue) {

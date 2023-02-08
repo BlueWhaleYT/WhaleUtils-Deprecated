@@ -175,18 +175,18 @@ public class MainActivity extends AppCompatActivity {
 
     private void showDeviceInfoDialog() {
         text.setLength(0);
-        text.append(App.getRes().getString(R.string.device_info_category_display) + lnBreak);
-        text.append(App.getRes().getString(R.string.device_info_model) + ": " + DeviceUtil.getModel() + " (" + DeviceUtil.getProduct() + ")" + lnBreak);
-        text.append(App.getRes().getString(R.string.device_info_manufacturer) + ": " + DeviceUtil.getManufacturer() + lnBreak);
-        text.append(App.getRes().getString(R.string.device_info_baseband_version) + ":" + DeviceUtil.getBasebandVersion() + lnBreak);
-        text.append(App.getRes().getString(R.string.device_info_build_number) + ": " + DeviceUtil.getBuildNumber() + lnBreak);
-        text.append(App.getRes().getString(R.string.device_info_build_fingerprint) + ": " + DeviceUtil.getBuildFingerprint() + lnBreak);
-        text.append(App.getRes().getString(R.string.device_info_bootloader) + ": " + DeviceUtil.getBootLoader() + lnBreak);
-        text.append(App.getRes().getString(R.string.device_info_java_vm) + ": " + DeviceUtil.getJavaVMName() + " " + DeviceUtil.getJavaVMVersion() + lnBreak);
-        text.append(App.getRes().getString(R.string.device_info_os_version) + ": " + DeviceUtil.getOSVersion() + " (" + DeviceUtil.getSDKVersionCode(DeviceUtil.getSDKVersion()) + ")" + lnBreak);
-        text.append(App.getRes().getString(R.string.device_info_sdk_version) + ": " + DeviceUtil.getSDKVersion());
+        text.append(getString(R.string.device_info_category_display) + lnBreak);
+        text.append(getString(R.string.device_info_model) + ": " + DeviceUtil.getModel() + " (" + DeviceUtil.getProduct() + ")" + lnBreak);
+        text.append(getString(R.string.device_info_manufacturer) + ": " + DeviceUtil.getManufacturer() + lnBreak);
+        text.append(getString(R.string.device_info_baseband_version) + ":" + DeviceUtil.getBasebandVersion() + lnBreak);
+        text.append(getString(R.string.device_info_build_number) + ": " + DeviceUtil.getBuildNumber() + lnBreak);
+        text.append(getString(R.string.device_info_build_fingerprint) + ": " + DeviceUtil.getBuildFingerprint() + lnBreak);
+        text.append(getString(R.string.device_info_bootloader) + ": " + DeviceUtil.getBootLoader() + lnBreak);
+        text.append(getString(R.string.device_info_java_vm) + ": " + DeviceUtil.getJavaVMName() + " " + DeviceUtil.getJavaVMVersion() + lnBreak);
+        text.append(getString(R.string.device_info_os_version) + ": " + DeviceUtil.getOSVersion() + " (" + DeviceUtil.getSDKVersionCode(DeviceUtil.getSDKVersion()) + ")" + lnBreak);
+        text.append(getString(R.string.device_info_sdk_version) + ": " + DeviceUtil.getSDKVersion());
 
-        DialogUtil dialog = new DialogUtil(this, App.getRes().getString(R.string.device_info_title), text.toString());
+        DialogUtil dialog = new DialogUtil(this, getString(R.string.device_info_title), text.toString());
         dialog.setNegativeButton(android.R.string.cancel, null);
         dialog.build();
 
@@ -195,28 +195,28 @@ public class MainActivity extends AppCompatActivity {
     private void showSystemInfoDialog() {
         text.setLength(0);
         try {
-            text.append(App.getRes().getString(R.string.system_info_category_processor) + lnBreak);
-            text.append(App.getRes().getString(R.string.system_info_cpu_arch) + ": " + SystemUtil.getCPUArchitecture() + lnBreak);
-            text.append(App.getRes().getString(R.string.system_info_board) + ": " + SystemUtil.getBoard() + lnBreak);
-            text.append(App.getRes().getString(R.string.system_info_chipset) + ": " + SystemUtil.getChipset() + lnBreak);
-            text.append(App.getRes().getString(R.string.system_info_core_amount) + ": " + SystemUtil.getCores() + lnBreak);
-            text.append(App.getRes().getString(R.string.system_info_instruction_sets) + ": " + SystemUtil.getInstructionSets() + lnBreak);
-            text.append(App.getRes().getString(R.string.system_info_cpu_features) + ": " + SystemUtil.getCPUFeatures() + lnBreak);
-            text.append(App.getRes().getString(R.string.system_info_cpu_governor) + ": " + SystemUtil.getCPUGovernor());
-            text.append(App.getRes().getString(R.string.system_info_cpu_bits) + ": " + SystemUtil.getCPUBit() + lnBreak);
-            text.append(App.getRes().getString(R.string.system_info_kernel_version) + ": " + SystemUtil.getKernalVersion() + lnBreak);
-            text.append(App.getRes().getString(R.string.system_info_kernal_arch) + ": " + SystemUtil.getKernelArchitecture() + lnBreak);
+            text.append(getString(R.string.system_info_category_processor) + lnBreak);
+            text.append(getString(R.string.system_info_cpu_arch) + ": " + SystemUtil.getCPUArchitecture() + lnBreak);
+            text.append(getString(R.string.system_info_board) + ": " + SystemUtil.getBoard() + lnBreak);
+            text.append(getString(R.string.system_info_chipset) + ": " + SystemUtil.getChipset() + lnBreak);
+            text.append(getString(R.string.system_info_core_amount) + ": " + SystemUtil.getCores() + lnBreak);
+            text.append(getString(R.string.system_info_instruction_sets) + ": " + SystemUtil.getInstructionSets() + lnBreak);
+            text.append(getString(R.string.system_info_cpu_features) + ": " + SystemUtil.getCPUFeatures() + lnBreak);
+            text.append(getString(R.string.system_info_cpu_governor) + ": " + SystemUtil.getCPUGovernor());
+            text.append(getString(R.string.system_info_cpu_bits) + ": " + SystemUtil.getCPUBit() + lnBreak);
+            text.append(getString(R.string.system_info_kernel_version) + ": " + SystemUtil.getKernalVersion() + lnBreak);
+            text.append(getString(R.string.system_info_kernal_arch) + ": " + SystemUtil.getKernelArchitecture() + lnBreak);
             text.append("ABIs: " + TextUtils.join(", ", SystemUtil.getCPUABI()) + lnBreak + lnBreak);
 
-            text.append(App.getRes().getString(R.string.system_info_category_graphics) + lnBreak);
-            text.append(App.getRes().getString(R.string.system_info_renderer) + ": " + getGPUField(0) + lnBreak);
-            text.append(App.getRes().getString(R.string.system_info_vendor) + ": " + getGPUField(1) + lnBreak);
-            text.append(App.getRes().getString(R.string.system_info_opengl_version) + ": " + getGPUField(2));
+            text.append(getString(R.string.system_info_category_graphics) + lnBreak);
+            text.append(getString(R.string.system_info_renderer) + ": " + getGPUField(0) + lnBreak);
+            text.append(getString(R.string.system_info_vendor) + ": " + getGPUField(1) + lnBreak);
+            text.append(getString(R.string.system_info_opengl_version) + ": " + getGPUField(2));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        DialogUtil dialog = new DialogUtil(this, App.getRes().getString(R.string.system_info_title), text.toString());
+        DialogUtil dialog = new DialogUtil(this, getString(R.string.system_info_title), text.toString());
         dialog.setNegativeButton(android.R.string.cancel, null);
         dialog.build();
 
@@ -259,7 +259,7 @@ public class MainActivity extends AppCompatActivity {
         initPaletteColorBlock(bindingPalette.cardView24, dynamicColors.getColorOutlineVariant());
 
         BottomSheetDialog dialog = new BottomSheetDialog(this);
-        dialog.setTitle(App.getRes().getString(R.string.palette_info_title));
+        dialog.setTitle(getString(R.string.palette_info_title));
         dialog.setContentView(bindingPalette.getRoot());
         dialog.create();
         dialog.show();
@@ -279,7 +279,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String getGPUError() {
-        return "(" + App.getRes().getString(R.string.system_info_gpu_error_message, GPUInfoUtil.GPU_VIEW) + ")";
+        return "(" + getString(R.string.system_info_gpu_error_message, GPUInfoUtil.GPU_VIEW) + ")";
     }
 
     private void initPaletteColorBlock(MaterialCardView cardView, int color) {

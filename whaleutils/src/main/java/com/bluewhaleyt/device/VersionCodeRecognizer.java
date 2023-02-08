@@ -1,5 +1,7 @@
 package com.bluewhaleyt.device;
 
+import java.util.Locale;
+
 public class VersionCodeRecognizer {
 
     public static String getVersionCode(int sdkVersion) {
@@ -103,8 +105,10 @@ public class VersionCodeRecognizer {
             case 33:
                 s = "TIRAMISU"; // Android 13
                 break;
+            default:
+                s = "unknown";
         }
-        return s;
+        return s.toUpperCase(Locale.ROOT);
     }
 
 }

@@ -1,4 +1,4 @@
-package com.bluewhaleyt.whaleutils;
+package com.bluewhaleyt.whaleutils.activites;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,6 +12,7 @@ import android.view.MenuItem;
 
 import com.bluewhaleyt.common.CommonUtil;
 import com.bluewhaleyt.common.DynamicColorsUtil;
+import com.bluewhaleyt.common.IntentUtil;
 import com.bluewhaleyt.common.PermissionUtil;
 import com.bluewhaleyt.component.dialog.DialogUtil;
 import com.bluewhaleyt.component.snackbar.SnackbarUtil;
@@ -21,6 +22,8 @@ import com.bluewhaleyt.device.GPUInfoUtil;
 import com.bluewhaleyt.device.SystemUtil;
 import com.bluewhaleyt.filemanagement.FileUtil;
 import com.bluewhaleyt.network.NetworkUtil;
+import com.bluewhaleyt.whaleutils.App;
+import com.bluewhaleyt.whaleutils.R;
 import com.bluewhaleyt.whaleutils.adapters.ViewPagerAdapter;
 import com.bluewhaleyt.whaleutils.databinding.ActivityMainBinding;
 import com.bluewhaleyt.whaleutils.databinding.DialogLayoutPaletteBinding;
@@ -29,7 +32,7 @@ import com.google.android.material.card.MaterialCardView;
 
 import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends WhaleUtilsActivity {
 
     private ActivityMainBinding binding;
     private DialogLayoutPaletteBinding bindingPalette;
@@ -43,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        CrashDebugger.init(this);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         init();
@@ -82,8 +84,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.menu_access_android_obb:
                 requestAccessAndroidInternalDir("obb");
                 break;
+            case R.id.menu_settings:
+                IntentUtil.intent(this, SettingsActivity.class);
+                break;
             case R.id.menu_debug:
-                startActivity(new Intent(this, UtilsCodeActivity.class));
+                IntentUtil.intent(this, UtilsCodeActivity.class);
                 break;
         }
         return super.onOptionsItemSelected(item);

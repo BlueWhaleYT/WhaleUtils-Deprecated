@@ -1,0 +1,26 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        app:title="Application">
+
+        <ListPreference
+            android:defaultValue="3"
+            android:dialogTitle="Choose theme"
+            android:entries="@array/theme"
+            android:entryValues="@array/theme_value"
+            app:useSimpleSummaryProvider="true"
+            app:key="app_theme"
+            app:title="Theme"
+            app:icon="@drawable/ic_baseline_brightness_4_24" />
+
+        <SwitchPreferenceCompat
+            app:title="Test setting"
+            app:summary="123"
+            app:key="settings"
+            app:icon="@drawable/ic_baseline_dark_mode_24"
+            android:defaultValue="false" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

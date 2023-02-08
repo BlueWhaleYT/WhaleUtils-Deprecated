@@ -55,6 +55,10 @@
         android:title="Clear app data cache" />
 
     <item
+        android:id="@+id/menu_settings"
+        android:title="Settings" />
+
+    <item
         android:id="@+id/menu_debug"
         android:title="Debug"
         android:icon="@drawable/ic_baseline_bug_report_24"

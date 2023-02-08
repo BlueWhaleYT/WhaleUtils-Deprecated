@@ -1,4 +1,4 @@
-package com.bluewhaleyt.whaleutils;
+package com.bluewhaleyt.whaleutils.activites;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,12 +15,13 @@ import com.bluewhaleyt.component.snackbar.SnackbarUtil;
 import com.bluewhaleyt.crashdebugger.CrashDebugger;
 import com.bluewhaleyt.filemanagement.FileIconUtil;
 import com.bluewhaleyt.filemanagement.FileUtil;
+import com.bluewhaleyt.whaleutils.R;
 import com.bluewhaleyt.whaleutils.databinding.ActivityEditorBinding;
 import com.bluewhaleyt.whaleutils.databinding.ActivityFileManagerBinding;
 
 import io.github.rosemoe.sora.widget.component.EditorAutoCompletion;
 
-public class EditorActivity extends AppCompatActivity {
+public class EditorActivity extends WhaleUtilsActivity {
 
     private ActivityEditorBinding binding;
 
@@ -29,7 +30,6 @@ public class EditorActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        CrashDebugger.init(this);
         binding = ActivityEditorBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         init();

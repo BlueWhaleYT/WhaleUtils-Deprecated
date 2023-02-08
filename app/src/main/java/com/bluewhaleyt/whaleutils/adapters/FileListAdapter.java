@@ -6,25 +6,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.bluewhaleyt.common.CommonUtil;
 import com.bluewhaleyt.common.DateTimeFormatUtil;
 import com.bluewhaleyt.common.DynamicColorsUtil;
 import com.bluewhaleyt.filemanagement.FileIconUtil;
 import com.bluewhaleyt.filemanagement.FileUtil;
 import com.bluewhaleyt.unit.UnitUtil;
-import com.bluewhaleyt.whaleutils.FileManagerActivity;
+import com.bluewhaleyt.whaleutils.activites.FileManagerActivity;
 import com.bluewhaleyt.whaleutils.R;
-import com.bluewhaleyt.whaleutils.databinding.LayoutFileListItemBinding;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 
 public class FileListAdapter extends BaseAdapter {

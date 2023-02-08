@@ -1,4 +1,4 @@
-package com.bluewhaleyt.whaleutils;
+package com.bluewhaleyt.whaleutils.activites;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +15,7 @@ import com.bluewhaleyt.component.dialog.DialogUtil;
 import com.bluewhaleyt.component.snackbar.SnackbarUtil;
 import com.bluewhaleyt.crashdebugger.CrashDebugger;
 import com.bluewhaleyt.debug.SystemResourceUtil;
+import com.bluewhaleyt.whaleutils.R;
 import com.bluewhaleyt.whaleutils.debug.adapters.ColorResListAdapter;
 import com.bluewhaleyt.whaleutils.debug.adapters.DrawableResListAdapter;
 import com.bluewhaleyt.whaleutils.debug.adapters.StringResListAdapter;
@@ -26,7 +27,7 @@ import com.bluewhaleyt.whaleutils.databinding.ActivityUtilsCodeBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UtilsCodeActivity extends AppCompatActivity {
+public class UtilsCodeActivity extends WhaleUtilsActivity {
 
     private ActivityUtilsCodeBinding binding;
 
@@ -49,7 +50,6 @@ public class UtilsCodeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        CrashDebugger.init(this);
         binding = ActivityUtilsCodeBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 

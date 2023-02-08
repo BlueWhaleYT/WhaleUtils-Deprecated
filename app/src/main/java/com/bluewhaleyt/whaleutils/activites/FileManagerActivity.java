@@ -1,30 +1,21 @@
-package com.bluewhaleyt.whaleutils;
+package com.bluewhaleyt.whaleutils.activites;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.ContextMenu;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bluewhaleyt.common.CommonUtil;
-import com.bluewhaleyt.common.DynamicColorsUtil;
 import com.bluewhaleyt.common.IntentUtil;
 import com.bluewhaleyt.common.PermissionUtil;
 import com.bluewhaleyt.component.dialog.DialogUtil;
@@ -32,20 +23,17 @@ import com.bluewhaleyt.component.snackbar.SnackbarUtil;
 import com.bluewhaleyt.crashdebugger.CrashDebugger;
 import com.bluewhaleyt.filemanagement.FileComparator;
 import com.bluewhaleyt.filemanagement.FileUtil;
+import com.bluewhaleyt.whaleutils.R;
 import com.bluewhaleyt.whaleutils.adapters.FileListAdapter;
 import com.bluewhaleyt.whaleutils.databinding.ActivityFileManagerBinding;
-import com.bluewhaleyt.whaleutils.databinding.DialogLayoutCodeEditorBinding;
 import com.bluewhaleyt.whaleutils.databinding.DialogLayoutNewFileBinding;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 
-public class FileManagerActivity extends AppCompatActivity {
+public class FileManagerActivity extends WhaleUtilsActivity {
 
     private ActivityFileManagerBinding binding;
 
@@ -63,7 +51,6 @@ public class FileManagerActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        CrashDebugger.init(this);
         binding = ActivityFileManagerBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         init();

@@ -14,17 +14,17 @@
         android:theme="@style/Theme.WhaleUtils"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".activites.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UtilsCodeActivity" />
-        <activity android:name=".FileManagerActivity" />
-        <activity android:name=".EditorActivity" />
+        <activity android:name=".activites.UtilsCodeActivity" />
+        <activity android:name=".activites.FileManagerActivity" />
+        <activity android:name=".activites.EditorActivity" />
+        <activity android:name=".activites.SettingsActivity" />
     </application>
 
 </manifest>

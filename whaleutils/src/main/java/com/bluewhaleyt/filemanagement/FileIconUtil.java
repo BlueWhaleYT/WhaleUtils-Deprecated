@@ -4,11 +4,7 @@
 
 package com.bluewhaleyt.filemanagement;
 
-import android.content.Context;
-import android.net.Uri;
 import android.widget.ImageView;
-
-import com.bluewhaleyt.filemanagement.FileUtil;
 import com.bluewhaleyt.whaleutils.R;
 
 public class FileIconUtil {

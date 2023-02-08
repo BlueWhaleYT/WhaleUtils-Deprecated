@@ -7,6 +7,8 @@ import android.util.Log;
 
 import com.bluewhaleyt.common.SDKUtil;
 
+import org.apache.commons.io.FilenameUtils;
+
 import java.io.File;
 import java.io.FileFilter;
 import java.io.FileReader;
@@ -100,7 +102,7 @@ public class FileUtil {
     }
 
     public static String getFileExtensionOfPath(String path) {
-        return path.toLowerCase().substring(path.lastIndexOf(".") + 1);
+        return FilenameUtils.getExtension(path);
     }
 
     public static double getFileSizeOfPath(String path) {

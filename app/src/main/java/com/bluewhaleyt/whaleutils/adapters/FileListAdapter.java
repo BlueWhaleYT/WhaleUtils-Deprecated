@@ -91,10 +91,14 @@ public class FileListAdapter extends BaseAdapter {
 
         viewHolder.tvFileName.setText(FileUtil.getFileNameOfPath(path));
 
+        var empty = "Empty";
+        var dirCount = FileUtil.getFileAmountOfPath(path) != 0 ? FileUtil.getFileAmountOfPath(path) + " Files" : empty;
+        var fileCount = FileUtil.getFileSizeOfPath(path) != 0 ? UnitUtil.byteHumanize(FileUtil.getFileSizeOfPath(path)) : empty;
+
         if (FileUtil.isDirectory(path)) {
-            viewHolder.tvFileSize.setText(FileUtil.getFileAmountOfPath(path) + " Files");
+            viewHolder.tvFileSize.setText(dirCount);
         } else {
-            viewHolder.tvFileSize.setText(UnitUtil.byteHumanize(FileUtil.getFileSizeOfPath(path)) + "");
+            viewHolder.tvFileSize.setText(fileCount);
         }
 
         viewHolder.tvFileLastModifiedTime.setText(
@@ -105,7 +109,8 @@ public class FileListAdapter extends BaseAdapter {
 
         viewHolder.tvFilePath.setText(path);
 
-        fileIconUtil = new FileIconUtil(context, viewHolder.ivFileIcon, path);
+        fileIconUtil = new FileIconUtil(path);
+        fileIconUtil.bindFileIcon(viewHolder.ivFileIcon);
 
     }
 

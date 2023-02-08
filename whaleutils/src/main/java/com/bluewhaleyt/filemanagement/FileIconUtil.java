@@ -16,13 +16,16 @@ public class FileIconUtil {
     private ImageView imageView;
     private int fileIcon;
 
-    public FileIconUtil(Context context, ImageView imageView, String path) {
-        this.imageView = imageView;
+    public FileIconUtil(String path) {
         set(path);
+    }
+
+    public void bindFileIcon(ImageView imageView) {
         setFileIcon(imageView, fileIcon);
     }
 
-    public void setFileIconColorForAll(int color) {
+    public void bindFileIcon(ImageView imageView, int color) {
+        bindFileIcon(imageView);
         imageView.setColorFilter(color);
     }
 

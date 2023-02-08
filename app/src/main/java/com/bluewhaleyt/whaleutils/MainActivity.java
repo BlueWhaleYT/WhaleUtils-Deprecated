@@ -273,7 +273,7 @@ public class MainActivity extends AppCompatActivity {
             case 1:
                 return TextUtils.isEmpty(SystemUtil.getOpenGLVendor()) ? getGPUError() : SystemUtil.getOpenGLVendor();
             case 2:
-                return TextUtils.isEmpty(SystemUtil.getOpenGLSimpleVersion()) ? getGPUError() : SystemUtil.getOpenGLSimpleVersion();
+                return TextUtils.isEmpty(SystemUtil.getOpenGLVersion()) ? getGPUError() : SystemUtil.getOpenGLVersion();
         }
         return null;
     }

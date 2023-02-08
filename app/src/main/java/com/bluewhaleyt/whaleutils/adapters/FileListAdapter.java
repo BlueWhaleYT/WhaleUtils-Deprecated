@@ -103,10 +103,6 @@ public class FileListAdapter extends BaseAdapter {
             viewHolder.ivFileIcon.setImageResource(R.drawable.ic_baseline_insert_drive_file_24);
             viewHolder.ivFileIcon.setColorFilter(dynamicColors.getColorSecondary());
 
-            if (FileUtil.isFileHidden(path)) {
-                viewHolder.ivFileIcon.setColorFilter(dynamicColors.getColorError());
-            }
-
             viewHolder.tvFileSize.setText(UnitUtil.bytesToHuman(FileUtil.getFileSizeOfPath(path)) + "");
 
         }

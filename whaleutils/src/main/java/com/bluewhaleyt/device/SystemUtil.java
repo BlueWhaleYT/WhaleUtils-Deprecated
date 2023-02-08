@@ -102,11 +102,11 @@ public class SystemUtil {
         return GPUInfoUtil.glVersion;
     }
 
-    public static String getOpenGLSimpleVersion() {
-        var str = getOpenGLVersion().substring(0, getOpenGLVersion().lastIndexOf("("));
-        str = getOpenGLVersion().substring(0, getOpenGLVersion().lastIndexOf(""));
-        return str;
-    }
+//    public static String getOpenGLSimpleVersion() {
+//        var str = getOpenGLVersion().substring(0, getOpenGLVersion().lastIndexOf("("));
+//        str = getOpenGLVersion().substring(0, getOpenGLVersion().lastIndexOf(""));
+//        return str;
+//    }
 
     public static String getOpenGLExtensions() {
         return GPUInfoUtil.glExtensions;

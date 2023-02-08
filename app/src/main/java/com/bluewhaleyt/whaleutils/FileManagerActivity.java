@@ -142,6 +142,7 @@ public class FileManagerActivity extends AppCompatActivity {
             file = FileUtil.getExternalStoragePath();
             getSupportActionBar().setSubtitle(file);
 
+            FileUtil.listNonHiddenDirectories(file, fileList);
             setupFileList();
             setupFileListItemClick();
             setupFileListItemLongClick();
@@ -176,11 +177,12 @@ public class FileManagerActivity extends AppCompatActivity {
 
         try {
             FileUtil.refreshList(fileList);
-//            FileUtil.listOnlyFilesSubDirFiles(file, fileList);
-            FileUtil.listNonHiddenDirectories(file, fileList);
+            FileUtil.listDirectories(file, fileList);
+//            SnackbarUtil.makeSnackbar(this, fileList.size()+"");
         } catch (Exception e) {
             SnackbarUtil.makeErrorSnackbar(this, e.getMessage());
         }
+
         Collections.sort(fileList, new FileComparator());
 
         for (int i = 0; i < fileList.size(); i++) {

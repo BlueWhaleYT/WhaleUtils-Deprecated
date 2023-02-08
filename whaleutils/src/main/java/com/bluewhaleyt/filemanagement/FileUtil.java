@@ -1,8 +1,8 @@
 package com.bluewhaleyt.filemanagement;
 
 import android.net.Uri;
-import android.os.Build;
 import android.os.Environment;
+import android.os.Handler;
 import android.util.Log;
 
 import com.bluewhaleyt.common.SDKUtil;
@@ -13,18 +13,15 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
-import java.util.concurrent.Callable;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class FileUtil {
 
@@ -32,6 +29,9 @@ public class FileUtil {
 
     private static File[] listFiles;
     private static FileFilter fileFilter;
+
+    private static Handler handler = new Handler();
+    static Runnable runnable;
 
     public static boolean isFileExist(String path) {
         return new File(path).exists();
@@ -325,6 +325,7 @@ public class FileUtil {
 
     private static void listDirAllFiles(String path, List<String> list) {
 //        list(path, list, null);
+
         File dir = new File(path);
         if (!dir.exists() || dir.isFile()) return;
 
@@ -347,6 +348,7 @@ public class FileUtil {
                 Log.w(TAG, "file: " + file.getPath());
             }
         }
+
     }
 
     private static void list(String path, List<String> list, FileFilter fileFilter) {

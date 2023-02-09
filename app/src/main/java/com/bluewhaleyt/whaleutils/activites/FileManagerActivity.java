@@ -223,17 +223,22 @@ public class FileManagerActivity extends WhaleUtilsActivity {
 
     private void setupFileListItemClick() {
         binding.lvFileList.setOnItemClickListener((parent, view, position, id) -> {
-            file = fileList.get(position);
-            if (FileUtil.isDirectory(file)) {
-                if (FileUtil.getParentDirectoryOfPath(file).equals(FileUtil.getAndroidDataDirPath())) {
-
-                } else {
+            if (!isSAFNeeded()) {
+                file = fileList.get(position);
+                if (FileUtil.isDirectory(file)) {
                     goToNextDirectory();
+                } else {
+                    openFile();
                 }
             } else {
-                openFile();
+                goToNextDirectorySAF();
             }
         });
+    }
+
+    private boolean isSAFNeeded() {
+        var bool = file.contains(FileUtil.getAndroidDataDirPath()) | file.contains(FileUtil.getAndroidObbDirPath());
+        return bool;
     }
 
     private void setupFileListItemLongClick() {
@@ -283,6 +288,10 @@ public class FileManagerActivity extends WhaleUtilsActivity {
             }
         }
         updateFileInfo(file);
+    }
+
+    private void goToNextDirectorySAF() {
+        SnackbarUtil.makeSnackbar(this, "coming soon");
     }
 
     private void goToAndroidDataDirectory() {

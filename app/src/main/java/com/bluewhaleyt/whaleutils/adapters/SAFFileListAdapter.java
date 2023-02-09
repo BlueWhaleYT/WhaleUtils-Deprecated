@@ -3,6 +3,7 @@ package com.bluewhaleyt.whaleutils.adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,14 +91,14 @@ public class SAFFileListAdapter extends BaseAdapter {
         dynamicColors = new DynamicColorsUtil(context);
 
         try {
-            var filePath = data.get(position).get(SAFUtil.MAP_FILE_DOC_ID);
+            var fileDocId = data.get(position).get(SAFUtil.MAP_FILE_DOC_ID);
             var fileMime = data.get(position).get(SAFUtil.MAP_FILE_MIME);
             var fileName = data.get(position).get(SAFUtil.MAP_FILE_NAME);
             var fileSize = data.get(position).get(SAFUtil.MAP_FILE_SIZE);
             var fileLastModifiedTime = data.get(position).get(SAFUtil.MAP_FILE_LAST_MODIFIED_TIME);
 
             viewHolder.tvFileName.setText(fileName.toString());
-            viewHolder.tvFilePath.setText(filePath.toString());
+            viewHolder.tvFilePath.setText(fileDocId.toString());
 
             viewHolder.tvFileSize.setVisibility(View.GONE);
             viewHolder.tvFileLastModifiedTime.setVisibility(View.GONE);

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.provider.DocumentsContract;
+import android.provider.MediaStore;
 
 import androidx.documentfile.provider.DocumentFile;
 
@@ -82,8 +83,21 @@ public class SAFUtil extends FileUtil {
         }
     }
 
-    public static void convertDocumentFileToFile( Context context, DocumentFile documentFile) {
-        DocumentFileUtils.toRawFile(documentFile, context);
+    public static String getPathFromUri(Context context, Uri uri) {
+        String path = null;
+        Cursor cursor = context.getContentResolver().query(uri, null, null, null, null);
+        if (cursor == null) {
+            return null;
+        }
+        if (cursor.moveToFirst()) {
+            try {
+                path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        cursor.close();
+        return path;
     }
 
 }

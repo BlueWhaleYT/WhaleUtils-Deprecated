@@ -1,5 +1,6 @@
 package com.bluewhaleyt.filemanagement;
 
+import android.content.ContentResolver;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
@@ -215,6 +216,12 @@ public class FileUtil {
             attr = Files.readAttributes(Paths.get(path), BasicFileAttributes.class);
             return attr.lastAccessTime();
         }
+        return null;
+    }
+
+    public static String getFilePathByUri(Uri uri) {
+        if (ContentResolver.SCHEME_FILE.equals(uri.getScheme()))
+            return uri.getPath();
         return null;
     }
 

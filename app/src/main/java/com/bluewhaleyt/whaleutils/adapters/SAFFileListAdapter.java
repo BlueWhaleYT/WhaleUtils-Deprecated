@@ -1,6 +1,8 @@
 package com.bluewhaleyt.whaleutils.adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,18 +10,26 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.core.content.ContextCompat;
+
+import com.bluewhaleyt.common.CommonUtil;
 import com.bluewhaleyt.common.DateTimeFormatUtil;
 import com.bluewhaleyt.common.DynamicColorsUtil;
+import com.bluewhaleyt.component.snackbar.SnackbarUtil;
 import com.bluewhaleyt.filemanagement.FileIconUtil;
 import com.bluewhaleyt.filemanagement.FileUtil;
+import com.bluewhaleyt.filemanagement.SAFUtil;
 import com.bluewhaleyt.unit.UnitUtil;
-import com.bluewhaleyt.whaleutils.activites.FileManagerActivity;
 import com.bluewhaleyt.whaleutils.R;
+import com.bluewhaleyt.whaleutils.activites.FileManagerActivity;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 
-public class FileListAdapter extends BaseAdapter {
+public class SAFFileListAdapter extends BaseAdapter {
 
     private ViewHolder viewHolder;
     private DynamicColorsUtil dynamicColors;
@@ -27,7 +37,7 @@ public class FileListAdapter extends BaseAdapter {
 
     private ArrayList<HashMap<String, Object>> data;
 
-    public FileListAdapter(ArrayList<HashMap<String, Object>> arr) {
+    public SAFFileListAdapter(ArrayList<HashMap<String, Object>> arr) {
         data = arr;
     }
 
@@ -79,31 +89,24 @@ public class FileListAdapter extends BaseAdapter {
 
         dynamicColors = new DynamicColorsUtil(context);
 
-        var path = FileManagerActivity.path;
-        path = FileManagerActivity.fileList.get(position);
+        try {
+            var filePath = data.get(position).get(SAFUtil.MAP_FILE_DOC_ID);
+            var fileMime = data.get(position).get(SAFUtil.MAP_FILE_MIME);
+            var fileName = data.get(position).get(SAFUtil.MAP_FILE_NAME);
+            var fileSize = data.get(position).get(SAFUtil.MAP_FILE_SIZE);
+            var fileLastModifiedTime = data.get(position).get(SAFUtil.MAP_FILE_LAST_MODIFIED_TIME);
 
-        viewHolder.tvFileName.setText(FileUtil.getFileNameOfPath(path));
+            viewHolder.tvFileName.setText(fileName.toString());
+            viewHolder.tvFilePath.setText(filePath.toString());
 
-        var empty = "Empty";
-        var dirCount = FileUtil.getFileAmountOfPath(path) != 0 ? FileUtil.getFileAmountOfPath(path) + " Files" : empty;
-        var fileCount = FileUtil.getFileSizeOfPath(path) != 0 ? UnitUtil.byteHumanize(FileUtil.getFileSizeOfPath(path)) : empty;
+            viewHolder.tvFileSize.setVisibility(View.GONE);
+            viewHolder.tvFileLastModifiedTime.setVisibility(View.GONE);
 
-        if (FileUtil.isDirectory(path)) {
-            viewHolder.tvFileSize.setText(dirCount);
-        } else {
-            viewHolder.tvFileSize.setText(fileCount);
+            fileIconUtil = new FileIconUtil("", fileMime.toString());
+            fileIconUtil.bindFileIcon(viewHolder.ivFileIcon);
+        } catch (Exception e) {
+//            SnackbarUtil.makeErrorSnackbar((Activity) context, e.getMessage());
         }
-
-        viewHolder.tvFileLastModifiedTime.setText(
-                FileUtil.getFileLastModifiedTimeFormatString(
-                        path, DateTimeFormatUtil.FORMAT_DATE + " " + DateTimeFormatUtil.FORMAT_TIME_AM_PM
-                )
-        );
-
-        viewHolder.tvFilePath.setText(path);
-
-        fileIconUtil = new FileIconUtil(path, "");
-        fileIconUtil.bindFileIcon(viewHolder.ivFileIcon);
 
     }
 

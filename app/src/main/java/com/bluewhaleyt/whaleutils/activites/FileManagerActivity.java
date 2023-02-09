@@ -4,8 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.documentfile.provider.DocumentFile;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -25,12 +30,16 @@ import com.bluewhaleyt.component.snackbar.SnackbarUtil;
 import com.bluewhaleyt.crashdebugger.CrashDebugger;
 import com.bluewhaleyt.filemanagement.FileComparator;
 import com.bluewhaleyt.filemanagement.FileUtil;
+import com.bluewhaleyt.filemanagement.SAFUtil;
 import com.bluewhaleyt.whaleutils.R;
 import com.bluewhaleyt.whaleutils.adapters.FileListAdapter;
+import com.bluewhaleyt.whaleutils.adapters.SAFFileListAdapter;
 import com.bluewhaleyt.whaleutils.databinding.ActivityFileManagerBinding;
 import com.bluewhaleyt.whaleutils.databinding.DialogLayoutNewFileBinding;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -44,6 +53,8 @@ public class FileManagerActivity extends WhaleUtilsActivity {
     private TextView tvLoadingText;
     private ProgressBar pbLoading;
 
+    private SharedPreferences sharedPrefs;
+
     private ArrayList<HashMap<String, Object>> fileListMap = new ArrayList<>();
     public static ArrayList<String> fileList = new ArrayList<>();
     private FileListAdapter fileListAdapter = new FileListAdapter(fileListMap);
@@ -56,6 +67,17 @@ public class FileManagerActivity extends WhaleUtilsActivity {
         binding = ActivityFileManagerBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         init();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        try {
+            PermissionUtil.setPermanentAccess(this, data);
+            PermissionUtil.openDocumentTree(this, resultCode, data);
+        } catch (Exception e) {
+            SnackbarUtil.makeErrorSnackbar(this, e.getMessage(), e.toString());
+        }
     }
 
     @Override
@@ -147,7 +169,7 @@ public class FileManagerActivity extends WhaleUtilsActivity {
 
         getSupportActionBar().setSubtitle(
                 FileUtil.getOnlyDirectoryAmountOfPath(path) + " directories, " +
-                FileUtil.getOnlyFileAmountOfPath(path) + " files"
+                        FileUtil.getOnlyFileAmountOfPath(path) + " files"
         );
     }
 
@@ -197,7 +219,11 @@ public class FileManagerActivity extends WhaleUtilsActivity {
         binding.lvFileList.setOnItemClickListener((parent, view, position, id) -> {
             file = fileList.get(position);
             if (FileUtil.isDirectory(file)) {
-                goToNextDirectory();
+                if (FileUtil.getParentDirectoryOfPath(file).equals(FileUtil.getAndroidDataDirPath())) {
+
+                } else {
+                    goToNextDirectory();
+                }
             } else {
                 openFile();
             }
@@ -249,14 +275,28 @@ public class FileManagerActivity extends WhaleUtilsActivity {
                 fileListMap.clear();
                 setNoFiles(true);
             }
-            updateFileInfo(file);
         }
+        updateFileInfo(file);
     }
 
     private void goToAndroidDataDirectory() {
         if (PermissionUtil.isAlreadyGrantedAndroidDataAccess(this)) {
-            SnackbarUtil.makeErrorSnackbar(this, "Can't list Android/data directory files.");
-            file = FileUtil.getParentDirectoryOfPath(file);
+            sharedPrefs = getSharedPreferences(PermissionUtil.PERMISSION_SAF, Context.MODE_PRIVATE);
+            var uri = Uri.parse(sharedPrefs.getString(SAFUtil.DIRECT_DIRECTORY_URI, ""));
+            var file = DocumentFile.fromTreeUri(this, uri);
+            if (!file.canRead() || !file.canWrite()) {
+                PermissionUtil.requestAndroidDataAccess(this);
+            } else {
+                var parentUri = Uri.parse(sharedPrefs.getString(SAFUtil.DIRECTORY_URI, ""));
+                try {
+                    if (SAFUtil.listDirectories(this, fileListMap, parentUri, null)) {
+                        binding.lvFileList.setAdapter(new SAFFileListAdapter(fileListMap));
+                        ((BaseAdapter) binding.lvFileList.getAdapter()).notifyDataSetChanged();
+                    }
+                } catch (IOException e) {
+                    SnackbarUtil.makeErrorSnackbar(this, e.getMessage(), e.toString());
+                }
+            }
         } else {
             PermissionUtil.requestAndroidDataAccess(this);
         }
@@ -342,7 +382,6 @@ public class FileManagerActivity extends WhaleUtilsActivity {
     }
 
     private void compressFolder(AdapterView.AdapterContextMenuInfo item) {
-
 
 
     }

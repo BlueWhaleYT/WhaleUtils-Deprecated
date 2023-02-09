@@ -195,12 +195,7 @@ public class FileManagerActivity extends WhaleUtilsActivity {
         binding.lvFileList.setOnItemClickListener((parent, view, position, id) -> {
             file = fileList.get(position);
             if (FileUtil.isDirectory(file)) {
-                updateFileList();
-                if (FileUtil.isDirectoryEmpty(file)) {
-                    fileListMap.clear();
-                    setNoFiles(true);
-                }
-                updateFileInfo(file);
+                goToNextDirectory();
             } else {
                 openFile();
             }
@@ -239,6 +234,23 @@ public class FileManagerActivity extends WhaleUtilsActivity {
         }
         setNoFiles(false);
         updateFileInfo(file);
+    }
+
+    private void goToNextDirectory() {
+        if (FileUtil.isAndroidDataDirectory(file)) {
+            SnackbarUtil.makeErrorSnackbar(this, "Can't access Android/data directory.");
+            file = FileUtil.getParentDirectoryOfPath(file);
+        } else if (FileUtil.isAndroidObbDirectory(file)) {
+            SnackbarUtil.makeErrorSnackbar(this, "Can't access Android/obb directory.");
+            file = FileUtil.getParentDirectoryOfPath(file);
+        } else {
+            updateFileList();
+            if (FileUtil.isDirectoryEmpty(file)) {
+                fileListMap.clear();
+                setNoFiles(true);
+            }
+            updateFileInfo(file);
+        }
     }
 
     private void showNewFileDialog() {

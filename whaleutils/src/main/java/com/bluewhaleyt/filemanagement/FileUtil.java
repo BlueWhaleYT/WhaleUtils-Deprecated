@@ -60,6 +60,14 @@ public class FileUtil {
         return getFileAmountOfPath(path) > limit;
     }
 
+    public static boolean isAndroidDataDirectory(String path) {
+        return path.equals(getExternalStoragePath() + "/Android/data");
+    }
+
+    public static boolean isAndroidObbDirectory(String path) {
+        return path.equals(getExternalStoragePath() + "/Android/obb");
+    }
+
     public static boolean isFileHidden(String path) {
         return new File(path).isHidden();
     }

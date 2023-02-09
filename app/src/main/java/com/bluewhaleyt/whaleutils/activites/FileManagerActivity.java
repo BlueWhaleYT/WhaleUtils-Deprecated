@@ -1,9 +1,11 @@
 package com.bluewhaleyt.whaleutils.activites;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -238,11 +240,9 @@ public class FileManagerActivity extends WhaleUtilsActivity {
 
     private void goToNextDirectory() {
         if (FileUtil.isAndroidDataDirectory(file)) {
-            SnackbarUtil.makeErrorSnackbar(this, "Can't access Android/data directory.");
-            file = FileUtil.getParentDirectoryOfPath(file);
+            goToAndroidDataDirectory();
         } else if (FileUtil.isAndroidObbDirectory(file)) {
-            SnackbarUtil.makeErrorSnackbar(this, "Can't access Android/obb directory.");
-            file = FileUtil.getParentDirectoryOfPath(file);
+            goToAndroidObbDirectory();
         } else {
             updateFileList();
             if (FileUtil.isDirectoryEmpty(file)) {
@@ -250,6 +250,24 @@ public class FileManagerActivity extends WhaleUtilsActivity {
                 setNoFiles(true);
             }
             updateFileInfo(file);
+        }
+    }
+
+    private void goToAndroidDataDirectory() {
+        if (PermissionUtil.isAlreadyGrantedAndroidDataAccess(this)) {
+            SnackbarUtil.makeErrorSnackbar(this, "Can't list Android/data directory files.");
+            file = FileUtil.getParentDirectoryOfPath(file);
+        } else {
+            PermissionUtil.requestAndroidDataAccess(this);
+        }
+    }
+
+    private void goToAndroidObbDirectory() {
+        if (PermissionUtil.isAlreadyGrantedAndroidObbAccess(this)) {
+            SnackbarUtil.makeErrorSnackbar(this, "Can't list Android/obb directory files.");
+            file = FileUtil.getParentDirectoryOfPath(file);
+        } else {
+            PermissionUtil.requestAndroidObbAccess(this);
         }
     }
 

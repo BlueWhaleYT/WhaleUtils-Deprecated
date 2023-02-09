@@ -75,6 +75,12 @@ public class FileManagerActivity extends WhaleUtilsActivity {
         try {
             PermissionUtil.setPermanentAccess(this, data);
             PermissionUtil.openDocumentTree(this, resultCode, data);
+
+            sharedPrefs = getSharedPreferences(PermissionUtil.PERMISSION_SAF, Context.MODE_PRIVATE);
+            var parentUri = Uri.parse(sharedPrefs.getString(SAFUtil.DIRECTORY_URI, ""));
+            SAFUtil.listDirectories(this, fileListMap, parentUri, null);
+            binding.lvFileList.setAdapter(new SAFFileListAdapter(fileListMap));
+            ((BaseAdapter) binding.lvFileList.getAdapter()).notifyDataSetChanged();
         } catch (Exception e) {
             SnackbarUtil.makeErrorSnackbar(this, e.getMessage(), e.toString());
         }
@@ -304,8 +310,22 @@ public class FileManagerActivity extends WhaleUtilsActivity {
 
     private void goToAndroidObbDirectory() {
         if (PermissionUtil.isAlreadyGrantedAndroidObbAccess(this)) {
-            SnackbarUtil.makeErrorSnackbar(this, "Can't list Android/obb directory files.");
-            file = FileUtil.getParentDirectoryOfPath(file);
+            sharedPrefs = getSharedPreferences(PermissionUtil.PERMISSION_SAF, Context.MODE_PRIVATE);
+            var uri = Uri.parse(sharedPrefs.getString(SAFUtil.DIRECT_DIRECTORY_URI, ""));
+            var file = DocumentFile.fromTreeUri(this, uri);
+            if (!file.canRead() || !file.canWrite()) {
+                PermissionUtil.requestAndroidObbAccess(this);
+            } else {
+                var parentUri = Uri.parse(sharedPrefs.getString(SAFUtil.DIRECTORY_URI, ""));
+                try {
+                    if (SAFUtil.listDirectories(this, fileListMap, parentUri, null)) {
+                        binding.lvFileList.setAdapter(new SAFFileListAdapter(fileListMap));
+                        ((BaseAdapter) binding.lvFileList.getAdapter()).notifyDataSetChanged();
+                    }
+                } catch (IOException e) {
+                    SnackbarUtil.makeErrorSnackbar(this, e.getMessage(), e.toString());
+                }
+            }
         } else {
             PermissionUtil.requestAndroidObbAccess(this);
         }

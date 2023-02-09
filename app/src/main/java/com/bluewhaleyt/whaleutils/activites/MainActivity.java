@@ -81,12 +81,6 @@ public class MainActivity extends WhaleUtilsActivity {
             case R.id.menu_all_file_access:
                 requestAllFileAccess();
                 break;
-            case R.id.menu_access_android_data:
-                requestAccessAndroidInternalDir("data");
-                break;
-            case R.id.menu_access_android_obb:
-                requestAccessAndroidInternalDir("obb");
-                break;
             case R.id.menu_settings:
                 IntentUtil.intent(this, SettingsActivity.class);
                 break;
@@ -127,25 +121,6 @@ public class MainActivity extends WhaleUtilsActivity {
             SnackbarUtil.makeSnackbar(this, "Permission has already been granted.");
         } else {
             PermissionUtil.requestAllFileAccess(this);
-        }
-    }
-
-    private void requestAccessAndroidInternalDir(String dir) {
-        switch (dir) {
-            case "data":
-                if (PermissionUtil.isAlreadyGrantedAndroidDataAccess(this)) {
-                    SnackbarUtil.makeSnackbar(this, "Permission has already been granted.");
-                } else {
-                    PermissionUtil.requestAndroidDataAccess(this);
-                }
-                break;
-            case "obb":
-                if (PermissionUtil.isAlreadyGrantedAndroidObbAccess(this)) {
-                    SnackbarUtil.makeSnackbar(this, "Permission has already been granted.");
-                } else {
-                    PermissionUtil.requestAndroidObbAccess(this);
-                }
-                break;
         }
     }
 

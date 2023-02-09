@@ -13,6 +13,11 @@ public class FileIconUtil {
 
     private int fileIcon;
 
+    /**
+     * A constructor for FileIconUtil.
+     * @param path the file path, leave it empty if needed
+     * @param mimeType the mime type of document id, usually for SAF, leave it empty if needed
+     */
     public FileIconUtil(String path, String mimeType) {
         check(path, mimeType);
     }

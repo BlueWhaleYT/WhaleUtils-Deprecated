@@ -33,6 +33,10 @@ public class SAFUtil extends FileUtil {
         return DocumentsContract.Document.MIME_TYPE_DIR.equals(mimeType);
     }
 
+    public static boolean isRootDirectory(Uri uri) {
+        return Uri.decode(uri.toString()).endsWith(":");
+    }
+
     public static Boolean listDirectories(Context context, List<HashMap<String, Object>> list, Uri uri, String str) throws IOException {
         list.clear();
         HashMap<String, Object> map;

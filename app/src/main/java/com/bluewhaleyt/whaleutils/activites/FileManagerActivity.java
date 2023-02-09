@@ -46,7 +46,7 @@ import java.util.HashMap;
 
 public class FileManagerActivity extends WhaleUtilsActivity {
 
-    private ActivityFileManagerBinding binding;
+    public static ActivityFileManagerBinding binding;
 
     private AlertDialog dialog;
     private View view;
@@ -55,11 +55,13 @@ public class FileManagerActivity extends WhaleUtilsActivity {
 
     private SharedPreferences sharedPrefs;
 
-    private ArrayList<HashMap<String, Object>> fileListMap = new ArrayList<>();
+    public static ArrayList<HashMap<String, Object>> fileListMap = new ArrayList<>();
     public static ArrayList<String> fileList = new ArrayList<>();
     private FileListAdapter fileListAdapter = new FileListAdapter(fileListMap);
 
     public static String file, path;
+
+    public static String currentLocSAF = "", lastLocSAF = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,9 +80,10 @@ public class FileManagerActivity extends WhaleUtilsActivity {
 
             sharedPrefs = getSharedPreferences(PermissionUtil.PERMISSION_SAF, Context.MODE_PRIVATE);
             var parentUri = Uri.parse(sharedPrefs.getString(SAFUtil.DIRECTORY_URI, ""));
-            SAFUtil.listDirectories(this, fileListMap, parentUri, null);
-            binding.lvFileList.setAdapter(new SAFFileListAdapter(fileListMap));
-            ((BaseAdapter) binding.lvFileList.getAdapter()).notifyDataSetChanged();
+            if (SAFUtil.listDirectories(this, fileListMap, parentUri, null)) {
+                binding.lvFileList.setAdapter(new SAFFileListAdapter(fileListMap));
+                ((BaseAdapter) binding.lvFileList.getAdapter()).notifyDataSetChanged();
+            }
 
         } catch (Exception e) {
             SnackbarUtil.makeErrorSnackbar(this, e.getMessage(), e.toString());
@@ -231,8 +234,6 @@ public class FileManagerActivity extends WhaleUtilsActivity {
                 } else {
                     openFile();
                 }
-            } else {
-                goToNextDirectorySAF();
             }
         });
     }
@@ -269,8 +270,12 @@ public class FileManagerActivity extends WhaleUtilsActivity {
         if (file.equals(FileUtil.getExternalStoragePath())) {
             finish();
         } else {
-            file = FileUtil.getParentDirectoryOfPath(file);
-            updateFileList();
+            if (!isSAFNeeded()) {
+                file = FileUtil.getParentDirectoryOfPath(file);
+                updateFileList();
+            } else {
+                SAFFileListAdapter.backToParentDirectory(this);
+            }
         }
         setNoFiles(false);
         updateFileInfo(file);
@@ -289,10 +294,6 @@ public class FileManagerActivity extends WhaleUtilsActivity {
             }
         }
         updateFileInfo(file);
-    }
-
-    private void goToNextDirectorySAF() {
-        SnackbarUtil.makeSnackbar(this, "coming soon");
     }
 
     private void goToAndroidDataDirectory() {

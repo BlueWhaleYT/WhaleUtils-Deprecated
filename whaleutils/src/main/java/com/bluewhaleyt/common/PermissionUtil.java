@@ -95,7 +95,7 @@ public class PermissionUtil {
         if (resultCode == Activity.RESULT_OK) {
             if (data != null) {
                 var uri = data.getData();
-                if (!Uri.decode(uri.toString()).endsWith(":")) {
+                if (!SAFUtil.isRootDirectory(uri)) {
                     final int takeFlags = data.getFlags() & getPermissionFlagOfReadWriteUri();
                     activity.getContentResolver().takePersistableUriPermission(uri, takeFlags);
 

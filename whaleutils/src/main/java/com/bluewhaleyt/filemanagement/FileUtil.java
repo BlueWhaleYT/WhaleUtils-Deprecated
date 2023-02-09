@@ -56,6 +56,10 @@ public class FileUtil {
         return false;
     }
 
+    public static boolean isFileAmountOutOfLimit(String path, int limit) {
+        return getFileAmountOfPath(path) > limit;
+    }
+
     public static boolean isFileHidden(String path) {
         return new File(path).isHidden();
     }

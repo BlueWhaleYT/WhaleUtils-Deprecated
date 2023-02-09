@@ -91,6 +91,7 @@ public class SAFFileListAdapter extends BaseAdapter {
         dynamicColors = new DynamicColorsUtil(context);
 
         try {
+
             var fileDocId = data.get(position).get(SAFUtil.MAP_FILE_DOC_ID);
             var fileMime = data.get(position).get(SAFUtil.MAP_FILE_MIME);
             var fileName = data.get(position).get(SAFUtil.MAP_FILE_NAME);
@@ -105,6 +106,7 @@ public class SAFFileListAdapter extends BaseAdapter {
 
             fileIconUtil = new FileIconUtil("", fileMime.toString());
             fileIconUtil.bindFileIcon(viewHolder.ivFileIcon);
+
         } catch (Exception e) {
 //            SnackbarUtil.makeErrorSnackbar((Activity) context, e.getMessage());
         }

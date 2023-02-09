@@ -81,6 +81,7 @@ public class FileManagerActivity extends WhaleUtilsActivity {
             SAFUtil.listDirectories(this, fileListMap, parentUri, null);
             binding.lvFileList.setAdapter(new SAFFileListAdapter(fileListMap));
             ((BaseAdapter) binding.lvFileList.getAdapter()).notifyDataSetChanged();
+
         } catch (Exception e) {
             SnackbarUtil.makeErrorSnackbar(this, e.getMessage(), e.toString());
         }

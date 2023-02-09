@@ -34,6 +34,7 @@ public class SAFUtil extends FileUtil {
     }
 
     public static Boolean listDirectories(Context context, List<HashMap<String, Object>> list, Uri uri, String str) throws IOException {
+        list.clear();
         HashMap<String, Object> map;
         ContentResolver contentResolver = context.getContentResolver();
 

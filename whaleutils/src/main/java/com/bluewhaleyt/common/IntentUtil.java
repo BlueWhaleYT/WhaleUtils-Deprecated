@@ -16,21 +16,22 @@ import com.bluewhaleyt.whaleutils.R;
 
 public class IntentUtil {
 
-    private static Intent intent;
+    private static Intent intent = new Intent();
 
     public static void intent(Activity activity, Class<?> targetActivity) {
         activity.startActivity(new Intent(activity, targetActivity));
-        activity.overridePendingTransition(R.anim.swipe_enter_right_to_left, R.anim.swipe_exit_right_to_left);
+        AnimationUtil.setIntentActivityEnterAnimation(activity);
     }
 
     public static void finishTransition(Activity activity) {
-        activity.overridePendingTransition(R.anim.swipe_enter_left_to_right, R.anim.swipe_exit_left_to_right);
+        AnimationUtil.setIntentActivityExitAnimation(activity);
     }
 
     public static void intentPutString(Activity activity, Class<?> targetActivity, String dataName, String dataValue) {
-        intent = new Intent(activity, targetActivity);
+        intent = new Intent(activity,  targetActivity);
         intent.putExtra(dataName, dataValue);
         activity.startActivity(intent);
+        AnimationUtil.setIntentActivityEnterAnimation(activity);
     }
 
     public static String intentGetString(Activity activity, String dataName) {
@@ -63,13 +64,7 @@ public class IntentUtil {
     }
 
     public static void intentFragment(FragmentActivity activity, Fragment fragment) {
-        activity.getSupportFragmentManager().beginTransaction()
-                .setCustomAnimations(R.anim.swipe_enter_right_to_left, R.anim.swipe_exit_right_to_left,
-                        R.anim.swipe_enter_left_to_right, R.anim.swipe_exit_left_to_right)
-                .replace(android.R.id.content, fragment)
-                .addToBackStack(null)
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .commit();
+        AnimationUtil.setIntentFragmentEnterExitAnimation(activity, fragment);
     }
 
 }

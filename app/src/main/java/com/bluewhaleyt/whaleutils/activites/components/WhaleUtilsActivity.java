@@ -9,6 +9,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.bluewhaleyt.common.IntentUtil;
 import com.bluewhaleyt.common.SDKUtil;
 import com.bluewhaleyt.crashdebugger.CrashDebugger;
 import com.bluewhaleyt.whaleutils.App;
@@ -26,6 +27,12 @@ public class WhaleUtilsActivity extends AppCompatActivity {
         CrashDebugger.init(this);
         app = App.getInstance();
         init();
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        IntentUtil.finishTransition(this);
     }
 
     private void init() {

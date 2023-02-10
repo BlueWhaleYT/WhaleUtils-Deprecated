@@ -29,12 +29,6 @@ public class SettingsActivity extends WhaleUtilsActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void finish() {
-        super.finish();
-        IntentUtil.finishTransition(this);
-    }
-
     private void init() {
 
         CommonUtil.setStatusBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);

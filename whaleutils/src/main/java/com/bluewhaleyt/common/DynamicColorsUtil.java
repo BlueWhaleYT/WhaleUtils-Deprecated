@@ -26,9 +26,11 @@ public class DynamicColorsUtil {
     surfaceVariant, onSurfaceVariant,
     outline, outlineVariant;
 
+    static boolean isDynamicColorApplied = false;
+
     @SuppressLint("ResourceType")
     public DynamicColorsUtil(Context context) {
-        if (DynamicColors.isDynamicColorAvailable()) {
+        if (isDynamicColorAvailableButNotApplied()) {
             Context dynamicColorContext = DynamicColors.wrapContextIfAvailable(context);
             int[] attrsToResolve = {
                     com.google.android.material.R.attr.colorPrimary,
@@ -216,9 +218,17 @@ public class DynamicColorsUtil {
         return SDKUtil.isAtLeastSDK31() && DynamicColors.isDynamicColorAvailable();
     }
 
+    public static boolean isDynamicColorAvailableButNotApplied() {
+        return isDynamicColorApplied;
+    }
+
     public static void setDynamicColorsIfAvailable(Application application) {
-        if (isDynamicColorAvailable())
+        if (isDynamicColorAvailable()) {
+            isDynamicColorApplied = true;
             DynamicColors.applyToActivitiesIfAvailable(application);
+        } else {
+            isDynamicColorApplied = false;
+        }
     }
 
 }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="theme">
+    <string-array name="app_theme">
         <item>Auto</item>
         <item>Light</item>
         <item>Dark</item>
     </string-array>
-    <string-array name="theme_value">
+    <string-array name="app_theme_value">
         <item>auto</item>
         <item>light</item>
         <item>dark</item>

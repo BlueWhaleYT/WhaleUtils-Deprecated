@@ -11,23 +11,34 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.Preference;
 import androidx.preference.PreferenceFragmentCompat;
 
+import com.bluewhaleyt.common.ApplicationUtil;
+import com.bluewhaleyt.common.IntentUtil;
 import com.bluewhaleyt.common.SDKUtil;
 import com.bluewhaleyt.component.snackbar.SnackbarUtil;
+import com.bluewhaleyt.debug.Constants;
+import com.bluewhaleyt.network.NetworkUtil;
 import com.bluewhaleyt.whaleutils.App;
 import com.bluewhaleyt.whaleutils.R;
 import com.bluewhaleyt.whaleutils.activites.MainActivity;
 
 import java.util.Objects;
 
-public class SettingsFragment extends PreferenceFragmentCompat {
+public class AboutFragment extends PreferenceFragmentCompat {
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-        setPreferencesFromResource(R.xml.preferences, rootKey);
+        setPreferencesFromResource(R.xml.preferences_about, rootKey);
         init();
     }
 
     private void init() {
         try {
+
+            var componentBtnAboutGithub = findPreference("component_btn_about_github");
+            var componentBtnAboutVersion = findPreference("component_btn_about_version");
+
+            componentBtnAboutVersion.setSummary(ApplicationUtil.getAppVersionName(requireActivity()));
+
+            intentGithub(componentBtnAboutGithub);
 
         } catch (Exception e) {
             SnackbarUtil.makeErrorSnackbar(getActivity(), e.getMessage(), e.toString());
@@ -41,4 +52,16 @@ public class SettingsFragment extends PreferenceFragmentCompat {
         setDivider(new ColorDrawable(Color.TRANSPARENT));
         setDividerHeight(0);
     }
+
+    private void intentGithub(Preference pref) {
+        pref.setOnPreferenceClickListener(preference -> {
+            if (NetworkUtil.isNetworkAvailable(requireActivity())) {
+                IntentUtil.intentURL(requireActivity(), Constants.PROJECT_GITHUB_REPOSITORY_URL);
+            } else {
+                SnackbarUtil.makeErrorSnackbar(requireActivity(), "Network is not yet connected.");
+            }
+            return true;
+        });
+    }
+
 }

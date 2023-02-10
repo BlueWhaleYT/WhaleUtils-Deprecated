@@ -14,7 +14,7 @@
     <ImageView
         android:id="@android:id/icon"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:src="@android:drawable/ic_delete"
         android:paddingEnd="30dp"
         app:tint="?colorPrimary" />
@@ -22,8 +22,9 @@
     <TextView
         android:id="@android:id/title"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:text="TextView"
-        android:textAppearance="@style/TextAppearance.Material3.HeadlineSmall" />
+        android:textColor="?colorOnBackground"
+        android:textSize="20sp"/>
 
 </LinearLayout>

@@ -32,6 +32,10 @@ public class DisplayFragment extends PreferenceFragmentCompat {
             var preferenceTheme = findPreference("app_theme");
             var preferenceDynamicColorEnable = findPreference("app_dynamic_color_enable");
 
+            if (!SDKUtil.isAtLeastSDK31()) {
+                preferenceDynamicColorEnable.setEnabled(false);
+            }
+
             preferenceTheme.setOnPreferenceChangeListener((preference, newValue) -> {
                 try {
                     switch ((String) newValue) {

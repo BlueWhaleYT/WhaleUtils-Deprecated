@@ -26,6 +26,12 @@ public class IntentUtil {
         return activity.getIntent().getExtras().getString(dataName);
     }
 
+    public static void intentURL(Activity activity, String url) {
+        intent = new Intent(Intent.ACTION_VIEW);
+        intent.setData(Uri.parse(url));
+        activity.startActivity(intent);
+    }
+
     public static void intentApplicationInfoScreen(Activity activity) {
         intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
         Uri uri = Uri.fromParts("package", activity.getPackageName(), null);

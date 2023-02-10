@@ -19,7 +19,8 @@
         android:icon="@drawable/ic_baseline_info_24"
         app:title="About"
         app:summary="Author Contributor Version"
-        android:layout="@layout/layout_preference_screen_item_2">
+        android:layout="@layout/layout_preference_screen_item_2"
+        app:fragment="com.bluewhaleyt.whaleutils.fragments.preferences.AboutFragment">
 
     </Preference>
 

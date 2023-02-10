@@ -26,4 +26,6 @@
     <string name="system_info_vendor">Vendor</string>
     <string name="system_info_opengl_version">OpenGL Version</string>
 
+    <string name="dialog_title_loading">Loading</string>
+
 </resources>

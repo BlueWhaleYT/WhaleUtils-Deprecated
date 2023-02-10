@@ -12,7 +12,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Loading"
+            android:text="@string/dialog_title_loading"
             android:textSize="18sp"
             android:layout_marginBottom="20dp"/>
         <ProgressBar

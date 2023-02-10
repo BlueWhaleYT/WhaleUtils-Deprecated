@@ -26,4 +26,6 @@
     <string name="system_info_vendor">供應商</string>
     <string name="system_info_opengl_version">OpenGL 版本</string>
 
+    <string name="dialog_title_loading">載入中</string>
+
 </resources>

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.bluewhaleyt.common.CommonUtil;
 import com.bluewhaleyt.common.DynamicColorsUtil;
@@ -274,6 +275,14 @@ public class MainActivity extends WhaleUtilsActivity {
 
     private void initPaletteColorBlock(MaterialCardView cardView, int color) {
         cardView.setCardBackgroundColor(color);
+        cardView.setOnClickListener(v -> {
+            DialogUtil dialog = new DialogUtil(this, "Color hex");
+            dialog.setNegativeButton(android.R.string.cancel, null);
+            dialog.setMessage(
+                    "#" + Integer.toHexString(cardView.getCardBackgroundColor().getDefaultColor())
+            );
+            dialog.build();
+        });
     }
 
 }

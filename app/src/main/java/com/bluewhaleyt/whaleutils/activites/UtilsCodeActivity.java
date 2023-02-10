@@ -1,21 +1,19 @@
 package com.bluewhaleyt.whaleutils.activites;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.bluewhaleyt.common.CommonUtil;
 import com.bluewhaleyt.component.dialog.DialogUtil;
 import com.bluewhaleyt.component.snackbar.SnackbarUtil;
-import com.bluewhaleyt.crashdebugger.CrashDebugger;
 import com.bluewhaleyt.debug.SystemResourceUtil;
 import com.bluewhaleyt.whaleutils.R;
+import com.bluewhaleyt.whaleutils.activites.components.WhaleUtilsActivity;
 import com.bluewhaleyt.whaleutils.debug.adapters.ColorResListAdapter;
 import com.bluewhaleyt.whaleutils.debug.adapters.DrawableResListAdapter;
 import com.bluewhaleyt.whaleutils.debug.adapters.StringResListAdapter;

@@ -1,7 +1,6 @@
 package com.bluewhaleyt.whaleutils.activites;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -13,12 +12,10 @@ import com.bluewhaleyt.common.CommonUtil;
 import com.bluewhaleyt.common.IntentUtil;
 import com.bluewhaleyt.component.dialog.DialogUtil;
 import com.bluewhaleyt.component.snackbar.SnackbarUtil;
-import com.bluewhaleyt.crashdebugger.CrashDebugger;
-import com.bluewhaleyt.filemanagement.FileIconUtil;
 import com.bluewhaleyt.filemanagement.FileUtil;
 import com.bluewhaleyt.whaleutils.R;
+import com.bluewhaleyt.whaleutils.activites.components.WhaleUtilsActivity;
 import com.bluewhaleyt.whaleutils.databinding.ActivityEditorBinding;
-import com.bluewhaleyt.whaleutils.databinding.ActivityFileManagerBinding;
 
 import io.github.rosemoe.sora.widget.component.EditorAutoCompletion;
 

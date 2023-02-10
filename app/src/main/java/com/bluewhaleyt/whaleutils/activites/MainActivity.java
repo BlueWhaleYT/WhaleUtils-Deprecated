@@ -2,15 +2,12 @@ package com.bluewhaleyt.whaleutils.activites;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.bluewhaleyt.common.CommonUtil;
 import com.bluewhaleyt.common.DynamicColorsUtil;
@@ -18,7 +15,6 @@ import com.bluewhaleyt.common.IntentUtil;
 import com.bluewhaleyt.common.PermissionUtil;
 import com.bluewhaleyt.component.dialog.DialogUtil;
 import com.bluewhaleyt.component.snackbar.SnackbarUtil;
-import com.bluewhaleyt.crashdebugger.CrashDebugger;
 import com.bluewhaleyt.device.DeviceUtil;
 import com.bluewhaleyt.device.GPUInfoUtil;
 import com.bluewhaleyt.device.SystemUtil;
@@ -26,6 +22,8 @@ import com.bluewhaleyt.filemanagement.FileUtil;
 import com.bluewhaleyt.network.NetworkUtil;
 import com.bluewhaleyt.whaleutils.App;
 import com.bluewhaleyt.whaleutils.R;
+import com.bluewhaleyt.whaleutils.activites.components.SpecialActivity;
+import com.bluewhaleyt.whaleutils.activites.components.WhaleUtilsActivity;
 import com.bluewhaleyt.whaleutils.adapters.ViewPagerAdapter;
 import com.bluewhaleyt.whaleutils.databinding.ActivityMainBinding;
 import com.bluewhaleyt.whaleutils.databinding.DialogLayoutPaletteBinding;
@@ -35,7 +33,7 @@ import com.google.android.material.card.MaterialCardView;
 
 import java.io.IOException;
 
-public class MainActivity extends WhaleUtilsActivity {
+public class MainActivity extends SpecialActivity {
 
     private ActivityMainBinding binding;
     private DialogLayoutPaletteBinding bindingPalette;

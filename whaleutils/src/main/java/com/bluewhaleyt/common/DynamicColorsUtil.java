@@ -11,6 +11,7 @@ import androidx.core.content.ContextCompat;
 
 import com.bluewhaleyt.whaleutils.R;
 import com.google.android.material.color.DynamicColors;
+import com.google.android.material.color.MaterialColors;
 
 public class DynamicColorsUtil {
 

@@ -6,7 +6,13 @@ import android.net.Uri;
 import android.os.Environment;
 import android.provider.Settings;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.bluewhaleyt.filemanagement.FileUtil;
+import com.bluewhaleyt.whaleutils.R;
 
 public class IntentUtil {
 
@@ -49,6 +55,16 @@ public class IntentUtil {
         intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
         intent.addCategory(Intent.CATEGORY_DEFAULT);
         activity.startActivity(intent);
+    }
+
+    public static void intentFragment(FragmentActivity activity, Fragment fragment) {
+        activity.getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.swipe_enter_right_to_left, R.anim.swipe_exit_right_to_left,
+                        R.anim.swipe_enter_left_to_right, R.anim.swipe_exit_left_to_right)
+                .replace(android.R.id.content, fragment)
+                .addToBackStack(null)
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                .commit();
     }
 
 }

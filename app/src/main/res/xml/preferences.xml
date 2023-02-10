@@ -7,6 +7,7 @@
         app:selectable="false" />
 
     <Preference
+        app:key="component_btn_display"
         app:icon="@drawable/ic_baseline_aod_24"
         app:title="@string/settings_display_title"
         app:layout="@layout/layout_preference_screen_item_1"

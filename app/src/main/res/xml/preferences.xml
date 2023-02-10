@@ -1,26 +1,17 @@
-<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory
-        app:title="Application">
+    <Preference
+        app:title="Settings"
+        android:layout="@layout/layout_preference_screen_title_headline_large"
+        android:selectable="false" />
 
-        <ListPreference
-            android:defaultValue="3"
-            android:dialogTitle="Choose theme"
-            android:entries="@array/theme"
-            android:entryValues="@array/theme_value"
-            app:useSimpleSummaryProvider="true"
-            app:key="app_theme"
-            app:title="Theme"
-            app:icon="@drawable/ic_outline_brightness_4_24" />
+    <Preference
+        android:icon="@drawable/ic_outline_aod_24"
+        app:title="Display"
+        android:layout="@layout/layout_preference_screen_item"
+        app:fragment="com.bluewhaleyt.whaleutils.fragments.preferences.DisplayFragment">
 
-        <SwitchPreferenceCompat
-            app:title="Dynamic color"
-            app:summary="Android 12 or higher only"
-            app:key="app_dynamic_color_enable"
-            app:icon="@drawable/ic_outline_color_lens_24"
-            android:defaultValue="false" />
-
-    </PreferenceCategory>
+    </Preference>
 
 </PreferenceScreen>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Preference
+        app:title="Display"
+        android:layout="@layout/layout_preference_screen_title_headline_large"
+        android:selectable="false" />
+
+    <ListPreference
+        android:defaultValue="3"
+        android:dialogTitle="Choose theme"
+        android:entries="@array/theme"
+        android:entryValues="@array/theme_value"
+        app:icon="@drawable/ic_outline_brightness_4_24"
+        app:key="app_theme"
+        app:title="Theme"
+        app:useSimpleSummaryProvider="true" />
+
+    <SwitchPreferenceCompat
+        android:defaultValue="false"
+        app:icon="@drawable/ic_outline_color_lens_24"
+        app:key="app_dynamic_color_enable"
+        app:summary="Android 12 or higher only"
+        app:title="Dynamic color" />
+
+</PreferenceScreen>

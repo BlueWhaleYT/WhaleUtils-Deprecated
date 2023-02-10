@@ -1,15 +1,15 @@
 package com.bluewhaleyt.whaleutils.activites;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.FragmentManager;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.bluewhaleyt.common.CommonUtil;
-import com.bluewhaleyt.crashdebugger.CrashDebugger;
-import com.bluewhaleyt.filemanagement.FileUtil;
-import com.bluewhaleyt.whaleutils.fragments.SettingsFragment;
+import com.bluewhaleyt.whaleutils.fragments.preferences.SettingsFragment;
 
 public class SettingsActivity extends WhaleUtilsActivity {
 
@@ -23,7 +23,7 @@ public class SettingsActivity extends WhaleUtilsActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                finish();
+                goToPreviousFragment();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -31,17 +31,27 @@ public class SettingsActivity extends WhaleUtilsActivity {
 
     private void init() {
 
-        CommonUtil.setStatusBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_DEFAULT_TOOLBAR);
+        CommonUtil.setStatusBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);
         CommonUtil.setNavigationBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);
 
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Settings");
+        getSupportActionBar().setTitle("");
 
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(android.R.id.content, new SettingsFragment())
                 .commit();
 
+    }
+
+    private void goToPreviousFragment() {
+        FragmentManager fm = getFragmentManager();
+        if (fm.getBackStackEntryCount() > 0) {
+            fm.popBackStack();
+        } else {
+            super.onBackPressed();
+        }
     }
 
 }

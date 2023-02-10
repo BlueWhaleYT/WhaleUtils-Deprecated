@@ -62,6 +62,9 @@ public class CommonUtil {
             case SURFACE_FOLLOW_DEFAULT_TOOLBAR:
                 activity.getWindow().setStatusBarColor(SurfaceColors.SURFACE_2.getColor(activity));
                 break;
+            case SURFACE_FOLLOW_WINDOW_BACKGROUND:
+                activity.getWindow().setStatusBarColor(SurfaceColors.SURFACE_0.getColor(activity));
+                break;
         }
     }
 

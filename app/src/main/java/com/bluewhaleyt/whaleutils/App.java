@@ -6,7 +6,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.fragment.app.Fragment;
 
 import com.bluewhaleyt.common.CommonUtil;
 import com.bluewhaleyt.common.DynamicColorsUtil;
@@ -49,9 +51,10 @@ public class App extends Application {
         AppCompatDelegate.setDefaultNightMode(nightMode);
     }
 
-    public void updateTheme(int nightMode, Activity activity) {
+    public void updateTheme(int nightMode, AppCompatActivity activity, Fragment fragment) throws IllegalAccessException, InstantiationException {
         updateTheme(nightMode);
-        activity.recreate();
+        activity.getSupportFragmentManager().beginTransaction()
+                .replace(android.R.id.content, fragment.getClass().newInstance()).commit();
     }
 
     public void updateDynamicColor() {

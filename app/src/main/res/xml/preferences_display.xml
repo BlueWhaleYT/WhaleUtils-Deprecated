@@ -22,6 +22,7 @@
         app:icon="@drawable/ic_outline_color_lens_24"
         app:key="app_dynamic_color_enable"
         app:summary="Android 12 or higher only"
+        app:widgetLayout="@layout/layout_preference_material3_switch"
         app:title="Dynamic color" />
 
 </PreferenceScreen>

@@ -30,6 +30,14 @@ public class SettingsFragment extends PreferenceFragmentCompat {
 
         try {
 
+            var app = App.getInstance();
+            var componentBtnAbout = findPreference("component_btn_about");
+
+            componentBtnAbout.setOnPreferenceClickListener(preference -> {
+                SnackbarUtil.makeSnackbar(requireActivity(), "test 123");
+                return true;
+            });
+
         } catch (Exception e) {
             SnackbarUtil.makeErrorSnackbar(getActivity(), e.getMessage(), e.toString());
         }

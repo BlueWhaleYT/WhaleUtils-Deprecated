@@ -7,10 +7,19 @@
         android:selectable="false" />
 
     <Preference
-        android:icon="@drawable/ic_outline_aod_24"
+        android:icon="@drawable/ic_baseline_aod_24"
         app:title="Display"
-        android:layout="@layout/layout_preference_screen_item"
+        android:layout="@layout/layout_preference_screen_item_1"
         app:fragment="com.bluewhaleyt.whaleutils.fragments.preferences.DisplayFragment">
+
+    </Preference>
+
+    <Preference
+        app:key="component_btn_about"
+        android:icon="@drawable/ic_baseline_info_24"
+        app:title="About"
+        app:summary="Author Contributor Version"
+        android:layout="@layout/layout_preference_screen_item_2">
 
     </Preference>
 

@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import com.bluewhaleyt.codeeditor.textmate.syntaxhighlight.SyntaxHighlightUtil;
 import com.bluewhaleyt.common.CommonUtil;
 import com.bluewhaleyt.common.IntentUtil;
+import com.bluewhaleyt.component.dialog.DialogUtil;
 import com.bluewhaleyt.component.snackbar.SnackbarUtil;
 import com.bluewhaleyt.crashdebugger.CrashDebugger;
 import com.bluewhaleyt.filemanagement.FileIconUtil;
@@ -47,8 +48,17 @@ public class EditorActivity extends WhaleUtilsActivity {
             case android.R.id.home:
                 finish();
                 break;
+            case R.id.menu_undo:
+                if (binding.editor.canUndo()) binding.editor.undo();
+                break;
+            case R.id.menu_redo:
+                if (binding.editor.canRedo()) binding.editor.redo();
+                break;
             case R.id.menu_save_file:
                 saveFile();
+                break;
+            case R.id.menu_file_info:
+                showFileInfoDialog();
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -67,7 +77,6 @@ public class EditorActivity extends WhaleUtilsActivity {
             getDataFromFile();
 
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayUseLogoEnabled(true);
             getSupportActionBar().setTitle(FileUtil.getFileNameOfPath(filePath));
             getSupportActionBar().setSubtitle(filePath);
 
@@ -103,7 +112,7 @@ public class EditorActivity extends WhaleUtilsActivity {
         String themeDir = "textmate/themes/";
         String languageDir = "textmate/languages/";
 
-        String themeDark = "material_custom.json";
+        String themeDark = "material_palenight.json";
         String themeLight = "material_lighter.json";
 
         String[] themes = {themeLight, themeDark};
@@ -130,6 +139,19 @@ public class EditorActivity extends WhaleUtilsActivity {
         if (FileUtil.isFileExist(filePath)) {
             FileUtil.writeFile(filePath, binding.editor.getText().toString());
         }
+
+    }
+
+    private void showFileInfoDialog() {
+
+        DialogUtil dialog = new DialogUtil(this, "File Info");
+        try {
+            dialog.setMessage(FileUtil.getFullFileInfo(filePath));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        dialog.setNegativeButton(android.R.string.cancel, null);
+        dialog.build();
 
     }
 

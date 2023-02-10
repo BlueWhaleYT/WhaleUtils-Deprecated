@@ -35,6 +35,12 @@
             "languageConfiguration": "textmate/languages/json/language-configuration.json"
         },
         {
+            "name": "kotlin",
+            "scopeName": "source.kotlin",
+            "grammar": "textmate/languages/kotlin/syntaxes/kotlin.tmLanguage",
+            "languageConfiguration": "textmate/languages/kotlin/language-configuration.json"
+        },
+        {
             "name": "log",
             "scopeName": "text.log",
             "grammar": "textmate/languages/log/syntaxes/log.tmLanguage.json"

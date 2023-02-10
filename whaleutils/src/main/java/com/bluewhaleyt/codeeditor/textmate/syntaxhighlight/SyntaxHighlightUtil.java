@@ -22,7 +22,11 @@ import io.github.rosemoe.sora.langs.textmate.registry.provider.AssetsFileResolve
 import io.github.rosemoe.sora.widget.CodeEditor;
 import io.github.rosemoe.sora.widget.schemes.EditorColorScheme;
 
-public class SyntaxHighlightUtil implements TextWatcher {
+/**
+ * This class is to simplify the configuration of applying TextMate for Sora Editor library.
+ */
+
+public class SyntaxHighlightUtil {
 
     private String[] themeFiles;
     private String lang, theme, themeDir, languageDir, languageBasePath;
@@ -67,6 +71,7 @@ public class SyntaxHighlightUtil implements TextWatcher {
                 lang = "text.html.basic";
                 break;
             case "kt":
+                lang = "source.kotlin";
                 break;
             case "md":
                 lang = "text.html.markdown";
@@ -107,18 +112,13 @@ public class SyntaxHighlightUtil implements TextWatcher {
     }
 
     private void loadDefaultThemes(Context ctx) throws Exception {
-
         FileProviderRegistry.getInstance().addFileProvider(new AssetsFileResolver(ctx.getAssets()));
-
         var themeRegistry = ThemeRegistry.getInstance();
-
         for (int i = 0; i < themeFiles.length; ) {
             var path = themeDir + themeFiles[i];
             themeRegistry.loadTheme(new ThemeModel(IThemeSource.fromInputStream(FileProviderRegistry.getInstance().tryGetInputStream(path), path, null), path));
             i++;
-
         }
-
     }
 
     private void loadDefaultLanguages() {
@@ -126,13 +126,11 @@ public class SyntaxHighlightUtil implements TextWatcher {
     }
 
     private void ensureTextmateTheme(CodeEditor editor) throws Exception {
-
         var editorColorScheme = editor.getColorScheme();
         if (!(editorColorScheme instanceof TextMateColorScheme)) {
             editorColorScheme = TextMateColorScheme.create(ThemeRegistry.getInstance());
             editor.setColorScheme(editorColorScheme);
         }
-
     }
 
     private void applyThemes() {
@@ -140,9 +138,7 @@ public class SyntaxHighlightUtil implements TextWatcher {
     }
 
     private void applyLanguages(CodeEditor editor) throws Exception {
-
         ensureTextmateTheme(editor);
-
         TextMateLanguage language;
         var editorLanguage = editor.getEditorLanguage();
         if (editorLanguage instanceof TextMateLanguage) {
@@ -152,22 +148,7 @@ public class SyntaxHighlightUtil implements TextWatcher {
             language = TextMateLanguage.create(lang, true);
         }
         editor.setEditorLanguage(language);
-
     }
 
-    @Override
-    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-    }
-
-    @Override
-    public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-    }
-
-    @Override
-    public void afterTextChanged(Editable s) {
-
-    }
 }
 

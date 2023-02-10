@@ -239,8 +239,7 @@ public class FileManagerActivity extends WhaleUtilsActivity {
     }
 
     private boolean isSAFNeeded() {
-        var bool = file.contains(FileUtil.getAndroidDataDirPath()) | file.contains(FileUtil.getAndroidObbDirPath());
-        return bool;
+        return file.contains(FileUtil.getAndroidDataDirPath()) | file.contains(FileUtil.getAndroidObbDirPath());
     }
 
     private void setupFileListItemLongClick() {
@@ -362,6 +361,7 @@ public class FileManagerActivity extends WhaleUtilsActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        dialog.setNegativeButton(android.R.string.cancel, null);
         dialog.build();
     }
 

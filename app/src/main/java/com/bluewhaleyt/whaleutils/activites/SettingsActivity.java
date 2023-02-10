@@ -8,6 +8,7 @@ import android.view.MenuItem;
 
 import com.bluewhaleyt.common.CommonUtil;
 import com.bluewhaleyt.crashdebugger.CrashDebugger;
+import com.bluewhaleyt.filemanagement.FileUtil;
 import com.bluewhaleyt.whaleutils.fragments.SettingsFragment;
 
 public class SettingsActivity extends WhaleUtilsActivity {
@@ -32,6 +33,9 @@ public class SettingsActivity extends WhaleUtilsActivity {
 
         CommonUtil.setStatusBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_DEFAULT_TOOLBAR);
         CommonUtil.setNavigationBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Settings");
 
         getSupportFragmentManager()
                 .beginTransaction()

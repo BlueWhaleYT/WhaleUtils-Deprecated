@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import com.bluewhaleyt.whaleutils.App;
+import com.bluewhaleyt.whaleutils.R;
 import com.bluewhaleyt.whaleutils.fragments.FileManagementFragment;
 import com.bluewhaleyt.whaleutils.fragments.GitFragment;
 
@@ -34,8 +36,8 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         switch (position) {
-            case 0: return "Git";
-            case 1: return "File Management";
+            case 0: return App.getRes().getString(R.string.git_tab_title);
+            case 1: return App.getRes().getString(R.string.file_management_tab_title);
         }
         return null;
     }

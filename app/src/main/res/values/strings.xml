@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name" translatable="false">WhaleUtils</string>
 
+    <string name="info_title">Info</string>
     <string name="device_info_title">Device</string>
     <string name="system_info_title">System</string>
     <string name="palette_info_title">Palette</string>
@@ -16,6 +17,33 @@
 
     <string name="system_info_gpu_error_message">%1$s has not yet been set, the data is failed to be loaded.</string>
     <string name="palette_info_message">The palette color is detected from the wallpaper of your device.</string>
+
+    <string name="git_tab_title">Git</string>
+    <string name="git_tab_local_path">Local path</string>
+    <string name="git_tab_remote_path">Remote path</string>
+    <string name="git_tab_btn_clone">Clone to local</string>
+
+    <string name="file_management_tab_title">File Management</string>
+    <string name="file_management_tab_btn_list_dir">List directories</string>
+    <string name="file_management_tab_btn_list_non_hidden_dir">List non hidden directories</string>
+    <string name="file_management_tab_btn_list_only_dir_subdir_files">List only directories and sub directories files</string>
+
+    <string name="settings_title">Settings</string>
+    <string name="settings_display_title">Display</string>
+    <string name="settings_about_title">About</string>
+
+    <string name="settings_display_theme_title">Theme</string>
+    <string name="settings_display_theme_dialog_title">Choose theme</string>
+    <string name="settings_display_theme_dialog_option_auto">Auto</string>
+    <string name="settings_display_theme_dialog_option_light">Light</string>
+    <string name="settings_display_theme_dialog_option_dark">Dark</string>
+
+    <string name="settings_display_dynamic_color_title">Dynamic Color</string>
+    <string name="settings_display_dynamic_color_summary">Android 12 or higher only</string>
+
+    <string name="settings_about_github_title">Open Source</string>
+    <string name="settings_about_github_summary">See Github repository and README file</string>
+    <string name="settings_about_version_title">Version</string>
 
     <string name="debug_available_resources">Available Resources</string>
     <string name="debug_resources">Resources</string>

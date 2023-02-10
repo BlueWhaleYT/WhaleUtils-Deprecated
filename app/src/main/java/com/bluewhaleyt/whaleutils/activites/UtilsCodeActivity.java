@@ -94,6 +94,7 @@ public class UtilsCodeActivity extends WhaleUtilsActivity {
         CommonUtil.setNavigationBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Debug");
 
 //        cls = clsPrefix + "common.DynamicColorsUtil";
 //        ClassExtractUtil classExtract = new ClassExtractUtil(cls);

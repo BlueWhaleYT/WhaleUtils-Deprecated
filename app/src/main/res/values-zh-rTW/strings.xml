@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="info_title">資訊</string>
     <string name="device_info_title">設備資訊</string>
     <string name="system_info_title">系統資訊</string>
     <string name="palette_info_title">調色板</string>
@@ -16,6 +17,33 @@
 
     <string name="system_info_gpu_error_message">%1$s 的配置尚未完成，無法顯示相關資料。</string>
     <string name="palette_info_message">調色板的動態顏色組合是取至目前設備所應用的壁紙。</string>
+
+    <string name="git_tab_title">Git 控制</string>
+    <string name="git_tab_local_path">本地端存儲庫路徑</string>
+    <string name="git_tab_remote_path">遠端存儲庫路徑</string>
+    <string name="git_tab_btn_clone">克隆至本地端</string>
+
+    <string name="file_management_tab_title">檔案管理</string>
+    <string name="file_management_tab_btn_list_dir">列出所有目錄</string>
+    <string name="file_management_tab_btn_list_non_hidden_dir">列出所有非系統隱藏的目錄</string>
+    <string name="file_management_tab_btn_list_only_dir_subdir_files">列出所有目錄及子目錄的檔案</string>
+
+    <string name="settings_title">設定</string>
+    <string name="settings_display_title">顯示</string>
+    <string name="settings_about_title">關於</string>
+
+    <string name="settings_display_theme_title">主題配置</string>
+    <string name="settings_display_theme_dialog_title">選擇主題</string>
+    <string name="settings_display_theme_dialog_option_auto">系統偵測</string>
+    <string name="settings_display_theme_dialog_option_light">明亮</string>
+    <string name="settings_display_theme_dialog_option_dark">黑暗</string>
+
+    <string name="settings_display_dynamic_color_title">動態顏色</string>
+    <string name="settings_display_dynamic_color_summary">僅限 Android 12 或以上之設備使用</string>
+
+    <string name="settings_about_github_title">開放源碼</string>
+    <string name="settings_about_github_summary">查看 Github 存儲庫和 README 檔案</string>
+    <string name="settings_about_version_title">版本</string>
 
     <string name="debug_available_resources">可用資源</string>
     <string name="debug_resources">資源</string>

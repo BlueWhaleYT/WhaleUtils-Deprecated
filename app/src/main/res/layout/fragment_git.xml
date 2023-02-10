@@ -18,7 +18,7 @@
             android:layout_height="match_parent"
             android:maxLines="1"
             android:singleLine="true"
-            android:hint="local path"/>
+            android:hint="@string/git_tab_local_path"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -34,7 +34,7 @@
             android:layout_height="match_parent"
             android:maxLines="1"
             android:singleLine="true"
-            android:hint="remote path" />
+            android:hint="@string/git_tab_remote_path" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -47,6 +47,6 @@
         android:id="@+id/btn_clone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Clone"/>
+        android:text="@string/git_tab_btn_clone"/>
 
 </LinearLayout>

@@ -3,26 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <Preference
-        app:title="Display"
-        android:layout="@layout/layout_preference_screen_title_headline_large"
-        android:selectable="false" />
+        app:title="@string/settings_display_title"
+        app:layout="@layout/layout_preference_screen_title_headline_large"
+        app:selectable="false" />
 
     <ListPreference
-        android:defaultValue="3"
-        android:dialogTitle="Choose theme"
-        android:entries="@array/app_theme"
-        android:entryValues="@array/app_theme_value"
+        app:defaultValue="3"
+        app:dialogTitle="@string/settings_display_theme_dialog_title"
+        app:entries="@array/app_theme"
+        app:entryValues="@array/app_theme_value"
         app:icon="@drawable/ic_outline_brightness_4_24"
         app:key="app_theme"
-        app:title="Theme"
+        app:title="@string/settings_display_theme_title"
         app:useSimpleSummaryProvider="true" />
 
     <SwitchPreferenceCompat
-        android:defaultValue="false"
+        app:defaultValue="false"
         app:icon="@drawable/ic_outline_color_lens_24"
         app:key="app_dynamic_color_enable"
-        app:summary="Android 12 or higher only"
+        app:summary="@string/settings_display_dynamic_color_summary"
         app:widgetLayout="@layout/layout_preference_material3_switch"
-        app:title="Dynamic color" />
+        app:title="@string/settings_display_dynamic_color_title" />
 
 </PreferenceScreen>

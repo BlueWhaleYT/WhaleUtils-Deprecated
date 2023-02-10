@@ -2,24 +2,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <Preference
-        app:title="Settings"
-        android:layout="@layout/layout_preference_screen_title_headline_large"
-        android:selectable="false" />
+        app:title="@string/settings_title"
+        app:layout="@layout/layout_preference_screen_title_headline_large"
+        app:selectable="false" />
 
     <Preference
-        android:icon="@drawable/ic_baseline_aod_24"
-        app:title="Display"
-        android:layout="@layout/layout_preference_screen_item_1"
+        app:icon="@drawable/ic_baseline_aod_24"
+        app:title="@string/settings_display_title"
+        app:layout="@layout/layout_preference_screen_item_1"
         app:fragment="com.bluewhaleyt.whaleutils.fragments.preferences.DisplayFragment">
 
     </Preference>
 
     <Preference
         app:key="component_btn_about"
-        android:icon="@drawable/ic_baseline_info_24"
-        app:title="About"
-        app:summary="Author Contributor Version"
-        android:layout="@layout/layout_preference_screen_item_2"
+        app:icon="@drawable/ic_baseline_info_24"
+        app:title="@string/settings_about_title"
+        app:summary="version"
+        app:layout="@layout/layout_preference_screen_item_2"
         app:fragment="com.bluewhaleyt.whaleutils.fragments.preferences.AboutFragment">
 
     </Preference>

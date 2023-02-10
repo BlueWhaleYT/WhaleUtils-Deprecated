@@ -8,20 +8,20 @@
         android:id="@+id/btn1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="list directories"
+        android:text="@string/file_management_tab_btn_list_dir"
         style="@style/Widget.Material3.Button.OutlinedButton"/>
 
     <Button
         android:id="@+id/btn2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="list non hidden directories"/>
+        android:text="@string/file_management_tab_btn_list_non_hidden_dir"/>
 
     <Button
         android:id="@+id/btn3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="list only files of directories and sub directories"
+        android:text="@string/file_management_tab_btn_list_only_dir_subdir_files"
         style="@style/Widget.Material3.Button.OutlinedButton"/>
 
 </LinearLayout>

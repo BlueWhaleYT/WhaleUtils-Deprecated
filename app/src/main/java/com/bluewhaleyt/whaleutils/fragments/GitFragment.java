@@ -145,14 +145,13 @@ public class GitFragment extends Fragment {
     private class CloneRepoTask implements Runnable {
         @Override
         public void run() {
-            isCloning = true;
-            git = new GitUtil(localPath, remotePath);
-
-//            btn.setOnClickListener(v -> {
-//                if (isCloning) thread.interrupt();
-//            });
-//
-            git.cloneRepo();
+            try {
+                isCloning = true;
+                git = new GitUtil(localPath, remotePath);
+                git.cloneRepo();
+            } catch (Exception e) {
+                SnackbarUtil.makeErrorSnackbar(requireActivity(), e.getMessage(), e.toString());
+            }
 
             dialog.dismiss();
 

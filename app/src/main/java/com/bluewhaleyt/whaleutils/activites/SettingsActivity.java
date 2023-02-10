@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.bluewhaleyt.common.CommonUtil;
+import com.bluewhaleyt.common.IntentUtil;
 import com.bluewhaleyt.whaleutils.activites.components.WhaleUtilsActivity;
 import com.bluewhaleyt.whaleutils.fragments.preferences.SettingsFragment;
 
@@ -26,6 +27,12 @@ public class SettingsActivity extends WhaleUtilsActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void finish() {
+        super.finish();
+        IntentUtil.finishTransition(this);
     }
 
     private void init() {

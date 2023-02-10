@@ -20,6 +20,11 @@ public class IntentUtil {
 
     public static void intent(Activity activity, Class<?> targetActivity) {
         activity.startActivity(new Intent(activity, targetActivity));
+        activity.overridePendingTransition(R.anim.swipe_enter_right_to_left, R.anim.swipe_exit_right_to_left);
+    }
+
+    public static void finishTransition(Activity activity) {
+        activity.overridePendingTransition(R.anim.swipe_enter_left_to_right, R.anim.swipe_exit_left_to_right);
     }
 
     public static void intentPutString(Activity activity, Class<?> targetActivity, String dataName, String dataValue) {

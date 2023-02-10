@@ -3,6 +3,7 @@ package com.bluewhaleyt.common;
 import android.app.Application;
 import android.content.Context;
 import android.content.res.Configuration;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Handler;
 
@@ -72,6 +73,14 @@ public class CommonUtil {
         switch (type) {
             case SURFACE_FOLLOW_WINDOW_BACKGROUND:
                 activity.getWindow().setNavigationBarColor(SurfaceColors.SURFACE_0.getColor(activity));
+                break;
+        }
+    }
+
+    public static void setToolBarColorWithSurface(AppCompatActivity activity, int type) {
+        switch (type) {
+            case SURFACE_FOLLOW_WINDOW_BACKGROUND:
+                activity.getSupportActionBar().setBackgroundDrawable(new ColorDrawable(type));
                 break;
         }
     }

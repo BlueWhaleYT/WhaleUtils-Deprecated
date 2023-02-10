@@ -33,8 +33,8 @@ public class SettingsActivity extends WhaleUtilsActivity {
 
         CommonUtil.setStatusBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);
         CommonUtil.setNavigationBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);
+        CommonUtil.setToolBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);
 
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("");
 

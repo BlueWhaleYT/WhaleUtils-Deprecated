@@ -2,6 +2,9 @@
     <!-- Base application theme. -->
     <style name="Theme.WhaleUtils" parent="Theme.Material3.DayNight">
         <item name="fontFamily">@font/ubuntu_regular</item>
+
+        <item name="android:homeAsUpIndicator">@drawable/ic_baseline_arrow_back_24</item>
+
         <item name="switchPreferenceCompatStyle">@style/Theme.SwitchPreference</item>
         <item name="materialAlertDialogTheme">@style/Theme.AlertDialog</item>
         <item name="alertDialogTheme">@style/Theme.AlertDialog</item>

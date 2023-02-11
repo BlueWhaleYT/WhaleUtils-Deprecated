@@ -10,7 +10,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.preference.PreferenceFragmentCompat;
+import androidx.preference.SwitchPreferenceCompat;
 
+import com.bluewhaleyt.common.DynamicColorsUtil;
 import com.bluewhaleyt.common.SDKUtil;
 import com.bluewhaleyt.component.snackbar.SnackbarUtil;
 import com.bluewhaleyt.whaleutils.App;
@@ -30,11 +32,13 @@ public class DisplayFragment extends PreferenceFragmentCompat {
             var app = App.getInstance();
 
             var preferenceTheme = findPreference("app_theme");
-            var preferenceDynamicColorEnable = findPreference("app_dynamic_color_enable");
+            SwitchPreferenceCompat preferenceDynamicColorEnable = findPreference("app_dynamic_color_enable");
 
             if (!SDKUtil.isAtLeastSDK31()) {
                 preferenceDynamicColorEnable.setEnabled(false);
             }
+
+            preferenceDynamicColorEnable.setChecked(DynamicColorsUtil.isDynamicColorAvailableButNotApplied());
 
             preferenceTheme.setOnPreferenceChangeListener((preference, newValue) -> {
                 try {

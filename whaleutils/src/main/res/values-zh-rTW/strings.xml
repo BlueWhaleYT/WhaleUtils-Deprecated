@@ -28,4 +28,7 @@
 
     <string name="dialog_title_loading">載入中</string>
 
+    <string name="debug_btn_inspect_text">檢查</string>
+    <string name="debug_btn_inspect_title">錯誤訊息</string>
+
 </resources>

@@ -2,6 +2,7 @@ package com.bluewhaleyt.git;
 
 import android.util.Log;
 
+import org.eclipse.jgit.api.AddCommand;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
 import org.eclipse.jgit.internal.storage.file.FileRepository;
@@ -30,10 +31,7 @@ public class GitUtil {
     public GitUtil(String localPath, String remotePath) throws IOException {
         this.localPath = localPath;
         this.remotePath = remotePath;
-
         this.localRepo = new FileRepository(localPath + "/.git");
-
-
         credentialsProvider = new UsernamePasswordCredentialsProvider(this.username, this.password);
         git = new Git(localRepo);
     }
@@ -82,14 +80,11 @@ public class GitUtil {
     }
 
     public void pullFromRepo() throws GitAPIException {
-
         git.pull().call();
-
     }
 
     public void addToRepo() throws GitAPIException {
         git.add().addFilepattern(".").call();
-
     }
 
     public void commitToRepo(String message) throws GitAPIException {

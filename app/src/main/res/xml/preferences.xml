@@ -19,8 +19,7 @@
         app:key="component_btn_about"
         app:icon="@drawable/ic_baseline_info_24"
         app:title="@string/settings_about_title"
-        app:summary="version"
-        app:layout="@layout/layout_preference_screen_item_2"
+        app:layout="@layout/layout_preference_screen_item_1"
         app:fragment="com.bluewhaleyt.whaleutils.fragments.preferences.AboutFragment">
 
     </Preference>

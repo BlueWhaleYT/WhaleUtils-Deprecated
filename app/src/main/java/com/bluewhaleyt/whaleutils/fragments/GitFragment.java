@@ -1,22 +1,15 @@
 package com.bluewhaleyt.whaleutils.fragments;
 
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.res.ColorStateList;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Looper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -29,17 +22,9 @@ import com.bluewhaleyt.component.dialog.DialogUtil;
 import com.bluewhaleyt.component.snackbar.SnackbarUtil;
 import com.bluewhaleyt.filemanagement.FileUtil;
 import com.bluewhaleyt.git.GitUtil;
-import com.bluewhaleyt.whaleutils.App;
 import com.bluewhaleyt.whaleutils.R;
 import com.bluewhaleyt.whaleutils.databinding.FragmentGitBinding;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.elevation.SurfaceColors;
-
-import org.eclipse.jgit.transport.URIish;
-
-import java.io.File;
-import java.net.URISyntaxException;
-import java.nio.file.Paths;
 
 public class GitFragment extends Fragment {
 
@@ -94,6 +79,7 @@ public class GitFragment extends Fragment {
         setPaths();
 
         binding.btnClone.setOnClickListener(v -> clone(inflater.getContext()));
+        binding.btnAddFile.setOnClickListener(v -> showAddFileDialog());
 
         binding.etRemotePath.addTextChangedListener(new TextWatcher() {
             @Override
@@ -142,6 +128,28 @@ public class GitFragment extends Fragment {
         pbLoading.post(new GitTask());
     }
 
+    private void showAddFileDialog() {
+
+        view = getLayoutInflater().inflate(R.layout.dialog_layout_edit_content, null);
+        DialogUtil dialog = new DialogUtil(requireActivity(), "title");
+        dialog.setView(view);
+        dialog.setPositiveButton("Push", (d, i) -> push());
+        dialog.setNegativeButton("Add", (d, i) -> addFile());
+        dialog.setNeutralButton(android.R.string.cancel, null);
+        dialog.build();
+
+    }
+
+    private void addFile() {
+//        thread = new Thread(new AddRepoTask());
+//        thread.start();
+    }
+
+    private void push() {
+//        thread = new Thread(new PushRepoTask());
+//        thread.start();
+    }
+
     private class CloneRepoTask implements Runnable {
         @Override
         public void run() {
@@ -155,6 +163,31 @@ public class GitFragment extends Fragment {
 
             dialog.dismiss();
 
+        }
+    }
+
+    private class AddRepoTask implements Runnable {
+        @Override
+        public void run() {
+            try {
+                git = new GitUtil(localPath, remotePath);
+                git.addToRepo();
+            } catch (Exception e) {
+                SnackbarUtil.makeErrorSnackbar(requireActivity(), e.getMessage(), e.toString());
+            }
+        }
+    }
+
+    private class PushRepoTask implements Runnable {
+        @Override
+        public void run() {
+            try {
+                git = new GitUtil(localPath, remotePath);
+                git.commitToRepo("This is a test commit.");
+                git.pushToRepo();
+            } catch (Exception e) {
+                SnackbarUtil.makeErrorSnackbar(requireActivity(), e.getMessage(), e.toString());
+            }
         }
     }
 

@@ -112,14 +112,6 @@ public class SystemUtil {
         return GPUInfoUtil.glExtensions;
     }
 
-    public static void clearApplicationDataCache(Activity activity) throws IOException {
-        if (Build.VERSION_CODES.KITKAT <= Build.VERSION.SDK_INT) {
-            ((ActivityManager)activity.getSystemService(Context.ACTIVITY_SERVICE)).clearApplicationUserData();
-        } else {
-            Runtime.getRuntime().exec("pm clear " + activity.getApplicationContext().getPackageName());
-        }
-    }
-
     private static double getCoreFrequency(double currentFreq) {
         try {
             RandomAccessFile readerCurFreq;

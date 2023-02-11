@@ -47,6 +47,21 @@
         android:id="@+id/btn_clone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:icon="@drawable/round_content_copy_20"
         android:text="@string/git_tab_btn_clone"/>
+
+    <Button
+        android:id="@+id/btn_pull"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:icon="@drawable/ic_baseline_drive_file_move_24"
+        android:text="Pull from remote repository"/>
+
+    <Button
+        android:id="@+id/btn_add_file"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:icon="@drawable/ic_baseline_add_24"
+        android:text="Add file"/>
 
 </LinearLayout>

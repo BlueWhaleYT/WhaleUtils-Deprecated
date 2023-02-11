@@ -8,6 +8,7 @@ import android.view.View;
 
 import com.bluewhaleyt.common.DynamicColorsUtil;
 import com.bluewhaleyt.component.dialog.DialogUtil;
+import com.bluewhaleyt.whaleutils.R;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -68,13 +69,13 @@ public class SnackbarUtil {
         snackbarUtil.setTextColor(dynamicColors.getColorOnBackground());
     }
 
-    public static void makeErrorSnackbar(Activity activity, String error, String fullError) {
-        makeSnackbar(activity, error);
+    public static void makeErrorSnackbar(Activity activity, String errorMessage, String fullErrorMessage) {
+        makeSnackbar(activity, errorMessage);
         snackbarUtil.setBackgroundColor(dynamicColors.getColorErrorContainer());
         snackbarUtil.setTextColor(dynamicColors.getColorOnBackground());
         snackbarUtil.setActionTextColor(dynamicColors.getColorOnBackground());
-        snackbarUtil.setAction("Inspect", v -> {
-            DialogUtil dialog = new DialogUtil(activity, "Inspect", fullError);
+        snackbarUtil.setAction(activity.getResources().getString(R.string.debug_btn_inspect_text),v -> {
+            DialogUtil dialog = new DialogUtil(activity, activity.getResources().getString(R.string.debug_btn_inspect_title), fullErrorMessage);
             dialog.build();
         });
     }

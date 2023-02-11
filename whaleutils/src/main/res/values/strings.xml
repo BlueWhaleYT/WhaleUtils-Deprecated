@@ -28,4 +28,7 @@
 
     <string name="dialog_title_loading">Loading</string>
 
+    <string name="debug_btn_inspect_text">Inspect</string>
+    <string name="debug_btn_inspect_title">Error messages</string>
+
 </resources>

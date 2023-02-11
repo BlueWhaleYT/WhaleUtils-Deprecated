@@ -15,7 +15,7 @@ public class PreferencesManager {
     }
 
     public static boolean isAppDynamicColorEnable() {
-        return getPrefs().getBoolean("app_dynamic_color_enable", false);
+        return getPrefs().getBoolean("app_dynamic_color_enable", DynamicColorsUtil.isDynamicColorAvailable());
     }
 
     public static SharedPreferences getPrefs() {

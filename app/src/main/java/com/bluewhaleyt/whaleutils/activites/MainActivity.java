@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.bluewhaleyt.common.ApplicationUtil;
 import com.bluewhaleyt.common.CommonUtil;
 import com.bluewhaleyt.common.DynamicColorsUtil;
 import com.bluewhaleyt.common.IntentUtil;
@@ -146,7 +147,8 @@ public class MainActivity extends SpecialActivity {
         DialogUtil dialog = new DialogUtil(this, "Clear app data and cache", "Are you sure you want to clear the app data and cache? This action can't be restored.");
         dialog.setPositiveButton(android.R.string.ok, (d, i) -> {
             try {
-                SystemUtil.clearApplicationDataCache(this);
+                ApplicationUtil.clearApplicationData(this);
+                ApplicationUtil.clearApplicationCache(this);
             } catch (IOException e) {
                 e.printStackTrace();
             }

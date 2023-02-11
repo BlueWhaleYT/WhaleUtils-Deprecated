@@ -2,13 +2,11 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <Preference
-        app:title="@string/settings_display_title"
-        app:layout="@layout/layout_preference_screen_title_headline_large"
-        app:selectable="false" />
+    <com.bluewhaleyt.component.preferences.TitlePreference
+        app:title="@string/settings_display_title" />
 
     <ListPreference
-        app:defaultValue="3"
+        app:defaultValue="auto"
         app:dialogTitle="@string/settings_display_theme_dialog_title"
         app:entries="@array/app_theme"
         app:entryValues="@array/app_theme_value"
@@ -17,12 +15,17 @@
         app:title="@string/settings_display_theme_title"
         app:useSimpleSummaryProvider="true" />
 
-    <SwitchPreferenceCompat
+    <com.bluewhaleyt.component.preferences.material3.Material3SwitchPreference
         app:defaultValue="false"
         app:icon="@drawable/ic_outline_color_lens_24"
         app:key="app_dynamic_color_enable"
         app:summary="@string/settings_display_dynamic_color_summary"
-        app:widgetLayout="@layout/layout_preference_material3_switch"
-        app:title="@string/settings_display_dynamic_color_title" />
+        app:title="@string/settings_display_dynamic_color_title"/>
+
+    <Preference
+        app:icon="@drawable/ic_baseline_language_24"
+        app:key="component_btn_display_language"
+        app:title="@string/settings_display_language_title"
+        app:fragment="com.bluewhaleyt.whaleutils.fragments.preferences.LanguageFragment"/>
 
 </PreferenceScreen>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.bluewhaleyt.component.preferences.TitlePreference
+        app:title="@string/settings_display_language_title" />
+
+    <com.bluewhaleyt.component.preferences.material3.Material3ButtonPreference
+        app:title="Test"
+        app:summary="Hello world"
+        android:icon="@drawable/ic_baseline_translate_24" />
+
+    <ListPreference
+        app:defaultValue="auto"
+        app:dialogTitle="@string/settings_display_language_dialog_title"
+        app:entries="@array/app_language"
+        app:entryValues="@array/app_language_value"
+        app:icon="@drawable/ic_baseline_language_24"
+        app:key="app_language"
+        app:title="@string/settings_display_language_title"
+        app:useSimpleSummaryProvider="true" />
+
+</PreferenceScreen>

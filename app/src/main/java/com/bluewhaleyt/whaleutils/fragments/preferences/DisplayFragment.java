@@ -1,24 +1,20 @@
 package com.bluewhaleyt.whaleutils.fragments.preferences;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.view.View;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.preference.PreferenceFragmentCompat;
 import androidx.preference.SwitchPreferenceCompat;
 
 import com.bluewhaleyt.common.DynamicColorsUtil;
+import com.bluewhaleyt.common.IntentUtil;
 import com.bluewhaleyt.common.SDKUtil;
+import com.bluewhaleyt.component.preferences.CustomPreferenceFragment;
 import com.bluewhaleyt.component.snackbar.SnackbarUtil;
 import com.bluewhaleyt.whaleutils.App;
 import com.bluewhaleyt.whaleutils.R;
 
-public class DisplayFragment extends PreferenceFragmentCompat {
+public class DisplayFragment extends CustomPreferenceFragment {
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
         setPreferencesFromResource(R.xml.preferences_display, rootKey);
@@ -33,6 +29,8 @@ public class DisplayFragment extends PreferenceFragmentCompat {
 
             var preferenceTheme = findPreference("app_theme");
             SwitchPreferenceCompat preferenceDynamicColorEnable = findPreference("app_dynamic_color_enable");
+
+            var componentBtnDisplayLanguage = findPreference("component_btn_display_language");
 
             if (!SDKUtil.isAtLeastSDK31()) {
                 preferenceDynamicColorEnable.setEnabled(false);
@@ -68,16 +66,14 @@ public class DisplayFragment extends PreferenceFragmentCompat {
                 return true;
             });
 
+            componentBtnDisplayLanguage.setOnPreferenceClickListener(preference -> {
+                IntentUtil.intentFragment(requireActivity(), new LanguageFragment());
+                return true;
+            });
+
         } catch (Exception e) {
             SnackbarUtil.makeErrorSnackbar(getActivity(), e.getMessage(), e.toString());
         }
 
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        setDivider(new ColorDrawable(Color.TRANSPARENT));
-        setDividerHeight(0);
     }
 }

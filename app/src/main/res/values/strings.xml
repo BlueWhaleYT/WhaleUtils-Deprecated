@@ -41,6 +41,10 @@
     <string name="settings_display_dynamic_color_title">Dynamic Color</string>
     <string name="settings_display_dynamic_color_summary">Android 12 or higher only</string>
 
+    <string name="settings_display_language_title">Language</string>
+    <string name="settings_display_language_dialog_title">Choose language</string>
+    <string name="settings_display_language_dialog_option_auto">Auto</string>
+
     <string name="settings_about_github_title">Open Source</string>
     <string name="settings_about_github_summary">See Github repository and README file</string>
     <string name="settings_about_version_title">Version</string>

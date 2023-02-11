@@ -1,27 +1,25 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <Preference
-        app:title="@string/settings_title"
-        app:layout="@layout/layout_preference_screen_title_headline_large"
-        app:selectable="false" />
+    <com.bluewhaleyt.component.preferences.TitlePreference
+        app:title="@string/settings_title" />
 
-    <Preference
+    <com.bluewhaleyt.component.preferences.ButtonPreference
         app:key="component_btn_display"
         app:icon="@drawable/ic_baseline_aod_24"
         app:title="@string/settings_display_title"
         app:layout="@layout/layout_preference_screen_item_1"
         app:fragment="com.bluewhaleyt.whaleutils.fragments.preferences.DisplayFragment">
 
-    </Preference>
+    </com.bluewhaleyt.component.preferences.ButtonPreference>
 
-    <Preference
+    <com.bluewhaleyt.component.preferences.ButtonPreference
         app:key="component_btn_about"
         app:icon="@drawable/ic_baseline_info_24"
         app:title="@string/settings_about_title"
         app:layout="@layout/layout_preference_screen_item_1"
         app:fragment="com.bluewhaleyt.whaleutils.fragments.preferences.AboutFragment">
 
-    </Preference>
+    </com.bluewhaleyt.component.preferences.ButtonPreference>
 
 </PreferenceScreen>

@@ -31,13 +31,15 @@
             android:text="TextView"
             android:textColor="?colorOnBackground"
             android:textSize="20sp"
-            android:layout_marginBottom="5dp" />
+            android:layout_marginBottom="5dp"
+            android:gravity="center_vertical"/>
 
         <TextView
             android:id="@android:id/summary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="TextView" />
+            android:text="TextView"
+            android:gravity="center_vertical"/>
 
     </LinearLayout>
 

@@ -5,8 +5,8 @@
         app:title="@string/settings_title" />
 
     <com.bluewhaleyt.component.preferences.material3.Material3ButtonPreference
-        app:title="Note"
-        app:summary="This setting preference uses custom preference implementation of this library."
+        app:title="@string/settings_cardview_title"
+        app:summary="@string/settings_cardview_message"
         android:icon="@drawable/ic_baseline_info_24" />
 
     <com.bluewhaleyt.component.preferences.ButtonPreference

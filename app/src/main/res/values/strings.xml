@@ -28,6 +28,9 @@
     <string name="file_management_tab_btn_list_non_hidden_dir">List non hidden directories</string>
     <string name="file_management_tab_btn_list_only_dir_subdir_files">List only directories and sub directories files</string>
 
+    <string name="settings_cardview_title">Notes</string>
+    <string name="settings_cardview_message">The preference screen uses custom preference components of this library.</string>
+
     <string name="settings_title">Settings</string>
     <string name="settings_display_title">Display</string>
     <string name="settings_about_title">About</string>
@@ -44,6 +47,9 @@
     <string name="settings_display_language_title">Language</string>
     <string name="settings_display_language_dialog_title">Choose language</string>
     <string name="settings_display_language_dialog_option_auto">Auto</string>
+
+    <string name="settings_display_language_cardview_title">Translation is not yet completed</string>
+    <string name="settings_display_language_cardview_message">However, any contribution is welcome</string>
 
     <string name="settings_about_github_title">Open Source</string>
     <string name="settings_about_github_summary">See Github repository and README file</string>

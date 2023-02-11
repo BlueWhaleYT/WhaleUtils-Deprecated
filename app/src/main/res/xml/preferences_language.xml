@@ -7,8 +7,8 @@
 
     <com.bluewhaleyt.component.preferences.material3.Material3ButtonPreference
         app:key="component_btn_test"
-        app:title="Translation is not completed"
-        app:summary="However, any contribution is welcome."
+        app:title="@string/settings_display_language_cardview_title"
+        app:summary="@string/settings_display_language_cardview_message"
         android:icon="@drawable/ic_baseline_translate_24" />
 
     <ListPreference

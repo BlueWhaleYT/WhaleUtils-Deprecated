@@ -28,6 +28,9 @@
     <string name="file_management_tab_btn_list_non_hidden_dir">列出所有非系統隱藏的目錄</string>
     <string name="file_management_tab_btn_list_only_dir_subdir_files">列出所有目錄及子目錄的檔案</string>
 
+    <string name="settings_cardview_title">注意</string>
+    <string name="settings_cardview_message">此應用程序的偏好設定使用了本資源庫的自定義元件</string>
+
     <string name="settings_title">偏好設定</string>
     <string name="settings_display_title">顯示</string>
     <string name="settings_about_title">關於</string>
@@ -44,6 +47,9 @@
     <string name="settings_display_language_title">界面語言</string>
     <string name="settings_display_language_dialog_title">選擇語言</string>
     <string name="settings_display_language_dialog_option_auto">系統預設</string>
+
+    <string name="settings_display_language_cardview_title">翻譯尚未完成</string>
+    <string name="settings_display_language_cardview_message">歡迎任何用戶幫助翻譯</string>
 
     <string name="settings_about_github_title">開放源碼</string>
     <string name="settings_about_github_summary">查看 Github 存儲庫和 README 檔案</string>

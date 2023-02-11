@@ -354,13 +354,7 @@ public class FileUtil {
 //        fileFilter = File::isFile;
 //        listDir(path, list, fileFilter);
 
-        new Thread( new Runnable() {
-            @Override
-            public void run() {
-                listDirAllFiles(path, list);
-            }}).start();
-
-//        listDirAllFiles(path, list);
+        listDirAllFiles(path, list);
     }
 
     public static void refreshList(List<String> list) {

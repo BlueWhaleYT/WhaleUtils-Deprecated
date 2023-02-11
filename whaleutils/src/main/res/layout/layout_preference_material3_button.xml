@@ -6,7 +6,7 @@
     android:backgroundTint="?colorPrimary"
     android:orientation="vertical"
     android:layout_margin="20dp"
-    app:cardCornerRadius="30dp"
+    app:cardCornerRadius="25dp"
     app:cardElevation="0dp">
 
     <LinearLayout
@@ -44,8 +44,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="summary"
-                android:textColor="?colorOnPrimary"
-                android:layout_marginTop="5dp"/>
+                android:textColor="?colorOnPrimary"/>
 
         </LinearLayout>
 

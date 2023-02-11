@@ -48,8 +48,8 @@
     <string name="settings_display_language_dialog_title">Choose language</string>
     <string name="settings_display_language_dialog_option_auto">Auto</string>
 
-    <string name="settings_display_language_cardview_title">Translation is not yet completed</string>
-    <string name="settings_display_language_cardview_message">However, any contribution is welcome</string>
+    <string name="settings_display_language_cardview_title">Translation</string>
+    <string name="settings_display_language_cardview_message">Contribute the language for the application in Crowdin</string>
 
     <string name="settings_about_github_title">Open Source</string>
     <string name="settings_about_github_summary">See Github repository and README file</string>

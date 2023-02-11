@@ -48,8 +48,8 @@
     <string name="settings_display_language_dialog_title">選擇語言</string>
     <string name="settings_display_language_dialog_option_auto">系統預設</string>
 
-    <string name="settings_display_language_cardview_title">翻譯尚未完成</string>
-    <string name="settings_display_language_cardview_message">歡迎任何用戶幫助翻譯</string>
+    <string name="settings_display_language_cardview_title">翻譯</string>
+    <string name="settings_display_language_cardview_message">在 Crowdin 協助翻譯此應用程序</string>
 
     <string name="settings_about_github_title">開放源碼</string>
     <string name="settings_about_github_summary">查看 Github 存儲庫和 README 檔案</string>

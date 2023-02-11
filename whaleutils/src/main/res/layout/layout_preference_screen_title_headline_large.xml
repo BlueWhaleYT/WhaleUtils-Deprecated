@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:textColor="?colorOnBackground"
     android:padding="20dp"
-    android:layout_marginTop="40dp"
+    android:layout_marginTop="20dp"
     android:textAppearance="@style/TextAppearance.Material3.HeadlineLarge">
 
 </TextView>

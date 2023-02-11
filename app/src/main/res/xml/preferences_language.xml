@@ -6,8 +6,9 @@
         app:title="@string/settings_display_language_title" />
 
     <com.bluewhaleyt.component.preferences.material3.Material3ButtonPreference
-        app:title="Test"
-        app:summary="Hello world"
+        app:key="component_btn_test"
+        app:title="Translation is not completed"
+        app:summary="However, any contribution is welcome."
         android:icon="@drawable/ic_baseline_translate_24" />
 
     <ListPreference

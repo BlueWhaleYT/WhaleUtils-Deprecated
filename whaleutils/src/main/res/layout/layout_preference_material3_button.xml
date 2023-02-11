@@ -37,15 +37,15 @@
                 android:layout_height="wrap_content"
                 android:text="title"
                 android:textSize="20sp"
-                android:textColor="?colorOnPrimary"
-                android:layout_marginBottom="5dp"/>
+                android:textColor="?colorOnPrimary"/>
 
             <TextView
                 android:id="@android:id/summary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="summary"
-                android:textColor="?colorOnPrimary"/>
+                android:textColor="?colorOnPrimary"
+                android:layout_marginTop="5dp"/>
 
         </LinearLayout>
 

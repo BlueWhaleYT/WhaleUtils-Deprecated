@@ -28,7 +28,7 @@
     <string name="file_management_tab_btn_list_non_hidden_dir">列出所有非系統隱藏的目錄</string>
     <string name="file_management_tab_btn_list_only_dir_subdir_files">列出所有目錄及子目錄的檔案</string>
 
-    <string name="settings_title">設定</string>
+    <string name="settings_title">偏好設定</string>
     <string name="settings_display_title">顯示</string>
     <string name="settings_about_title">關於</string>
 

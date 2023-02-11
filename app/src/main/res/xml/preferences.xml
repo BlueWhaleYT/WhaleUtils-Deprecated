@@ -4,11 +4,16 @@
     <com.bluewhaleyt.component.preferences.TitlePreference
         app:title="@string/settings_title" />
 
+    <com.bluewhaleyt.component.preferences.material3.Material3ButtonPreference
+        app:title="Note"
+        app:summary="This setting preference uses custom preference implementation of this library."
+        android:icon="@drawable/ic_baseline_info_24" />
+
     <com.bluewhaleyt.component.preferences.ButtonPreference
         app:key="component_btn_display"
         app:icon="@drawable/ic_baseline_aod_24"
         app:title="@string/settings_display_title"
-        app:layout="@layout/layout_preference_screen_item_1"
+        app:layout="@layout/layout_preference_screen_item"
         app:fragment="com.bluewhaleyt.whaleutils.fragments.preferences.DisplayFragment">
 
     </com.bluewhaleyt.component.preferences.ButtonPreference>
@@ -17,7 +22,8 @@
         app:key="component_btn_about"
         app:icon="@drawable/ic_baseline_info_24"
         app:title="@string/settings_about_title"
-        app:layout="@layout/layout_preference_screen_item_1"
+        app:summary="this is a test summary"
+        app:layout="@layout/layout_preference_screen_item"
         app:fragment="com.bluewhaleyt.whaleutils.fragments.preferences.AboutFragment">
 
     </com.bluewhaleyt.component.preferences.ButtonPreference>

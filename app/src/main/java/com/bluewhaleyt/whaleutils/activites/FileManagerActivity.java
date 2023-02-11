@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.bluewhaleyt.common.CommonUtil;
 import com.bluewhaleyt.common.IntentUtil;
 import com.bluewhaleyt.common.PermissionUtil;
+import com.bluewhaleyt.common.SDKUtil;
 import com.bluewhaleyt.component.dialog.DialogUtil;
 import com.bluewhaleyt.component.snackbar.SnackbarUtil;
 import com.bluewhaleyt.filemanagement.FileComparator;
@@ -293,48 +294,58 @@ public class FileManagerActivity extends WhaleUtilsActivity {
     }
 
     private void goToAndroidDataDirectory() {
-        if (PermissionUtil.isAlreadyGrantedAndroidDataAccess(this)) {
-            sharedPrefs = getSharedPreferences(PermissionUtil.PERMISSION_SAF, Context.MODE_PRIVATE);
-            var uri = Uri.parse(sharedPrefs.getString(SAFUtil.DIRECT_DIRECTORY_URI, ""));
-            var file = DocumentFile.fromTreeUri(this, uri);
-            if (!file.canRead() || !file.canWrite()) {
-                PermissionUtil.requestAndroidDataAccess(this);
-            } else {
-                var parentUri = Uri.parse(sharedPrefs.getString(SAFUtil.DIRECTORY_URI, ""));
-                try {
-                    if (SAFUtil.listDirectories(this, fileListMap, parentUri, null)) {
-                        binding.lvFileList.setAdapter(new SAFFileListAdapter(fileListMap));
-                        ((BaseAdapter) binding.lvFileList.getAdapter()).notifyDataSetChanged();
-                    }
-                } catch (IOException e) {
-                    SnackbarUtil.makeErrorSnackbar(this, e.getMessage(), e.toString());
-                }
-            }
+        if (SDKUtil.isAtLeastSDK33()) {
+            SnackbarUtil.makeSnackbar(this, "Android 13 cannot access");
         } else {
-            PermissionUtil.requestAndroidDataAccess(this);
+
+            if (PermissionUtil.isAlreadyGrantedAndroidDataAccess(this)) {
+                sharedPrefs = getSharedPreferences(PermissionUtil.PERMISSION_SAF, Context.MODE_PRIVATE);
+                var uri = Uri.parse(sharedPrefs.getString(SAFUtil.DIRECT_DIRECTORY_URI, ""));
+                var file = DocumentFile.fromTreeUri(this, uri);
+                if (!file.canRead() || !file.canWrite()) {
+                    PermissionUtil.requestAndroidDataAccess(this);
+                } else {
+                    var parentUri = Uri.parse(sharedPrefs.getString(SAFUtil.DIRECTORY_URI, ""));
+                    try {
+                        if (SAFUtil.listDirectories(this, fileListMap, parentUri, null)) {
+                            binding.lvFileList.setAdapter(new SAFFileListAdapter(fileListMap));
+                            ((BaseAdapter) binding.lvFileList.getAdapter()).notifyDataSetChanged();
+                        }
+                    } catch (IOException e) {
+                        SnackbarUtil.makeErrorSnackbar(this, e.getMessage(), e.toString());
+                    }
+                }
+            } else {
+                PermissionUtil.requestAndroidDataAccess(this);
+            }
         }
     }
 
     private void goToAndroidObbDirectory() {
-        if (PermissionUtil.isAlreadyGrantedAndroidObbAccess(this)) {
-            sharedPrefs = getSharedPreferences(PermissionUtil.PERMISSION_SAF, Context.MODE_PRIVATE);
-            var uri = Uri.parse(sharedPrefs.getString(SAFUtil.DIRECT_DIRECTORY_URI, ""));
-            var file = DocumentFile.fromTreeUri(this, uri);
-            if (!file.canRead() || !file.canWrite()) {
-                PermissionUtil.requestAndroidObbAccess(this);
-            } else {
-                var parentUri = Uri.parse(sharedPrefs.getString(SAFUtil.DIRECTORY_URI, ""));
-                try {
-                    if (SAFUtil.listDirectories(this, fileListMap, parentUri, null)) {
-                        binding.lvFileList.setAdapter(new SAFFileListAdapter(fileListMap));
-                        ((BaseAdapter) binding.lvFileList.getAdapter()).notifyDataSetChanged();
-                    }
-                } catch (IOException e) {
-                    SnackbarUtil.makeErrorSnackbar(this, e.getMessage(), e.toString());
-                }
-            }
+        if (SDKUtil.isAtLeastSDK33()) {
+            SnackbarUtil.makeSnackbar(this, "Android 13 cannot access");
         } else {
-            PermissionUtil.requestAndroidObbAccess(this);
+
+            if (PermissionUtil.isAlreadyGrantedAndroidObbAccess(this)) {
+                sharedPrefs = getSharedPreferences(PermissionUtil.PERMISSION_SAF, Context.MODE_PRIVATE);
+                var uri = Uri.parse(sharedPrefs.getString(SAFUtil.DIRECT_DIRECTORY_URI, ""));
+                var file = DocumentFile.fromTreeUri(this, uri);
+                if (!file.canRead() || !file.canWrite()) {
+                    PermissionUtil.requestAndroidObbAccess(this);
+                } else {
+                    var parentUri = Uri.parse(sharedPrefs.getString(SAFUtil.DIRECTORY_URI, ""));
+                    try {
+                        if (SAFUtil.listDirectories(this, fileListMap, parentUri, null)) {
+                            binding.lvFileList.setAdapter(new SAFFileListAdapter(fileListMap));
+                            ((BaseAdapter) binding.lvFileList.getAdapter()).notifyDataSetChanged();
+                        }
+                    } catch (IOException e) {
+                        SnackbarUtil.makeErrorSnackbar(this, e.getMessage(), e.toString());
+                    }
+                }
+            } else {
+                PermissionUtil.requestAndroidObbAccess(this);
+            }
         }
     }
 

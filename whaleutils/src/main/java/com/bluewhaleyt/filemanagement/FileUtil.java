@@ -18,6 +18,7 @@ import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -352,7 +353,14 @@ public class FileUtil {
     public static void listOnlyFilesSubDirFiles(String path, List<String> list) {
 //        fileFilter = File::isFile;
 //        listDir(path, list, fileFilter);
-        listDirAllFiles(path, list);
+
+        new Thread( new Runnable() {
+            @Override
+            public void run() {
+                listDirAllFiles(path, list);
+            }}).start();
+
+//        listDirAllFiles(path, list);
     }
 
     public static void refreshList(List<String> list) {
@@ -400,7 +408,6 @@ public class FileUtil {
                 Log.w(TAG, "file: " + file.getPath());
             }
         }
-
     }
 
     private static void list(String path, List<String> list, FileFilter fileFilter) {

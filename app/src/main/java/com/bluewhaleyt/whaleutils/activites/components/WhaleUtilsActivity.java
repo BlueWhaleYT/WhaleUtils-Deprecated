@@ -9,6 +9,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.bluewhaleyt.common.CommonUtil;
+import com.bluewhaleyt.common.DynamicColorsUtil;
 import com.bluewhaleyt.common.IntentUtil;
 import com.bluewhaleyt.common.SDKUtil;
 import com.bluewhaleyt.crashdebugger.CrashDebugger;
@@ -20,6 +22,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 public class WhaleUtilsActivity extends AppCompatActivity {
 
     public App app;
+
+    private DynamicColorsUtil dynamicColors;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,6 +40,12 @@ public class WhaleUtilsActivity extends AppCompatActivity {
     }
 
     private void init() {
+
+        dynamicColors = new DynamicColorsUtil(this);
+
+        CommonUtil.setStatusBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);
+        CommonUtil.setNavigationBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);
+        CommonUtil.setToolBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);
 
         switch (PreferencesManager.getAppTheme()) {
             case "auto":

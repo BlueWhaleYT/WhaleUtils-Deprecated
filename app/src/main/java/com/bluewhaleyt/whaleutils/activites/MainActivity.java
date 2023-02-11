@@ -34,7 +34,7 @@ import com.google.android.material.card.MaterialCardView;
 
 import java.io.IOException;
 
-public class MainActivity extends SpecialActivity {
+public class MainActivity extends WhaleUtilsActivity {
 
     private ActivityMainBinding binding;
     private DialogLayoutPaletteBinding bindingPalette;
@@ -104,9 +104,7 @@ public class MainActivity extends SpecialActivity {
         checkInternetConnection();
 
         dynamicColors = new DynamicColorsUtil(this);
-
-        CommonUtil.setStatusBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_DEFAULT_TOOLBAR);
-        CommonUtil.setNavigationBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);
+        binding.tabLayout.setBackgroundColor(dynamicColors.getColorBackground());
 
         GPUInfoUtil.set(binding.glSurfaceView);
 

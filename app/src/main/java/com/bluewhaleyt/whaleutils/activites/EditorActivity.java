@@ -67,9 +67,6 @@ public class EditorActivity extends WhaleUtilsActivity {
 
     private void init() {
 
-        CommonUtil.setStatusBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_DEFAULT_TOOLBAR);
-        CommonUtil.setNavigationBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);
-
         try {
             getDataFromFile();
 

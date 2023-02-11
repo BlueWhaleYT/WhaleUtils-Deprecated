@@ -9,6 +9,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.bluewhaleyt.common.CommonUtil;
+import com.bluewhaleyt.common.DynamicColorsUtil;
 import com.bluewhaleyt.common.SDKUtil;
 import com.bluewhaleyt.crashdebugger.CrashDebugger;
 import com.bluewhaleyt.whaleutils.App;
@@ -22,18 +24,22 @@ public class SpecialActivity extends AppCompatActivity {
 
     private AlertDialog dialog;
 
+    private DynamicColorsUtil dynamicColors;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         CrashDebugger.init(this);
         app = App.getInstance();
 
-        showLoadingDialog();
+//        showLoadingDialog();
+//
+//        final Handler handler = new Handler();
+//        handler.postDelayed(this::init, 2000);
+//
+//        handler.postDelayed(() -> dialog.dismiss(), 2015);
 
-        final Handler handler = new Handler();
-        handler.postDelayed(this::init, 2000);
-
-        handler.postDelayed(() -> dialog.dismiss(), 2015);
+        init();
     }
 
     private void showLoadingDialog() {
@@ -46,6 +52,12 @@ public class SpecialActivity extends AppCompatActivity {
     }
 
     private void init() {
+
+        dynamicColors = new DynamicColorsUtil(this);
+
+        CommonUtil.setStatusBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);
+        CommonUtil.setNavigationBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);
+        CommonUtil.setToolBarColorWithSurface(this, CommonUtil.SURFACE_FOLLOW_WINDOW_BACKGROUND);
 
         switch (PreferencesManager.getAppTheme()) {
             case "auto":

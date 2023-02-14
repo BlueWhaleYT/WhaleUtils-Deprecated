@@ -1,9 +1,10 @@
 package com.bluewhaleyt.filemanagement;
 
-import android.content.ContentResolver;
+import android.content.Context;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.Handler;
+import android.provider.DocumentsContract;
 import android.util.Log;
 
 import com.bluewhaleyt.common.SDKUtil;
@@ -18,7 +19,6 @@ import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.nio.file.attribute.FileTime;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -220,10 +220,12 @@ public class FileUtil {
         return null;
     }
 
-    public static String getFilePathByUri(Uri uri) {
-        if (ContentResolver.SCHEME_FILE.equals(uri.getScheme()))
-            return uri.getPath();
-        return null;
+    public static String getFilePathFromUri(Context context, Uri uri) {
+        return UriResolver.getPathFromUri(context, getDocumentUriFromUri(uri));
+    }
+
+    public static Uri getDocumentUriFromUri(Uri uri) {
+        return DocumentsContract.buildDocumentUriUsingTree(uri, DocumentsContract.getTreeDocumentId(uri));
     }
 
     private static void createNewFile(String path) {
